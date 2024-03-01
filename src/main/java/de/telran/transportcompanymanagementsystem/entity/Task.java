@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Objects;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -30,4 +31,17 @@ public class Task {
     private Company companyId;
     private Vehicle vehicleId;
     private Driver driverId;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return Objects.equals(taskId, task.taskId) && Objects.equals(transportationDate, task.transportationDate) && Objects.equals(addressFrom, task.addressFrom) && Objects.equals(addressTo, task.addressTo) && Objects.equals(waybillNumber, task.waybillNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(taskId, transportationDate, addressFrom, addressTo, waybillNumber);
+    }
 }
