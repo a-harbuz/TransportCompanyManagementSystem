@@ -1,5 +1,6 @@
 package de.telran.transportcompanymanagementsystem.entity;
 import de.telran.transportcompanymanagementsystem.entity.enums.*;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -7,20 +8,40 @@ import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
+@Table(name = "vehicle")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 public class Contract {
-    UUID contractId;
-    String contractNumber;
-    String contractName;
-    BigDecimal costTransportationUnderContract;
-    BigDecimal totalCostTransportedGoods;
-    ContractStatus contractStatus;
-    Timestamp createdAt;
-    Company companyId;
+
+    @Id
+    @Column(name = "id")
+    private UUID contractId;
+
+    @Column(name = "contract_number")
+    private String contractNumber;
+
+    @Column(name = "contract_name")
+    private String contractName;
+
+    @Column(name = "cost_transportation_under_contract")
+    private BigDecimal costTransportationUnderContract;
+
+    @Column(name = "total_cost_transported_goods")
+    private BigDecimal totalCostTransportedGoods;
+
+    @Column(name = "contract_status")
+    @Enumerated(EnumType.STRING)
+    private ContractStatus contractStatus;
+
+    @Column(name = "created_at")
+    private Timestamp createdAt;
+
+    @Column(name = "company_id")
+    private UUID companyId;
 
     @Override
     public boolean equals(Object o) {

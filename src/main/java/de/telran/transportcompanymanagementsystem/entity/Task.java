@@ -1,5 +1,6 @@
 package de.telran.transportcompanymanagementsystem.entity;
 import de.telran.transportcompanymanagementsystem.entity.enums.*;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -9,28 +10,66 @@ import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
+@Table(name = "task")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 public class Task {
+
+    @Id
+    @Column(name = "id")
     private UUID taskId;
+
+    @Column(name = "transportation_date")
     private LocalDateTime transportationDate;
+
+    @Column(name = "address_from")
     private String addressFrom;
+
+    @Column(name = "address_to")
     private String addressTo;
+
+    @Column(name = "weight_cargo")
     private float weightCargo;
+
+    @Column(name = "waybill_number")
     private String waybillNumber;
+
+    @Column(name = "waybill_cost")
     private BigDecimal waybillCost;
+
+    @Column(name = "distance_traveled_kilometers")
     private int distanceTraveledKilometers;
+
+    @Column(name = "fuel_costs_traveled")
     private BigDecimal fuelCostsTraveled;
+
+    @Column(name = "task_status")
+    @Enumerated(EnumType.STRING)
     private TaskStatus taskStatus;
+
+    @Column(name = "comment_if_task_canceled")
     private String commentIfTaskCanceled;
+
+    @Column(name = "created_at")
     private Timestamp createdAt;
-    private Contract contractId;
-    private Company companyId;
-    private Vehicle vehicleId;
-    private Driver driverId;
+
+    @Column(name = "contract_id")
+    //@OneToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
+    //@JoinColumn(name = "contract_id", referencedColumnName = "id")
+    private UUID contractId;
+
+    @Column(name = "company_id")
+    private UUID companyId;
+
+    @Column(name = "vehicle_id")
+    private UUID vehicleId;
+
+    @Column(name = "employee_id")
+    private UUID employeeId; //driver
 
     @Override
     public boolean equals(Object o) {

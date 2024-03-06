@@ -2,6 +2,7 @@ spring:
   main:
     banner-mode: off
   datasource:
+
     url: jdbc:mysql://localhost:3306/transport_company
     name: alex
     password: 1234

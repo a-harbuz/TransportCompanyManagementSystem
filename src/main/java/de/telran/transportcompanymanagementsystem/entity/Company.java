@@ -1,24 +1,44 @@
 package de.telran.transportcompanymanagementsystem.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
+@Table(name = "company")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 public class Company {
+
+    @Id
+    @Column(name = "id")
     private UUID companyId;
+
+    @Column(name = "company_name")
     private String companyName;
+
+    @Column(name = "contact_first_name")
     private String contactFirstName;
+
+    @Column(name = "contact_last_name")
     private String contactLastName;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "phone")
     private String phone;
+
+    @Column(name = "created_at")
     private Timestamp createdAt;
 
     @Override
