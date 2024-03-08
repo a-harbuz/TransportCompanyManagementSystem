@@ -16,13 +16,14 @@ import java.util.UUID;
 public class Authority {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "a_id")
+    private UUID aId;
 
-    @Column(name = "authority")
-    private String authority;
+    @Column(name = "authority_name")
+    private String authorityName;
 
+    //Relationships
     @ManyToMany(mappedBy = "authorities")
     private Set<Role> roles;
 }

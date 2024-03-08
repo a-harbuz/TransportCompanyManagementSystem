@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -18,6 +19,7 @@ import java.util.UUID;
 public class Contract {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID contractId;
 
@@ -40,8 +42,13 @@ public class Contract {
     @Column(name = "created_at")
     private Timestamp createdAt;
 
-    @Column(name = "company_id")
-    private UUID companyId;
+    //Relationships
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "contract_id", referencedColumnName = "companyId")
+    private Company company;
+
+    @OneToMany(mappedBy = "contract", cascade = CascadeType.ALL)
+    private List<Task> tasks;
 
     @Override
     public boolean equals(Object o) {

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -17,6 +18,7 @@ import java.util.UUID;
 public class Company {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID companyId;
 
@@ -40,6 +42,16 @@ public class Company {
 
     @Column(name = "created_at")
     private Timestamp createdAt;
+
+    //Relationships
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private List<Maintenance> maintenances;
+
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private List<Contract> contracts;
+
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private List<Task> task;
 
     @Override
     public boolean equals(Object o) {

@@ -15,13 +15,14 @@ import java.util.UUID;
 public class Role {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "r_id")
+    private UUID rId;
 
     @Column(name = "role_name")
     private String roleName;
 
+    //Relationships
     @ManyToMany(mappedBy = "roles")
     private Set<EmployeeInfo> employeeInfos;
 

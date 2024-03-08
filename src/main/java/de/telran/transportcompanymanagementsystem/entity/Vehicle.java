@@ -4,6 +4,7 @@ import de.telran.transportcompanymanagementsystem.entity.enums.*;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -18,6 +19,7 @@ import java.util.Objects;
 public class Vehicle {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID vehicleId;
 
@@ -49,6 +51,13 @@ public class Vehicle {
 
     @Column(name = "created_at")
     private Timestamp createdAt;
+
+    //Relationships
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
+    private List<Maintenance> maintenances;
+
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
+    private List<Task> tasks;
 
     @Override
     public boolean equals(Object o) {

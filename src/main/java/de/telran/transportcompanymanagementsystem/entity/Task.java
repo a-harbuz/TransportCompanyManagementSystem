@@ -20,6 +20,7 @@ import java.util.UUID;
 public class Task {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID taskId;
 
@@ -57,19 +58,22 @@ public class Task {
     @Column(name = "created_at")
     private Timestamp createdAt;
 
-    @Column(name = "contract_id")
-    //@OneToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
-    //@JoinColumn(name = "contract_id", referencedColumnName = "id")
-    private UUID contractId;
+    //Relationships
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "contract_id", referencedColumnName = "сontractId")
+    private Contract contract;
 
-    @Column(name = "company_id")
-    private UUID companyId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id", referencedColumnName = "companyId")
+    private Company company;
 
-    @Column(name = "vehicle_id")
-    private UUID vehicleId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "vehicle_id", referencedColumnName = "vehicleId")
+    private Vehicle vehicle;
 
-    @Column(name = "employee_id")
-    private UUID employeeId; //driver
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_id", referencedColumnName = "employeeId")
+    private Employee employee;
 
     @Override
     public boolean equals(Object o) {

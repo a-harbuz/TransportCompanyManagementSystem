@@ -20,15 +20,9 @@ import java.util.UUID;
 public class EmployeeInfo {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID employeeInfoId;
-
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
 
     @Column(name = "address")
     private String address;
@@ -37,6 +31,7 @@ public class EmployeeInfo {
     private String phone;
 
     @Column(name = "driving_license_category")
+    @Enumerated(EnumType.STRING)
     private DrivingLicenseCategory drivingLicenseCategory;
 
     @Column(name = "login")
@@ -47,6 +42,10 @@ public class EmployeeInfo {
 
     @Column(name = "created_at")
     private Timestamp createdAt;
+
+    //Relationships
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Employee employee;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_role",
@@ -59,11 +58,11 @@ public class EmployeeInfo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EmployeeInfo that = (EmployeeInfo) o;
-        return Objects.equals(employeeInfoId, that.employeeInfoId) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(address, that.address) && Objects.equals(phone, that.phone) && drivingLicenseCategory == that.drivingLicenseCategory && Objects.equals(login, that.login);
+        return Objects.equals(employeeInfoId, that.employeeInfoId) && Objects.equals(address, that.address) && Objects.equals(phone, that.phone) && drivingLicenseCategory == that.drivingLicenseCategory && Objects.equals(login, that.login);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(employeeInfoId, firstName, lastName, address, phone, drivingLicenseCategory, login);
+        return Objects.hash(employeeInfoId, address, phone, drivingLicenseCategory, login);
     }
 }

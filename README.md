@@ -29,19 +29,6 @@ https://dbdiagram.io/d/TransportCompany-65dbc3415cd0412774c60055
 | vehicle_status     | varchar(50) | current status                                |                                
 | created_at         | timestamp   | timestamp of row creation                     |
 
-### Table driver ()
-
-| Column name              | Type           | Description                                   |
-|--------------------------|----------------|-----------------------------------------------|
-| id                       | binary(16)     | id key of row - unique, not null, primary key |
-| first_name               | varchar(20)    | driver's name                                 |         
-| last_name                | varchar(20)    | driver's last name                            |                              
-| address                  | varchar(80)    | driver's residential address                  |                                   
-| phone                    | varchar(20)    | driver's phone number                         |                          
-| driving_license_category | varchar(20)    | driving license category                      | 
-| is_working               | boolean        | working or fired                              |                          
-| created_at               | timestamp      | timestamp of row creation                     |
-
 ### Table maintenance ()
 
 | Column name            | Type         | Description                                   |
@@ -66,7 +53,6 @@ https://dbdiagram.io/d/TransportCompany-65dbc3415cd0412774c60055
 | address            | varchar(80)   | company office address                        | 
 | phone              | varchar(20)   | phone of the contact person                   | 
 | created_at         | timestamp     | timestamp of row creation                     | 
-
 
 ### Table Contract ()
 
@@ -101,3 +87,46 @@ https://dbdiagram.io/d/TransportCompany-65dbc3415cd0412774c60055
 | 	company_id                   | binary(16)    | id of counterparty company                    |
 | 	vehicle_id                   | binary(16)    | id of vehicle                                 |
 | 	driver_id                    | binary(16)    | id of driver                                  |
+
+### Table Employee ()
+
+| Column name              | Type           | Description                                   |
+|--------------------------|----------------|-----------------------------------------------|
+| id                       | binary(16)     | id key of row - unique, not null, primary key |
+| first_name               | varchar(20)    | driver's name                                 |         
+| last_name                | varchar(20)    | driver's last name                            |                              
+| address                  | varchar(80)    | driver's residential address                  |                                   
+| phone                    | varchar(20)    | driver's phone number                         |                          
+| driving_license_category | varchar(20)    | driving license category                      | 
+| is_working               | boolean        | working or fired                              |                          
+| created_at               | timestamp      | timestamp of row creation                     |
+
+### Table EmployeeInfo (Employee's personal information)
+
+| Column name              | Type           | Description                                   |
+|--------------------------|----------------|-----------------------------------------------|
+| id                       | binary(16)     | id key of row - unique, not null, primary key |
+| first_name               | varchar(20)    | driver's name                                 |         
+| last_name                | varchar(20)    | driver's last name                            |                              
+| address                  | varchar(80)    | driver's residential address                  |                                   
+| phone                    | varchar(20)    | driver's phone number                         |                          
+| driving_license_category | varchar(20)    | driving license category                      | 
+| is_working               | boolean        | working or fired                              |                          
+| created_at               | timestamp      | timestamp of row creation                     |
+
+### Table Role (Employee's roles)
+
+| Column name              | Type           | Description                                   |
+|--------------------------|----------------|-----------------------------------------------|
+| id                       | binary(16)     | id key of row - unique, not null, primary key |
+| first_name               | varchar(20)    | driver's name                                 |         
+| last_name                | varchar(20)    | driver's last name                            |                              
+
+### Table Authority (Role's authority)
+
+| Column name              | Type           | Description                                   |
+|--------------------------|----------------|-----------------------------------------------|
+| id                       | binary(16)     | id key of row - unique, not null, primary key |
+| first_name               | varchar(20)    | driver's name                                 |         
+| last_name                | varchar(20)    | driver's last name                            |                              
+

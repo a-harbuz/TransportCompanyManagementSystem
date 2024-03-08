@@ -19,6 +19,7 @@ import java.util.UUID;
 public class Maintenance {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID mId;
 
@@ -35,11 +36,14 @@ public class Maintenance {
     @Column(name = "created_at")
     private Timestamp createdAt;
 
-    @Column(name = "vehicle_id ")
-    private UUID vehicleId;
+    //Relationships
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "vehicle_id", referencedColumnName = "vehicleId")
+    private Vehicle vehicle;
 
-    @Column(name = "company_id")
-    private UUID maintenanceCompany;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id", referencedColumnName = "companyId")
+    private Company company;
 
     @Override
     public boolean equals(Object o) {
