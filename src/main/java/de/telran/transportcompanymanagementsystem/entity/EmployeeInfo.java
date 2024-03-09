@@ -48,8 +48,8 @@ public class EmployeeInfo {
     private Employee employee;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
+    @JoinTable(name = "employeeInfo_role",
+            joinColumns = @JoinColumn(name = "employeeInfo_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 

@@ -27,6 +27,7 @@ public class Role {
     private Set<EmployeeInfo> employeeInfos;
 
     @ManyToMany(fetch = FetchType.LAZY)
+    //role_authority - The join table
     @JoinTable(name = "role_authority",
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id"))
