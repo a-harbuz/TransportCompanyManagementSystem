@@ -90,43 +90,40 @@ https://dbdiagram.io/d/TransportCompany-65dbc3415cd0412774c60055
 
 ### Table Employee ()
 
-| Column name              | Type           | Description                                   |
-|--------------------------|----------------|-----------------------------------------------|
-| id                       | binary(16)     | id key of row - unique, not null, primary key |
-| first_name               | varchar(20)    | driver's name                                 |         
-| last_name                | varchar(20)    | driver's last name                            |                              
-| address                  | varchar(80)    | driver's residential address                  |                                   
-| phone                    | varchar(20)    | driver's phone number                         |                          
-| driving_license_category | varchar(20)    | driving license category                      | 
-| is_working               | boolean        | working or fired                              |                          
-| created_at               | timestamp      | timestamp of row creation                     |
+| Column name      | Type         | Description                                    |
+|------------------|--------------|------------------------------------------------|
+| id               | binary(16)   | id key of row - unique, not null, primary key  |
+| first_name       | varchar(20)  | employee's name                                |         
+| last_name        | varchar(20)  | employee's last name                           |                               
+| is_driver        | boolean      | is driver?                                         | 
+| is_working       | boolean      | working or fired                               |                          
+| created_at       | timestamp    | timestamp of row creation                      |
+| employee_info_id | binary(16)   | id employee's personal information             |
 
 ### Table EmployeeInfo (Employee's personal information)
 
-| Column name              | Type           | Description                                   |
-|--------------------------|----------------|-----------------------------------------------|
-| id                       | binary(16)     | id key of row - unique, not null, primary key |
-| first_name               | varchar(20)    | driver's name                                 |         
-| last_name                | varchar(20)    | driver's last name                            |                              
-| address                  | varchar(80)    | driver's residential address                  |                                   
-| phone                    | varchar(20)    | driver's phone number                         |                          
-| driving_license_category | varchar(20)    | driving license category                      | 
-| is_working               | boolean        | working or fired                              |                          
-| created_at               | timestamp      | timestamp of row creation                     |
+| Column name              | Type        | Description                                   |
+|--------------------------|-------------|-----------------------------------------------|
+| id                       | binary(16)  | id key of row - unique, not null, primary key |
+| address                  | varchar(80) | employee's residential address                |                                   
+| phone                    | varchar(20) | employee's phone number                       |                          
+| driving_license_category | varchar(20) | driving license category                      | 
+| login                    | varchar(50) | login in management system                    |                          
+| password                 | varchar(50) | password in management system                 |
+| created_at               | timestamp   | timestamp of row creation                     |
 
 ### Table Role (Employee's roles)
 
-| Column name              | Type           | Description                                   |
-|--------------------------|----------------|-----------------------------------------------|
-| id                       | binary(16)     | id key of row - unique, not null, primary key |
-| first_name               | varchar(20)    | driver's name                                 |         
-| last_name                | varchar(20)    | driver's last name                            |                              
+| Column name             | Type         | Description                                   |
+|-------------------------|--------------|-----------------------------------------------|
+| id                      | binary(16)   | id key of row - unique, not null, primary key |
+| role_name               | varchar(128) | name of role                                  |         
+                              
 
 ### Table Authority (Role's authority)
 
-| Column name              | Type           | Description                                   |
-|--------------------------|----------------|-----------------------------------------------|
-| id                       | binary(16)     | id key of row - unique, not null, primary key |
-| first_name               | varchar(20)    | driver's name                                 |         
-| last_name                | varchar(20)    | driver's last name                            |                              
-
+| Column name              | Type         | Description                                   |
+|--------------------------|--------------|-----------------------------------------------|
+| id                       | binary(16)   | id key of row - unique, not null, primary key |
+| authority_name           | varchar(128) | name of authority                             |         
+                              
