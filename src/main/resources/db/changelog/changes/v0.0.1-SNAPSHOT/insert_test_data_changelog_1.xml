@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="o.harbuz" id="insert test data into vehicle table">
+        <insert tableName="vehicle">
+            <column name="id" value="26e41ad9-0482-4808-9dbb-c917631f1b56"/>
+            <column name="vehicle_type" value="TRUCK20T"/>
+            <column name="name" value="MAN"/>
+            <column name="model" value="TGS 35.480"/>
+            <column name="year_manufacture" value="2008"/>
+            <column name="car_number" value="AE2387KM"/>
+            <column name="initial_kilometers" value="52300"/>
+            <column name="price" value="50000"/>
+            <column name="vehicle_status" value="WORKING"/>
+            <column name="created_at" value="2024-01-14"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into contract table">
+        <insert tableName="contract">
+            <column name="id" value="c8e0d900-fcd7-4182-925c-fb3a8d010243"/>
+            <column name="contract_number" value="001"/>
+            <column name="contract_name" value="договор перевозки грузов"/>
+            <column name="cost_transportation_under_contract" value="20000"/>
+            <column name="total_cost_transported_goods" value="50000.00"/>
+            <column name="contract_status" value="ACTIVE"/>
+            <column name="created_at" value="2024-03-12"/>
+            <column name="company_id" value="2d0cc985-ffdc-40de-be58-69eba564fc47"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into task table">
+        <insert tableName="task">
+            <column name="id" value="bb7ba560-3900-457b-9fa8-c7a4285165c7"/>
+            <column name="transportation_date" value="2024-05-04"/>
+            <column name="address_from" value="Apt. 962 436 German Bridge, North Rita, NV 39539-0840"/>
+            <column name="address_to" value="Suite 272 970 Ankunding Squares, Oraliaberg, CT 09091-8782"/>
+            <column name="weight_cargo" value="15000"/>
+            <column name="waybill_number" value="001"/>
+            <column name="waybill_cost" value="24000"/>
+            <column name="distance_traveled_kilometers" value="250"/>
+            <column name="fuel_costs_traveled" value="300"/>
+            <column name="task_status" value="PLANNED"/>
+            <column name="comment_if_task_canceled" value=""/>
+            <column name="created_at" value="2024-03-14"/>
+            <column name="contract_id" value="c8e0d900-fcd7-4182-925c-fb3a8d010243"/>
+            <column name="company_id" value="2d0cc985-ffdc-40de-be58-69eba564fc47"/>
+            <column name="vehicle_id" value="26e41ad9-0482-4808-9dbb-c917631f1b56"/>
+            <column name="employee_id" value="a060e1b8-7c07-4619-85dc-32c6a5afa269"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into maintenance table">
+        <insert tableName="maintenance">
+            <column name="id" value="dadcc55c-5059-4165-886b-09555ad765f9"/>
+            <column name="service_type" value="CHANGE_OIL"/>
+            <column name="maintenance_cost" value="500"/>
+            <column name="maintenance_kilometers" value="60000"/>
+            <column name="created_at" value="2024-03-10"/>
+            <column name="vehicle_id" value="26e41ad9-0482-4808-9dbb-c917631f1b56"/>
+            <column name="company_id" value="2d0cc985-ffdc-40de-be58-69eba564fc47"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into company table">
+        <insert tableName="company">
+            <column name="id" value="2d0cc985-ffdc-40de-be58-69eba564fc47"/>
+            <column name="company_name" value="Larson-Witting"/>
+            <column name="contact_first_name" value="Ruben"/>
+            <column name="contact_last_name" value="Goldner"/>
+            <column name="email" value="pouros@gmail.com"/>
+            <column name="address" value="Suite 023 93650 Daniel Cape, Doyleside, TX 80840"/>
+            <column name="phone" value="028-486-4464"/>
+            <column name="created_at" value="2024-02-14"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into employee table">
+        <insert tableName="employee">
+            <column name="id" value="a060e1b8-7c07-4619-85dc-32c6a5afa269"/>
+            <column name="first_name" value="Shelia"/>
+            <column name="last_name" value="Greenholt"/>
+            <column name="is_driver" value="true"/>
+            <column name="is_working" value="true"/>
+            <column name="employee_info_id" value="fa52e5cf-4240-497a-b439-cccd7c99f474"/>
+            <column name="created_at" value="2024-01-10"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into employee_info table">
+        <insert tableName="employee_info">
+            <column name="id" value="fa52e5cf-4240-497a-b439-cccd7c99f474"/>
+            <column name="address" value="294 Krajcik Underpass, Lake Davistown, PA 35246"/>
+            <column name="phone" value="582-201-3429"/>
+            <column name="driving_license_category" value="C1"/>
+            <column name="login" value="meridith.langosh"/>
+            <column name="password" value="bbthinpz263!"/>
+            <column name="created_at" value="2024-01-10"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into role table">
+        <insert tableName="role">
+            <column name="r_id" value="4faba779-9226-4e9c-a28b-f6a534e95365"/>
+            <column name="first_name" value="role1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into authority table">
+        <insert tableName="authority">
+            <column name="a_id" value="4fb1e8f0-41d2-4872-a3d1-3aa6818ac266"/>
+            <column name="authority_name" value="authority1"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

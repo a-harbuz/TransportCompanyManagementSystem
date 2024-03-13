@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="o.harbuz" id="insert test data into vehicle table">
+        <insert tableName="vehicle">
+            <column name="id" value="21679aa7-c43b-468d-8318-8090227c4acb"/>
+            <column name="vehicle_type" value="TRUCK5T"/>
+            <column name="name" value="Mercedes-Benz"/>
+            <column name="model" value="Actros"/>
+            <column name="year_manufacture" value="2021"/>
+            <column name="car_number" value="SC 1238 KM"/>
+            <column name="initial_kilometers" value="80000"/>
+            <column name="price" value="62300.45"/>
+            <column name="vehicle_status" value="MAINTENANCE"/>
+            <column name="created_at" value="2024-01-20"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into contract table">
+        <insert tableName="contract">
+            <column name="id" value="ca07e868-9e3a-4df7-acca-c655321ad378"/>
+            <column name="contract_number" value="004"/>
+            <column name="contract_name" value="перевозка комплектов мебели"/>
+            <column name="cost_transportation_under_contract" value="5000"/>
+            <column name="total_cost_transported_goods" value="30000"/>
+            <column name="contract_status" value="REFUSAL"/>
+            <column name="created_at" value="2024-03-05"/>
+            <column name="company_id" value=""/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into task table">
+        <insert tableName="task">
+            <column name="id" value="0ebb8160-7f5c-410d-8a00-13e6837b8a16"/>
+            <column name="transportation_date" value="2024-03-12"/>
+            <column name="address_from" value="Suite 029 4039 Pfeffer Keys, West Wilfordfurt, NE 11123"/>
+            <column name="address_to" value="Apt. 728 1039 Fritsch Garden, Alfredmouth, AR 04647"/>
+            <column name="weight_cargo" value="4000"/>
+            <column name="waybill_number" value="004"/>
+            <column name="waybill_cost" value="2000"/>
+            <column name="distance_traveled_kilometers" value="250"/>
+            <column name="fuel_costs_traveled" value="120"/>
+            <column name="task_status" value="CANCELLED"/>
+            <column name="comment_if_task_canceled" value="The car broke down on the way."/>
+            <column name="created_at" value="2024-03-02"/>
+            <column name="contract_id" value=""/>
+            <column name="company_id" value=""/>
+            <column name="vehicle_id" value=""/>
+            <column name="employee_id" value=""/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into maintenance table">
+        <insert tableName="maintenance">
+            <column name="id" value="f52182cf-a76b-46bd-934f-08c44e62fdf7"/>
+            <column name="service_type" value="REPAIR_ELECTRICAL"/>
+            <column name="maintenance_cost" value="740.50"/>
+            <column name="maintenance_kilometers" value="90000"/>
+            <column name="created_at" value="2024-03-09"/>
+            <column name="vehicle_id" value=""/>
+            <column name="company_id" value=""/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into company table">
+        <insert tableName="company">
+            <column name="id" value="875eeb54-d18a-4cfc-8efc-d984c8c362ff"/>
+            <column name="company_name" value="Haley-Stoltenberg"/>
+            <column name="contact_first_name" value="Carlo"/>
+            <column name="contact_last_name" value="Mills"/>
+            <column name="email" value="homenick@gmail.com"/>
+            <column name="address" value="Apt. 644 83289 Frances Canyon, Purdyside, AK 93792"/>
+            <column name="phone" value="0151-501-994"/>
+            <column name="created_at" value="2024-01-28"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into employee table">
+        <insert tableName="employee">
+            <column name="id" value="4534a894-9a50-463b-bc06-5840689efe9a"/>
+            <column name="first_name" value="Rickey"/>
+            <column name="last_name" value="Schowalter"/>
+            <column name="is_driver" value="true"/>
+            <column name="is_working" value="false"/>
+            <column name="created_at" value="2024-01-15"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into employee_info table">
+        <insert tableName="employee_info">
+            <column name="id" value="18907be0-b307-49d6-8f4c-27f9c26589d4"/>
+            <column name="address" value="319 Cordell Square, Kazukoside, DE 54119-3469"/>
+            <column name="phone" value="0171-619-9624"/>
+            <column name="driving_license_category" value="С"/>
+            <column name="login" value="blanca.cummings"/>
+            <column name="password" value="m9cmi751"/>
+            <column name="created_at" value="2024-01-15"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into role table">
+        <insert tableName="role">
+            <column name="r_id" value="8e383893-aae8-4084-bab7-30528b64f604"/>
+            <column name="first_name" value="role4"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into authority table">
+        <insert tableName="authority">
+            <column name="a_id" value="15d01905-4c95-4020-9dec-f28c41bf8f36"/>
+            <column name="authority_name" value="authority4"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

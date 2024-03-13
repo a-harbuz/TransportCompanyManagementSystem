@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="o.harbuz" id="insert test data into vehicle table">
+        <insert tableName="vehicle">
+            <column name="id" value="e70c1c8c-4798-42af-8d00-a36e8e804ce7"/>
+            <column name="vehicle_type" value="TRUCK10T"/>
+            <column name="name" value="MAN"/>
+            <column name="model" value="TGS 25.380 "/>
+            <column name="year_manufacture" value="2012"/>
+            <column name="car_number" value="AK2387AA"/>
+            <column name="initial_kilometers" value="60000"/>
+            <column name="price" value="60000"/>
+            <column name="vehicle_status" value="WORKING"/>
+            <column name="created_at" value="2024-01-15"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into contract table">
+        <insert tableName="contract">
+            <column name="id" value="cf9cb0da-bc95-4bf0-9218-ba1b69ef39a4"/>
+            <column name="contract_number" value="002"/>
+            <column name="contract_name" value="договор перевозки грузов"/>
+            <column name="cost_transportation_under_contract" value="10000"/>
+            <column name="total_cost_transported_goods" value="41560.56"/>
+            <column name="contract_status" value="ACTIVE"/>
+            <column name="created_at" value="2024-02-12"/>
+            <column name="company_id" value=""/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into task table">
+        <insert tableName="task">
+            <column name="id" value="faf28f23-a6ea-4ec4-aa7a-5542f35c2804"/>
+            <column name="transportation_date" value="2024-06-01"/>
+            <column name="address_from" value="Apt. 433 397 Kemmer Mount, West Candiville, NY 86021"/>
+            <column name="address_to" value="030 Deangelo Trafficway, New Palmira, CT 57791"/>
+            <column name="weight_cargo" value="12000"/>
+            <column name="waybill_number" value="002"/>
+            <column name="waybill_cost" value="5000"/>
+            <column name="distance_traveled_kilometers" value="75"/>
+            <column name="fuel_costs_traveled" value="110"/>
+            <column name="task_status" value="PLANNED"/>
+            <column name="comment_if_task_canceled" value=""/>
+            <column name="created_at" value="2024-03-11"/>
+            <column name="contract_id" value=""/>
+            <column name="company_id" value=""/>
+            <column name="vehicle_id" value=""/>
+            <column name="employee_id" value=""/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into maintenance table">
+        <insert tableName="maintenance">
+            <column name="id" value="33b020bb-9b1f-4b32-8e6c-48c4ad273692"/>
+            <column name="service_type" value="REPAIR_BRAKE"/>
+            <column name="maintenance_cost" value="450"/>
+            <column name="maintenance_kilometers" value="65000"/>
+            <column name="created_at" value="2024-01-09"/>
+            <column name="vehicle_id" value=""/>
+            <column name="company_id" value=""/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into company table">
+        <insert tableName="company">
+            <column name="id" value="edebc21f-c4da-4701-85e2-246c86d7aa5c"/>
+            <column name="company_name" value="Prohaska, Wilderman and Rohan"/>
+            <column name="contact_first_name" value="Tory"/>
+            <column name="contact_last_name" value="Dooley"/>
+            <column name="email" value="wiegand@gmail.com"/>
+            <column name="address" value="59834 Predovic Summit, South Lakishaville, IN 53089"/>
+            <column name="phone" value="037-963-6981"/>
+            <column name="created_at" value="2024-02-01"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into employee table">
+        <insert tableName="employee">
+            <column name="id" value="fc9b6860-e3e9-4634-ab4e-dd35216d52b3"/>
+            <column name="first_name" value="Erica"/>
+            <column name="last_name" value="Klein"/>
+            <column name="is_driver" value="true"/>
+            <column name="is_working" value="true"/>
+            <column name="created_at" value="2024-01-15"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into employee_info table">
+        <insert tableName="employee_info">
+            <column name="id" value="f571f423-dc43-404b-9820-a97bbf7ac28c"/>
+            <column name="address" value="Suite 634 7140 Miller Cliff, Madalynhaven, NV 05185"/>
+            <column name="phone" value="613-852-8580 x5802"/>
+            <column name="driving_license_category" value="C1E"/>
+            <column name="login" value="florinda1"/>
+            <column name="password" value="1qjyxAs"/>
+            <column name="created_at" value="2024-01-15"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into role table">
+        <insert tableName="role">
+            <column name="r_id" value="42f7d44e-b3ba-4a45-9469-2468d178772c"/>
+            <column name="first_name" value="role2"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into authority table">
+        <insert tableName="authority">
+            <column name="a_id" value="b9da435e-025d-4dac-83b6-dddb2a95bfcf"/>
+            <column name="authority_name" value="authority2"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
