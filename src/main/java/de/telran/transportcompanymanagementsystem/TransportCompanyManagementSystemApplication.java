@@ -9,5 +9,4 @@ public class TransportCompanyManagementSystemApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TransportCompanyManagementSystemApplication.class, args);
 	}
-
 }

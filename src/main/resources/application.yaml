@@ -1,8 +1,17 @@
 spring:
   main:
     banner-mode: off
-  datasource:
 
+  datasource:
     url: jdbc:mysql://localhost:3306/transport_company
     name: alex
     password: 1234
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.xml

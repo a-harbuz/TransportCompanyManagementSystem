@@ -44,11 +44,13 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<version>3.2.3</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
 		<dependency>
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
-			<version>${liquibase.version}</version>
+			<version>4.26.0</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>

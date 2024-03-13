@@ -51,7 +51,7 @@ public class Company {
     private List<Contract> contracts;
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    private List<Task> task;
+    private List<Task> tasks;
 
     @Override
     public boolean equals(Object o) {
