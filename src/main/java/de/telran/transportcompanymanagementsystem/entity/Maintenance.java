@@ -38,11 +38,11 @@ public class Maintenance {
 
     //Relationships
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "vehicle_id", referencedColumnName = "vehicleId")
+    @JoinColumn(name = "vehicle_id", referencedColumnName = "id")
     private Vehicle vehicle;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_id", referencedColumnName = "companyId")
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
     private Company company;
 
     @Override

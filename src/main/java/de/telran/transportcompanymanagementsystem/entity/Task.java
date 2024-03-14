@@ -60,19 +60,19 @@ public class Task {
 
     //Relationships
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "contract_id", referencedColumnName = "сontractId")
+    @JoinColumn(name = "contract_id", referencedColumnName = "id")
     private Contract contract;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_id", referencedColumnName = "companyId")
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
     private Company company;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "vehicle_id", referencedColumnName = "vehicleId")
+    @JoinColumn(name = "vehicle_id", referencedColumnName = "id")
     private Vehicle vehicle;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id", referencedColumnName = "employeeId")
+    @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;
 
     @Override

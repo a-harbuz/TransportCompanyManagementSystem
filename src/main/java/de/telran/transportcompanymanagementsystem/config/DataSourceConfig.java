@@ -10,13 +10,13 @@ import javax.sql.DataSource;
 @Configuration
 public class DataSourceConfig {
 
-    @Bean
-    public DataSource getDataSource() {
-        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
-        dataSourceBuilder.url("jdbc:mysql://localhost:3306/transport_company");
-        dataSourceBuilder.username("alex");
-        dataSourceBuilder.password("1234");
-        return dataSourceBuilder.build();
-    }
+//    @Bean
+//    public DataSource dataSource() {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+//        dataSource.setUrl("jdbc:mysql://localhost:3306/transport_company");
+//        dataSource.setUsername("alex");
+//        dataSource.setPassword("1234");
+//        return dataSource;
+//    }
 }

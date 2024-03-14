@@ -42,7 +42,7 @@ public class Employee {
     private List<Task> tasks;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_info_id", referencedColumnName = "employeeId")
+    @JoinColumn(name = "employee_info_id", referencedColumnName = "id")
     private EmployeeInfo employeeInfo;
 
     @Override

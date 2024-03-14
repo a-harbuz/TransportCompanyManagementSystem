@@ -44,7 +44,7 @@ public class EmployeeInfo {
     private Timestamp createdAt;
 
     //Relationships
-    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "employeeInfo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Employee employee;
 
     @ManyToMany(fetch = FetchType.LAZY)
