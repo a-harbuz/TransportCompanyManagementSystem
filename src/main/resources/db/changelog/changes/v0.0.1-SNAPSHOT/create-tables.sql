@@ -1,29 +1,29 @@
 CREATE TABLE IF NOT EXISTS vehicle (
-    id BINARY(16) PRIMARY KEY NOT NULL,
+    id BINARY(16) PRIMARY KEY,
     vehicle_type VARCHAR(50) NOT NULL,
     name VARCHAR(50) NOT NULL,
     model VARCHAR(50) NOT NULL,
     year_manufacture VARCHAR(20),
     car_number VARCHAR(20) NOT NULL,
-    initial_kilometers int NOT NULL,
+    initial_kilometers INT NOT NULL,
     price FLOAT,
     vehicle_status VARCHAR(50) NOT NULL,
-    created_at TIMESTAMP NOT NULL
+    created_at TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS company (
-    id BINARY(16) PRIMARY KEY NOT NULL,
+    id BINARY(16) PRIMARY KEY,
     company_name VARCHAR(50) NOT NULL,
     contact_first_name VARCHAR(20) NOT NULL,
     contact_last_name VARCHAR(20) NOT NULL,
     email VARCHAR(60),
     address VARCHAR(80),
     phone VARCHAR(20) NOT NULL,
-    created_at	TIMESTAMP NOT NULL
+    created_at TIMESTAMP NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS maintenance (
-    id BINARY(16) PRIMARY KEY NOT NULL,
+    id BINARY(16) PRIMARY KEY,
     service_type VARCHAR(50) NOT NULL,
     maintenance_cost DECIMAL(8,2) NOT NULL,
     maintenance_kilometers INT NOT NULL,
@@ -35,13 +35,13 @@ CREATE TABLE IF NOT EXISTS maintenance (
 );
 
 CREATE TABLE IF NOT EXISTS employee_info (
-    id BINARY(16) PRIMARY KEY NOT NULL,
-    address	VARCHAR(80),
-    phone	VARCHAR(20),
+    id BINARY(16) PRIMARY KEY,
+    address VARCHAR(80),
+    phone VARCHAR(20),
     driving_license_category VARCHAR(20),
-    login	 VARCHAR(50),
+    login VARCHAR(50),
     password VARCHAR(50),
-    created_at	TIMESTAMP
+    created_at TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS employee (

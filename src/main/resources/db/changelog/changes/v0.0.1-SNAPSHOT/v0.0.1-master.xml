@@ -6,11 +6,13 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
+    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/create-tables.sql"/>
+
     <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data_changelog_1.xml"/>
     <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data_changelog_2.xml"/>
     <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data_changelog_3.xml"/>
     <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data_changelog_4.xml"/>
 
-    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/create-tables.sql"/>
+
 
 </databaseChangeLog>
