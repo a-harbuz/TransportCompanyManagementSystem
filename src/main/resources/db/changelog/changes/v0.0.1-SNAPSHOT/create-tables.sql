@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS contract (
     contract_name VARCHAR(80),
     cost_transportation_under_contract DECIMAL(10,2),
     total_cost_transported_goods DECIMAL(11,2),
-    contract_status	VARCHAR(50) NOT NULL,
+    contract_status VARCHAR(50) NOT NULL,
     created_at	TIMESTAMP NOT NULL,
     company_id	BINARY(16) NOT NULL,
     FOREIGN KEY (company_id) REFERENCES company (id)
