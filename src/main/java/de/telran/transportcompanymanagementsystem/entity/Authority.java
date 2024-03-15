@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "authorities")
+@Table(name = "authority")
 @NoArgsConstructor
 @Getter
 @Setter
@@ -17,7 +17,7 @@ public class Authority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "a_id")
+    @Column(name = "id")
     private UUID aId;
 
     @Column(name = "authority_name")

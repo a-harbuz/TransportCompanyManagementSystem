@@ -2,27 +2,15 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
-        http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <include file="db/changelog/changes/v0.0.1-SNAPSHOT/create_tables/create-tables.sql"/>
-<!--    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/create_table_vehicle.sql"/>-->
-<!--    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/create_table_company.sql"/>-->
-<!--    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/create_table_maintenance.sql"/>-->
-<!--    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/create_table_contract.sql"/>-->
-<!--&lt;!&ndash;    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/create_table_employee_info.sql"/>&ndash;&gt;-->
-<!--    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/create_table_employee.sql"/>-->
-
-<!--    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/create_table_task.sql"/>-->
-<!--    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/create_table_roles.sql"/>-->
-<!--    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/create_table_authorities.sql"/>-->
-<!--    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/create_table_employee_info_role.sql"/>-->
-<!--    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/create_table_role_authority.sql"/>-->
 
     <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data/insert_test_data_changelog_1.xml"/>
-<!--    <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data_changelog_2.xml"/>-->
-<!--    <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data_changelog_3.xml"/>-->
-<!--    <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data_changelog_4.xml"/>-->
+    <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data/insert_test_data_changelog_2.xml"/>
+    <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data/insert_test_data_changelog_3.xml"/>
+    <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data/insert_test_data_changelog_4.xml"/>
+    <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data/insert_test_data_changelog_5.xml"/>
+    <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data/insert_test_data_changelog_6.xml"/>
 
 </databaseChangeLog>

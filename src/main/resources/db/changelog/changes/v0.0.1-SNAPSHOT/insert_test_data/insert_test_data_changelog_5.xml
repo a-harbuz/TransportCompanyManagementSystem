@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="o.harbuz" id="insert test data into employee_info table">
+        <insert tableName="employee_info">
+            <column name="id" valueComputed="UNHEX('a7d61f3057c341ca8c7d763b888af200')"/>
+            <column name="address" value="2426 Melodi Ridges, Adamsfort, ME 96664"/>
+            <column name="phone" value="0172-619-89624"/>
+            <column name="driving_license_category" value=""/>
+            <column name="login" value="duane.koepp"/>
+            <column name="password" value="m9c56mi751"/>
+            <column name="created_at" value="2024-02-15"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into employee table">
+        <insert tableName="employee">
+            <column name="id" valueComputed="UNHEX('1c9859bd8d9b49e088d758f8f3c1c4b3')"/>
+            <column name="first_name" value="Andera"/>
+            <column name="last_name" value="Emard"/>
+            <column name="is_driver" valueBoolean="false"/>
+            <column name="is_working" valueBoolean="true"/>
+            <column name="created_at" value="2024-02-15"/>
+            <column name="employee_info_id" valueComputed="UNHEX('a7d61f3057c341ca8c7d763b888af200')"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into role table">
+        <insert tableName="role">
+            <column name="id" valueComputed="UNHEX('b55cbf0930f943c7bdada095a3aa5c08')"/>
+            <column name="role_name" value="Manager"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into authority table">
+        <insert tableName="authority">
+            <column name="id" valueComputed="UNHEX('3635cf638a8a452d9054d2ffbaa31640')"/>
+            <column name="authority_name" value="ManagerAuthority"/>
+        </insert>
+    </changeSet>
+
+
+    <changeSet author="o.harbuz" id="insert test data into employee_info_role table">
+        <insert tableName="employee_info_role">
+            <column name="employee_info_id" valueComputed="UNHEX('a7d61f3057c341ca8c7d763b888af200')"/>
+            <column name="role_id" valueComputed="UNHEX('b55cbf0930f943c7bdada095a3aa5c08')"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into role_authority table">
+        <insert tableName="role_authority">
+            <column name="role_id" valueComputed="UNHEX('b55cbf0930f943c7bdada095a3aa5c08')"/>
+            <column name="authority_id" valueComputed="UNHEX('3635cf638a8a452d9054d2ffbaa31640')"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

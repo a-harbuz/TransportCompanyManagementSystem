@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "role")
 @NoArgsConstructor
 @Getter
 @Setter
@@ -16,7 +16,7 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "r_id")
+    @Column(name = "id")
     private UUID rId;
 
     @Column(name = "role_name")

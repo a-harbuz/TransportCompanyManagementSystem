@@ -1,4 +1,5 @@
 package de.telran.transportcompanymanagementsystem.entity;
+
 import de.telran.transportcompanymanagementsystem.entity.enums.*;
 import jakarta.persistence.*;
 import lombok.*;
