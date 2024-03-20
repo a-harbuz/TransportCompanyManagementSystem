@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface EmployeeService {
     List<Employee> getEmployeeName();
-    String getEmployeeById(String id);
+    String getNameEmployeeById(String id);
+    Employee getEmployeeById(String id);
 }
