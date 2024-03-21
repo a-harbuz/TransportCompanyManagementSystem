@@ -1,5 +1,6 @@
 package de.telran.transportcompanymanagementsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import de.telran.transportcompanymanagementsystem.entity.enums.*;
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,11 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "vehicle")
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 public class Vehicle {
 
     @Id
@@ -54,9 +51,11 @@ public class Vehicle {
 
     //Relationships
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Maintenance> maintenances;
 
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Task> tasks;
 
     @Override
