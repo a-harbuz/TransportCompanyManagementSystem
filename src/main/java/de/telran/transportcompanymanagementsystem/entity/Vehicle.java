@@ -55,7 +55,7 @@ public class Vehicle {
     private List<Maintenance> maintenances;
 
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
-    //@JsonBackReference
+    @JsonBackReference
     private List<Task> tasks;
 
     @Override
