@@ -9,7 +9,7 @@
             <column name="id" valueComputed="UNHEX('a7d61f3057c341ca8c7d763b888af200')"/>
             <column name="address" value="2426 Melodi Ridges, Adamsfort, ME 96664"/>
             <column name="phone" value="0172-619-89624"/>
-            <column name="driving_license_category" value=""/>
+            <column name="driving_license_category" value="ABSENT"/>
             <column name="login" value="duane.koepp"/>
             <column name="password" value="m9c56mi751"/>
             <column name="created_at" value="2024-02-15"/>

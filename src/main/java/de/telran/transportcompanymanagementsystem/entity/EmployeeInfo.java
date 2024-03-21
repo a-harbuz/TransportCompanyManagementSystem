@@ -1,5 +1,6 @@
 package de.telran.transportcompanymanagementsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import de.telran.transportcompanymanagementsystem.entity.enums.DrivingLicenseCategory;
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,14 +10,9 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
-@Data
 @Entity
 @Table(name = "employee_info")
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 public class EmployeeInfo {
 
     @Id
@@ -45,12 +41,14 @@ public class EmployeeInfo {
 
     //Relationships
     @OneToOne(mappedBy = "employeeInfo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
     private Employee employee;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "employeeInfo_role",
             joinColumns = @JoinColumn(name = "employeeInfo_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JsonBackReference
     private Set<Role> roles;
 
     @Override

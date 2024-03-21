@@ -1,13 +1,14 @@
-package de.telran.transportcompanymanagementsystem.service;
+package de.telran.transportcompanymanagementsystem.service.impl;
 
 import de.telran.transportcompanymanagementsystem.entity.Vehicle;
-import de.telran.transportcompanymanagementsystem.exception.ErrorMessage;
+import de.telran.transportcompanymanagementsystem.exception.errorMessage.ErrorMessage;
 import de.telran.transportcompanymanagementsystem.repository.VehicleRepository;
 import de.telran.transportcompanymanagementsystem.service.interfaces.VehicleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.attribute.UserPrincipalNotFoundException;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -24,4 +25,11 @@ public class VehicleServiceImpl implements VehicleService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public List<Vehicle> getAllVehicle() {
+        return vehicleRepository.findAll();
+    }
+
+
 }

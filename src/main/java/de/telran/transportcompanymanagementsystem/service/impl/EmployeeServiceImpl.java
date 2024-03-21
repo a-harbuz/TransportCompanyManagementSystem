@@ -1,13 +1,13 @@
-package de.telran.transportcompanymanagementsystem.service;
+package de.telran.transportcompanymanagementsystem.service.impl;
 
 import de.telran.transportcompanymanagementsystem.entity.Employee;
-import de.telran.transportcompanymanagementsystem.exception.ErrorMessage;
+import de.telran.transportcompanymanagementsystem.exception.EmployeeNotFoundException;
+import de.telran.transportcompanymanagementsystem.exception.errorMessage.ErrorMessage;
 import de.telran.transportcompanymanagementsystem.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import de.telran.transportcompanymanagementsystem.service.interfaces.EmployeeService;
 
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,10 +16,6 @@ import java.util.UUID;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
-    @Override
-    public List<Employee> getEmployeeName() {
-        return null;
-    }
 
     @Override
     public String getNameEmployeeById(String id) {
@@ -30,13 +26,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee getEmployeeById(String id) {
-//        return (employeeRepository.findById(UUID.fromString(id)).isPresent()) ?
-//                employeeRepository.findById(UUID.fromString(id)).get()
-//                : ErrorMessage.EMPLOYEE_NOT_FOUND;
-        try {
-            return employeeRepository.findById(UUID.fromString(id)).orElseThrow(()-> new UserPrincipalNotFoundException(ErrorMessage.EMPLOYEE_NOT_FOUND));
-        } catch (UserPrincipalNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+          return employeeRepository.findById(UUID.fromString(id))
+                  .orElseThrow(()-> new EmployeeNotFoundException(ErrorMessage.EMPLOYEE_NOT_FOUND));
+    }
+
+    @Override
+    public List<Employee> getEmployeeList() {
+        return employeeRepository.findAll();
+    }
+
+    @Override
+    public List<Employee> getDriverList() {
+        return employeeRepository.findAll()
+                .stream().filter(Employee::isDriver)
+                .toList();
     }
 }

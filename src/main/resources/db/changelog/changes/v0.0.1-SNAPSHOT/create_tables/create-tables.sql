@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS contract (
 
 -- changeset o.harbuz:1695300329857-5
 CREATE TABLE IF NOT EXISTS employee_info (
-    id BINARY(16) PRIMARY KEY,
+    id BINARY(16) PRIMARY KEY NOT NULL,
     address VARCHAR(80),
     phone VARCHAR(20),
     driving_license_category VARCHAR(20),
