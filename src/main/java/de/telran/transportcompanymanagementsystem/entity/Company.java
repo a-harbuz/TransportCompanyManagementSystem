@@ -1,5 +1,6 @@
 package de.telran.transportcompanymanagementsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,7 +15,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Company {
 
     @Id
@@ -45,12 +45,15 @@ public class Company {
 
     //Relationships
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Maintenance> maintenances;
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Contract> contracts;
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Task> tasks;
 
     @Override
@@ -64,5 +67,19 @@ public class Company {
     @Override
     public int hashCode() {
         return Objects.hash(companyId, companyName, address);
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "companyId=" + companyId +
+                ", companyName='" + companyName + '\'' +
+                ", contactFirstName='" + contactFirstName + '\'' +
+                ", contactLastName='" + contactLastName + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }

@@ -29,4 +29,9 @@ public class VehicleController {
         return vehicleService.getAllVehicle();
     }
 
+    @GetMapping("/carnumber/{carNumber}")
+    public Vehicle getVehicleByCarNumber(@PathVariable("carNumber") String carNumber) {
+        //http://localhost:8080/vehicle/carnumber/AE2387KM
+        return vehicleService.getVehicleByCarNumber(carNumber);
+    }
 }

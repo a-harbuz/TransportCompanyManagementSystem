@@ -11,7 +11,7 @@
             <column name="name" value="VOLVO"/>
             <column name="model" value="XC90"/>
             <column name="year_manufacture" value="2018"/>
-            <column name="car_number" value="K 234 BA"/>
+            <column name="car_number" value="K234BA"/>
             <column name="initial_kilometers" value="120000"/>
             <column name="price" value="40000"/>
             <column name="vehicle_status" value="WORKING"/>

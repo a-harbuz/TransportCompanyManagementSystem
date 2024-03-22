@@ -11,7 +11,7 @@
             <column name="name" value="Mercedes-Benz"/>
             <column name="model" value="Actros"/>
             <column name="year_manufacture" value="2021"/>
-            <column name="car_number" value="SC 1238 KM"/>
+            <column name="car_number" value="SC1238KM"/>
             <column name="initial_kilometers" value="80000"/>
             <column name="price" value="62300.45"/>
             <column name="vehicle_status" value="MAINTENANCE"/>
