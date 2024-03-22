@@ -18,6 +18,7 @@
 
     <changeSet author="o.harbuz" id="insert test data into employee table">
         <insert tableName="employee">
+            <!-- Manager, fired -->
             <column name="id" valueComputed="UNHEX('89ecc2c5c437464aaf1827b08d0768ce')"/>
             <column name="first_name" value="Giovanna"/>
             <column name="last_name" value="Leuschke"/>
@@ -30,6 +31,7 @@
 
     <changeSet author="o.harbuz" id="insert test data into employee_info_role table">
         <insert tableName="employee_info_role">
+            <!-- Manager -->
             <column name="employee_info_id" valueComputed="UNHEX('6042ec610ea04d0da989c60997db2d59')"/>
             <column name="role_id" valueComputed="UNHEX('b55cbf0930f943c7bdada095a3aa5c08')"/>
         </insert>

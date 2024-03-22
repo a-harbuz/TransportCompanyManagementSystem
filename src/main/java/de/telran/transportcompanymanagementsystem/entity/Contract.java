@@ -15,7 +15,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Contract {
 
     @Id
@@ -61,5 +60,19 @@ public class Contract {
     @Override
     public int hashCode() {
         return Objects.hash(contractId, contractNumber, contractName);
+    }
+
+    @Override
+    public String toString() {
+        return "Contract{" +
+                "contractId=" + contractId +
+                ", contractNumber='" + contractNumber + '\'' +
+                ", contractName='" + contractName + '\'' +
+                ", costTransportationUnderContract=" + costTransportationUnderContract +
+                ", totalCostTransportedGoods=" + totalCostTransportedGoods +
+                ", contractStatus=" + contractStatus +
+                ", createdAt=" + createdAt +
+                ", company=" + company +
+                '}';
     }
 }

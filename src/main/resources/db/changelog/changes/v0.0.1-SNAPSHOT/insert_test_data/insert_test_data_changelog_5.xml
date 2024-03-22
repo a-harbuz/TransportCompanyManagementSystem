@@ -6,6 +6,7 @@
 
     <changeSet author="o.harbuz" id="insert test data into employee_info table">
         <insert tableName="employee_info">
+            <!-- Manager -->
             <column name="id" valueComputed="UNHEX('a7d61f3057c341ca8c7d763b888af200')"/>
             <column name="address" value="2426 Melodi Ridges, Adamsfort, ME 96664"/>
             <column name="phone" value="0172-619-89624"/>
@@ -18,6 +19,7 @@
 
     <changeSet author="o.harbuz" id="insert test data into employee table">
         <insert tableName="employee">
+            <!-- Manager -->
             <column name="id" valueComputed="UNHEX('1c9859bd8d9b49e088d758f8f3c1c4b3')"/>
             <column name="first_name" value="Andera"/>
             <column name="last_name" value="Emard"/>
@@ -45,6 +47,7 @@
 
     <changeSet author="o.harbuz" id="insert test data into employee_info_role table">
         <insert tableName="employee_info_role">
+            <!-- Manager -->
             <column name="employee_info_id" valueComputed="UNHEX('a7d61f3057c341ca8c7d763b888af200')"/>
             <column name="role_id" valueComputed="UNHEX('b55cbf0930f943c7bdada095a3aa5c08')"/>
         </insert>

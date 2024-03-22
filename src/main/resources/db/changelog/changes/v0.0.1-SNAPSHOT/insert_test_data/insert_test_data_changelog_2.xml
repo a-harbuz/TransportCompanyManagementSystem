@@ -102,17 +102,12 @@
         </insert>
     </changeSet>
 
-    <changeSet author="o.harbuz" id="insert test data into role table">
-        <insert tableName="role">
-            <column name="id" valueComputed="UNHEX('42f7d44eb3ba4a4594692468d178772c')"/>
-            <column name="role_name" value="role2"/>
+    <changeSet author="o.harbuz" id="insert test data into employee_info_role table">
+        <insert tableName="employee_info_role">
+            <!-- Driver -->
+            <column name="employee_info_id"  valueComputed="UNHEX('f571f423dc43404b9820a97bbf7ac28c')"/>
+            <column name="role_id" valueComputed="UNHEX('4faba77992264e9ca28bf6a534e95365')"/>
         </insert>
     </changeSet>
 
-    <changeSet author="o.harbuz" id="insert test data into authority table">
-        <insert tableName="authority">
-            <column name="id" valueComputed="UNHEX('b9da435e025d4dac83b6dddb2a95bfcf')"/>
-            <column name="authority_name" value="authority2"/>
-        </insert>
-    </changeSet>
 </databaseChangeLog>

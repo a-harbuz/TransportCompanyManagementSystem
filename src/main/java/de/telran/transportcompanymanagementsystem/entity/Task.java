@@ -17,7 +17,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Task {
 
     @Id
@@ -87,5 +86,23 @@ public class Task {
     @Override
     public int hashCode() {
         return Objects.hash(taskId, transportationDate, addressFrom, addressTo, waybillNumber);
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "taskId=" + taskId +
+                ", transportationDate=" + transportationDate +
+                ", addressFrom='" + addressFrom + '\'' +
+                ", addressTo='" + addressTo + '\'' +
+                ", weightCargo=" + weightCargo +
+                ", waybillNumber='" + waybillNumber + '\'' +
+                ", waybillCost=" + waybillCost +
+                ", distanceTraveledKilometers=" + distanceTraveledKilometers +
+                ", fuelCostsTraveled=" + fuelCostsTraveled +
+                ", taskStatus=" + taskStatus +
+                ", commentIfTaskCanceled='" + commentIfTaskCanceled + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }

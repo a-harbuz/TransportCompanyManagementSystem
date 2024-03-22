@@ -15,7 +15,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Employee {
 
     @Id
@@ -59,5 +58,17 @@ public class Employee {
     @Override
     public int hashCode() {
         return Objects.hash(employeeId, firstName, lastName, isDriver, isWorking);
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeId=" + employeeId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", isDriver=" + isDriver +
+                ", isWorking=" + isWorking +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }
