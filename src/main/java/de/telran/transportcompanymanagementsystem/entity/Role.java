@@ -32,4 +32,12 @@ public class Role {
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id"))
     private Set<Authority> authorities;
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "rId=" + rId +
+                ", roleName='" + roleName + '\'' +
+                '}';
+    }
 }

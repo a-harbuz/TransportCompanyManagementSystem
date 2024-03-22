@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/contract")
 @RequiredArgsConstructor
@@ -17,7 +19,7 @@ public class ContractController {
 
     @GetMapping("/{id}")
     public Contract getContractById(@PathVariable("id") String id) {
-        //http://localhost:8080/vehicle/21679aa7-c43b-468d-8318-8090227c4acb
+        //http://localhost:8080/contract/21679aa7-c43b-468d-8318-8090227c4acb
         return contractService.getContractById(id);
     }
 }

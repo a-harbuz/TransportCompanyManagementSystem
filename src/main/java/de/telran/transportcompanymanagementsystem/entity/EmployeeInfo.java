@@ -63,4 +63,17 @@ public class EmployeeInfo {
     public int hashCode() {
         return Objects.hash(employeeInfoId, address, phone, drivingLicenseCategory, login);
     }
+
+    @Override
+    public String toString() {
+        return "EmployeeInfo{" +
+                "employeeInfoId=" + employeeInfoId +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", drivingLicenseCategory=" + drivingLicenseCategory +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }

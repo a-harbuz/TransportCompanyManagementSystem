@@ -120,6 +120,7 @@
 
     <changeSet author="o.harbuz" id="insert test data into employee_info_role table">
         <insert tableName="employee_info_role">
+            <!-- Driver -->
             <column name="employee_info_id"  valueComputed="UNHEX('fa52e5cf4240497ab439cccd7c99f474')"/>
             <column name="role_id" valueComputed="UNHEX('4faba77992264e9ca28bf6a534e95365')"/>
         </insert>

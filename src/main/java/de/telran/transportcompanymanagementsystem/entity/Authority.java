@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -26,4 +27,25 @@ public class Authority {
     //Relationships
     @ManyToMany(mappedBy = "authorities")
     private Set<Role> roles;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Authority authority = (Authority) o;
+        return Objects.equals(aId, authority.aId) && Objects.equals(authorityName, authority.authorityName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(aId, authorityName);
+    }
+
+    @Override
+    public String toString() {
+        return "Authority{" +
+                "aId=" + aId +
+                ", authorityName='" + authorityName + '\'' +
+                '}';
+    }
 }

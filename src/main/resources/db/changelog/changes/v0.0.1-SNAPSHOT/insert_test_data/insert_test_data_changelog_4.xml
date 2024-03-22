@@ -11,7 +11,7 @@
             <column name="name" value="Mercedes-Benz"/>
             <column name="model" value="Actros"/>
             <column name="year_manufacture" value="2021"/>
-            <column name="car_number" value="SC 1238 KM"/>
+            <column name="car_number" value="SC1238KM"/>
             <column name="initial_kilometers" value="80000"/>
             <column name="price" value="62300.45"/>
             <column name="vehicle_status" value="MAINTENANCE"/>
@@ -102,17 +102,11 @@
         </insert>
     </changeSet>
 
-    <changeSet author="o.harbuz" id="insert test data into role table">
-        <insert tableName="role">
-            <column name="id" valueComputed="UNHEX('8e383893aae84084bab730528b64f604')"/>
-            <column name="role_name" value="role4"/>
-        </insert>
-    </changeSet>
-
-    <changeSet author="o.harbuz" id="insert test data into authority table">
-        <insert tableName="authority">
-            <column name="id" valueComputed="UNHEX('15d019054c9540209decf28c41bf8f36')"/>
-            <column name="authority_name" value="authority4"/>
+    <changeSet author="o.harbuz" id="insert test data into employee_info_role table">
+        <insert tableName="employee_info_role">
+            <!-- Driver -->
+            <column name="employee_info_id"  valueComputed="UNHEX('18907be0b30749d68f4c27f9c26589d4')"/>
+            <column name="role_id" valueComputed="UNHEX('4faba77992264e9ca28bf6a534e95365')"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

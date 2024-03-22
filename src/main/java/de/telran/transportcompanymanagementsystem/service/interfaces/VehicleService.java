@@ -7,4 +7,5 @@ import java.util.List;
 public interface VehicleService {
     Vehicle getVehicleById(String id);
     List<Vehicle> getAllVehicle();
+    Vehicle getVehicleByCarNumber(String carNumber);
 }

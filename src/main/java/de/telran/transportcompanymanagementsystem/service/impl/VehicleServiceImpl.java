@@ -1,6 +1,8 @@
 package de.telran.transportcompanymanagementsystem.service.impl;
 
 import de.telran.transportcompanymanagementsystem.entity.Vehicle;
+import de.telran.transportcompanymanagementsystem.exception.CompanyNotFoundException;
+import de.telran.transportcompanymanagementsystem.exception.VehicleNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.errorMessage.ErrorMessage;
 import de.telran.transportcompanymanagementsystem.repository.VehicleRepository;
 import de.telran.transportcompanymanagementsystem.service.interfaces.VehicleService;
@@ -19,11 +21,8 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public Vehicle getVehicleById(String id) {
-        try {
-            return vehicleRepository.findById(UUID.fromString(id)).orElseThrow(()-> new UserPrincipalNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND));
-        } catch (UserPrincipalNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        return vehicleRepository.findById(UUID.fromString(id))
+                .orElseThrow(()-> new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND));
     }
 
     @Override
@@ -31,5 +30,9 @@ public class VehicleServiceImpl implements VehicleService {
         return vehicleRepository.findAll();
     }
 
-
+    @Override
+    public Vehicle getVehicleByCarNumber(String carNumber) {
+        return vehicleRepository.findByCarNumber(carNumber);
+        //.orElseThrow(()-> new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND));
+    }
 }

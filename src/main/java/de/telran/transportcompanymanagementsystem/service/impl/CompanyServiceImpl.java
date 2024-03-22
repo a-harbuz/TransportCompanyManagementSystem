@@ -8,6 +8,7 @@ import de.telran.transportcompanymanagementsystem.service.interfaces.CompanyServ
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -20,5 +21,10 @@ public class CompanyServiceImpl  implements CompanyService {
     public Company getCompanyById(String id) {
         return companyRepository.findById(UUID.fromString(id))
                 .orElseThrow(()-> new CompanyNotFoundException(ErrorMessage.COMPANY_NOT_FOUND));
+    }
+
+    @Override
+    public List<Company> getCompanyByName(String companyName) {
+        return companyRepository.findByCompanyNameContainsIgnoreCase(companyName);
     }
 }
