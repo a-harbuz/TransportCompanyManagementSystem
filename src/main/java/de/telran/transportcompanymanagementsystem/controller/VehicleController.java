@@ -3,7 +3,6 @@ package de.telran.transportcompanymanagementsystem.controller;
 import de.telran.transportcompanymanagementsystem.service.interfaces.VehicleService;
 import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
