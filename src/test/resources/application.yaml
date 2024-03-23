@@ -2,17 +2,28 @@ spring:
   main:
     banner-mode: off
 
+#  datasource:
+#    url: jdbc:h2:file:./testDB;AUTO_SERVER=TRUE
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#
+#  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
+#    hibernate:
+#      ddl-auto: none
+#    show-sql: false
+
   datasource:
-    url: jdbc:h2:file:./testDB;AUTO_SERVER=TRUE
-    username: sa
-    password: sa
-    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://localhost:3306/tc_test
+    username: alex
+    password: 1234
 
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: none
-    show-sql: false
+    show-sql: true
 
   liquibase:
-    change-log: classpath:/db/changelog/changelog-master.xml
+    change-log: classpath:/db/changelog/changelog-master-test.xml
