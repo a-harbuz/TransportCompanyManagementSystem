@@ -78,4 +78,17 @@ class VehicleControllerTest {
                 .andExpect(jsonPath("$.vehicleId", is(vehicle.getVehicleId().toString())))
                 .andExpect(jsonPath("$.carNumber", is(vehicle.getCarNumber())));
     }
+
+    @Test
+    void setVehicleByCarNumber() throws Exception {
+        Vehicle vehicle = EntityCreator.getVehicle();
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/vehicle/carnumber/update/AE2387KM/XX7788YY"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.vehicleId", is(vehicle.getVehicleId().toString())))
+                .andExpect(jsonPath("$.carNumber", is("XX7788YY")));
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/vehicle/carnumber/update/XX7788YY/AE2387KM"))
+                .andExpect(status().isOk());
+    }
 }

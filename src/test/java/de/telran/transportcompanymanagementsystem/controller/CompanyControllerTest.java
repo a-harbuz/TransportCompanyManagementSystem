@@ -1,6 +1,7 @@
 package de.telran.transportcompanymanagementsystem.controller;
 
 import de.telran.transportcompanymanagementsystem.entity.Company;
+import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +57,18 @@ class CompanyControllerTest {
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].companyId", is("2d0cc985-ffdc-40de-be58-69eba564fc47")))
                 .andExpect(jsonPath("$[0].companyName", is("Larson-Witting")));
+    }
+
+    @Test
+    void setCompanyByName() throws Exception {
+        Company company = EntityCreator.getCompany();
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/company/name/update/Boehm-Klein/New Boehm"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.companyId", is(company.getCompanyId().toString())))
+                .andExpect(jsonPath("$.companyName", is("New Boehm")));
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/company/name/update/New Boehm/Boehm-Klein"))
+                .andExpect(status().isOk());
     }
 }
