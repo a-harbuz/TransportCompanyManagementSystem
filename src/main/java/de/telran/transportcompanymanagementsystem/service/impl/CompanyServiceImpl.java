@@ -1,7 +1,9 @@
 package de.telran.transportcompanymanagementsystem.service.impl;
 
 import de.telran.transportcompanymanagementsystem.entity.Company;
+import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import de.telran.transportcompanymanagementsystem.exception.CompanyNotFoundException;
+import de.telran.transportcompanymanagementsystem.exception.VehicleNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.errorMessage.ErrorMessage;
 import de.telran.transportcompanymanagementsystem.repository.CompanyRepository;
 import de.telran.transportcompanymanagementsystem.service.interfaces.CompanyService;
@@ -26,5 +28,20 @@ public class CompanyServiceImpl  implements CompanyService {
     @Override
     public List<Company> getCompanyByName(String companyName) {
         return companyRepository.findByCompanyNameContainsIgnoreCase(companyName);
+    }
+
+    @Override
+    public Company setCompanyByName(String companyName, String newCompanyName) {
+        Company company = companyRepository.findByCompanyName(companyName);
+        if (company != null) {
+            company.setCompanyName(newCompanyName);
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
+            System.out.println(company);
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
+            companyRepository.saveAndFlush(company);
+            return company;
+        } else {
+            throw new CompanyNotFoundException(ErrorMessage.COMPANY_NOT_FOUND);
+        }
     }
 }

@@ -1,5 +1,6 @@
-package de.telran.transportcompanymanagementsystem.controller.exception_handler;
+package de.telran.transportcompanymanagementsystem.exception.exception_handler;
 
+import de.telran.transportcompanymanagementsystem.exception.CompanyNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.VehicleNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,16 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ExceptionHandlerAspect {
     @ExceptionHandler(VehicleNotFoundException.class)
-    public ResponseEntity<String> handleAuthorNotFoundException(VehicleNotFoundException ex) {
+    public ResponseEntity<String> handleVehicleNotFoundException(VehicleNotFoundException ex) {
+        return getResponse(ex);
+    }
+
+    @ExceptionHandler(CompanyNotFoundException.class)
+    public ResponseEntity<String> handleCompanyNotFoundException(CompanyNotFoundException ex) {
+        return getResponse(ex);
+    }
+
+    public ResponseEntity<String> getResponse(Exception ex) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return ResponseEntity

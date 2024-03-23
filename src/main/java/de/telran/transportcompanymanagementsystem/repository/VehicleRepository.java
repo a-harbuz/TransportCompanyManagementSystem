@@ -12,5 +12,5 @@ import java.util.UUID;
 public interface VehicleRepository extends JpaRepository<Vehicle, UUID> {
 
     Vehicle findByCarNumber (String string);
-
+    Vehicle saveAndFlush (Vehicle vehicle);
 }

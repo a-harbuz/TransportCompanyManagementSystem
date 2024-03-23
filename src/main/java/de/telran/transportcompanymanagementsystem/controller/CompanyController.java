@@ -1,6 +1,7 @@
 package de.telran.transportcompanymanagementsystem.controller;
 
 import de.telran.transportcompanymanagementsystem.entity.Company;
+import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import de.telran.transportcompanymanagementsystem.service.interfaces.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,5 +28,12 @@ public class CompanyController {
     public List<Company> getCompanyByName(@PathVariable("nameCompany") String nameCompany) {
         //http://localhost:8080/company/name/Boehm-Klein
         return companyService.getCompanyByName(nameCompany);
+    }
+
+    @GetMapping("/name/update/{nameCompany}/{newNameCompany}")
+    public Company setCompanyByName(@PathVariable("nameCompany") String nameCompany,
+                                    @PathVariable("newNameCompany") String newNameCompany) {
+        //http://localhost:8080/company/name/update/Larson-Witting/New Larson
+        return companyService.setCompanyByName(nameCompany, newNameCompany);
     }
 }

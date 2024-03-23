@@ -3,10 +3,8 @@ package de.telran.transportcompanymanagementsystem.controller;
 import de.telran.transportcompanymanagementsystem.service.interfaces.VehicleService;
 import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +31,12 @@ public class VehicleController {
     public Vehicle getVehicleByCarNumber(@PathVariable("carNumber") String carNumber) {
         //http://localhost:8080/vehicle/carnumber/AE2387KM
         return vehicleService.getVehicleByCarNumber(carNumber);
+    }
+
+    @GetMapping("/carnumber/update/{carNumber}/{newCarNumber}")
+    public Vehicle setVehicleByCarNumber(@PathVariable("carNumber") String carNumber,
+                                         @PathVariable("newCarNumber") String newCarNumber) {
+        //http://localhost:8080/vehicle/carnumber/update/AE2387KM/XX7788YY
+        return vehicleService.setVehicleByCarNumber(carNumber, newCarNumber);
     }
 }

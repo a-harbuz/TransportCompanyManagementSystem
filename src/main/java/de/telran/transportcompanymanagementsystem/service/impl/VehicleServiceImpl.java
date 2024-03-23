@@ -35,4 +35,23 @@ public class VehicleServiceImpl implements VehicleService {
         return vehicleRepository.findByCarNumber(carNumber);
         //.orElseThrow(()-> new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND));
     }
+
+    @Override
+    public Vehicle setVehicleByCarNumber(String carNumber, String newCarNumber) {
+        Vehicle vehicle = vehicleRepository.findByCarNumber(carNumber);
+        if (vehicle != null) {
+            // Update your car number to a new one (newCarNumber)
+            vehicle.setCarNumber(newCarNumber);
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
+            System.out.println(vehicle);
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
+            // Save the updated Vehicle object to the database
+            vehicleRepository.saveAndFlush(vehicle);
+            return vehicle;
+        } else {
+            // If the car with the specified number is not found, return null or throw an exception
+            throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND);
+            //return  null
+        }
+    }
 }

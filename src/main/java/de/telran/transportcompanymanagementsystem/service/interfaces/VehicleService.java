@@ -8,4 +8,5 @@ public interface VehicleService {
     Vehicle getVehicleById(String id);
     List<Vehicle> getAllVehicle();
     Vehicle getVehicleByCarNumber(String carNumber);
+    Vehicle setVehicleByCarNumber(String carNumber, String newCarNumber);
 }
