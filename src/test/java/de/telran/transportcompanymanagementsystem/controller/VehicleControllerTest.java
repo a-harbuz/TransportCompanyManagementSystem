@@ -1,30 +1,17 @@
 package de.telran.transportcompanymanagementsystem.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import de.telran.transportcompanymanagementsystem.entity.Vehicle;
-import de.telran.transportcompanymanagementsystem.entity.enums.VehicleStatus;
-import de.telran.transportcompanymanagementsystem.entity.enums.VehicleType;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.web.reactive.server.StatusAssertions;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import java.io.UnsupportedEncodingException;
-import java.sql.Timestamp;
-import java.util.UUID;
+import util.EntityCreator;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -41,17 +28,7 @@ class VehicleControllerTest {
 
     @Test
     void getVehicleByIdTest() throws Exception {
-        Vehicle vehicle = new Vehicle();
-        vehicle.setVehicleId(UUID.fromString("26e41ad9-0482-4808-9dbb-c917631f1b56"));
-        vehicle.setVehicleType(VehicleType.TRUCK20T);
-        vehicle.setName("MAN");
-        vehicle.setModel("TGS 35.480");
-        vehicle.setYearManufacture("2008");
-        vehicle.setCarNumber("AE2387KM");
-        vehicle.setInitialKilometers(52300);
-        vehicle.setPrice(50000);
-        vehicle.setVehicleStatus(VehicleStatus.WORKING);
-
+        Vehicle vehicle = EntityCreator.getVehicle();
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/vehicle/26e41ad9-0482-4808-9dbb-c917631f1b56"))
                 .andExpect(status().isOk())
@@ -61,22 +38,44 @@ class VehicleControllerTest {
                 .andExpect(jsonPath("$.name", is(vehicle.getName())))
                 .andExpect(jsonPath("$.model", is(vehicle.getModel())))
                 .andExpect(jsonPath("$.yearManufacture", is(vehicle.getYearManufacture())))
+                .andExpect(jsonPath("$.carNumber", is(vehicle.getCarNumber())))
                 .andExpect(jsonPath("$.price").value(vehicle.getPrice()))
                 .andExpect(jsonPath("$.vehicleStatus").value(vehicle.getVehicleStatus().toString()));
     }
 
     @Test
-    void getAllVehicleTest() {
+    void getAllVehicleTest() throws Exception {
+        Vehicle vehicle = EntityCreator.getVehicle();
+        Vehicle vehicle2 = EntityCreator.getVehicle2();
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/vehicle/all"))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$", hasSize(4)))
+                .andExpect(jsonPath("$[1].vehicleId", is(vehicle.getVehicleId().toString())))
+                .andExpect(jsonPath("$[1].vehicleType", is(vehicle.getVehicleType().toString())))
+                .andExpect(jsonPath("$[1].name", is(vehicle.getName())))
+                .andExpect(jsonPath("$[1].model", is(vehicle.getModel())))
+                .andExpect(jsonPath("$[1].yearManufacture", is(vehicle.getYearManufacture())))
+                .andExpect(jsonPath("$[1].carNumber", is(vehicle.getCarNumber())))
+                .andExpect(jsonPath("$[1].price").value(vehicle.getPrice()))
+                .andExpect(jsonPath("$[1].vehicleStatus").value(vehicle.getVehicleStatus().toString()))
+
+                .andExpect(jsonPath("$[2].vehicleId", is(vehicle2.getVehicleId().toString())))
+                .andExpect(jsonPath("$[2].vehicleType", is(vehicle2.getVehicleType().toString())))
+                .andExpect(jsonPath("$[2].name", is(vehicle2.getName())))
+                .andExpect(jsonPath("$[2].carNumber", is(vehicle2.getCarNumber())))
+                .andExpect(jsonPath("$[2].vehicleStatus").value(vehicle2.getVehicleStatus().toString()));
     }
 
     @Test
     void getVehicleByCarNumberTest() throws Exception {
+        Vehicle vehicle = EntityCreator.getVehicle2();
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/vehicle/carnumber/K234BA"))
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(jsonPath("$.vehicleId", is("9a04a59b-940f-4e2c-be40-5d2366b3e7b1")))
-                .andExpect(jsonPath("$.carNumber", is("K234BA")));
-
+                .andExpect(jsonPath("$.vehicleId", is(vehicle.getVehicleId().toString())))
+                .andExpect(jsonPath("$.carNumber", is(vehicle.getCarNumber())));
     }
 }
