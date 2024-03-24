@@ -35,9 +35,6 @@ public class CompanyServiceImpl  implements CompanyService {
         Company company = companyRepository.findByCompanyName(companyName);
         if (company != null) {
             company.setCompanyName(newCompanyName);
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
-            System.out.println(company);
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
             companyRepository.saveAndFlush(company);
             return company;
         } else {

@@ -9,4 +9,7 @@ public interface VehicleService {
     List<Vehicle> getAllVehicle();
     Vehicle getVehicleByCarNumber(String carNumber);
     Vehicle setVehicleByCarNumber(String carNumber, String newCarNumber);
+    void deleteVehicleByCarNumber(String carNumber);
+    void deleteVehicleById (String id);
+    void saveOrUpdateVehicle (Vehicle vehicle);
 }

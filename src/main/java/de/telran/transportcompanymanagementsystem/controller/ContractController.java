@@ -19,7 +19,7 @@ public class ContractController {
 
     @GetMapping("/{id}")
     public Contract getContractById(@PathVariable("id") String id) {
-        //http://localhost:8080/contract/21679aa7-c43b-468d-8318-8090227c4acb
+        //http://localhost:8080/contract/c8e0d900-fcd7-4182-925c-fb3a8d010243
         return contractService.getContractById(id);
     }
 }

@@ -25,7 +25,7 @@ class CompanyControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @Test
-    void getCompanyById() throws Exception {
+    void getCompanyByIdTest() throws Exception {
         Company company = EntityCreator.getCompany();
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/company/0a8de57b-4ac3-43f9-9ab4-77784de2554a"))
@@ -41,7 +41,7 @@ class CompanyControllerTest {
     }
 
     @Test
-    void getCompanyByName() throws Exception {
+    void getCompanyByNameTest() throws Exception {
         Company company = EntityCreator.getCompany();
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/company/name/Boehm-Klein"))
@@ -60,7 +60,7 @@ class CompanyControllerTest {
     }
 
     @Test
-    void setCompanyByName() throws Exception {
+    void setCompanyByNameTest() throws Exception {
         Company company = EntityCreator.getCompany();
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/company/name/update/Boehm-Klein/New Boehm"))

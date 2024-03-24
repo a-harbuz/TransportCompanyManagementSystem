@@ -23,7 +23,7 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public Contract getContractById(String id) {
-            return contractRepository.findById(UUID.fromString(id))
-                    .orElseThrow(()-> new DataNotFoundException(ErrorMessage.DATA_NOT_FOUND));
+        return contractRepository.findById(UUID.fromString(id))
+                .orElseThrow(()-> new DataNotFoundException(ErrorMessage.DATA_NOT_FOUND));
     }
 }

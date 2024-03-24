@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/vehicle")
@@ -32,10 +33,30 @@ public class VehicleController {
         return vehicleService.getVehicleByCarNumber(carNumber);
     }
 
-    @GetMapping("/carnumber/update/{carNumber}/{newCarNumber}")
+    @PutMapping("/carnumber/update/{carNumber}/{newCarNumber}")
     public Vehicle setVehicleByCarNumber(@PathVariable("carNumber") String carNumber,
                                          @PathVariable("newCarNumber") String newCarNumber) {
         //http://localhost:8080/vehicle/carnumber/update/AE2387KM/XX7788YY
         return vehicleService.setVehicleByCarNumber(carNumber, newCarNumber);
     }
+
+    @DeleteMapping("/carnumber/delete/{carNumber}")
+    public void deleteVehicleByCarNumber(@PathVariable("carNumber") String carNumber) {
+        //http://localhost:8080/vehicle/carnumber/delete/AE2387KM
+        //http://localhost:8080/vehicle/carnumber/delete/XX7788YY
+        vehicleService.deleteVehicleByCarNumber(carNumber);
+    }
+    @DeleteMapping("/delete/{id}")
+    public void deleteVehicleById(@PathVariable("id") String carNumber) {
+        //http://localhost:8080/vehicle/delete/21679aa7-c43b-468d-8318-8090227c4acb
+        vehicleService.deleteVehicleById(carNumber);
+    }
+
+    @PostMapping("/add")
+    private UUID saveVehicle(@RequestBody Vehicle vehicle)
+    {
+        vehicleService.saveOrUpdateVehicle(vehicle);
+        return vehicle.getVehicleId();
+    }
+
 }
