@@ -52,9 +52,10 @@ public class VehicleController {
         vehicleService.deleteVehicleById(carNumber);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/new")
     public UUID saveVehicle(@RequestBody Vehicle vehicle)
     {
+        //http://localhost:8080/vehicle/new
         vehicleService.saveOrUpdateVehicle(vehicle);
         return vehicle.getVehicleId();
     }
