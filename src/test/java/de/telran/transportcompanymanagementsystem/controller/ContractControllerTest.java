@@ -32,8 +32,8 @@ class ContractControllerTest {
                 .andExpect(jsonPath("$.contractId", is(contract.getContractId().toString())))
                 .andExpect(jsonPath("$.contractNumber", is(contract.getContractNumber())))
                 .andExpect(jsonPath("$.contractName", is(contract.getContractName())))
-                .andExpect(jsonPath("$.costTransportationUnderContract", is(contract.getCostTransportationUnderContract())))
-                .andExpect(jsonPath("$.totalCostTransportedGoods", is(contract.getTotalCostTransportedGoods())))
-                .andExpect(jsonPath("$.contractStatus", is(contract.getContractStatus())));
+                .andExpect(jsonPath("$.costTransportationUnderContract").value(contract.getCostTransportationUnderContract()))
+                .andExpect(jsonPath("$.totalCostTransportedGoods").value(contract.getTotalCostTransportedGoods()))
+                .andExpect(jsonPath("$.contractStatus", is(contract.getContractStatus().toString())));
     }
 }
