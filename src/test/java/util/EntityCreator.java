@@ -97,7 +97,7 @@ public class EntityCreator {
         task.setAddressTo("Apt. 728 1039 Fritsch Garden, Alfredmouth, AR 04647");
         task.setWeightCargo(4000);
         task.setWaybillNumber("004");
-        task.setWaybillCost(BigDecimal.valueOf(2000));
+        task.setWaybillCost(BigDecimal.valueOf(2000.00));
         task.setDistanceTraveledKilometers(250);
         task.setFuelCostsTraveled(BigDecimal.valueOf(120));
         task.setTaskStatus(TaskStatus.CANCELLED);

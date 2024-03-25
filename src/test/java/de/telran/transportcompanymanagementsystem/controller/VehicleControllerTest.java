@@ -91,4 +91,16 @@ class VehicleControllerTest {
                 .perform(MockMvcRequestBuilders.get("/vehicle/carnumber/update/XX7788YY/AE2387KM"))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    void deleteVehicleByCarNumber() {
+    }
+
+    @Test
+    void deleteVehicleById() {
+    }
+
+    @Test
+    void saveVehicle() {
+    }
 }

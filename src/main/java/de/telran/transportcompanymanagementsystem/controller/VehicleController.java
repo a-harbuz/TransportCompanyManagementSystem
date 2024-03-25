@@ -53,7 +53,7 @@ public class VehicleController {
     }
 
     @PostMapping("/add")
-    private UUID saveVehicle(@RequestBody Vehicle vehicle)
+    public UUID saveVehicle(@RequestBody Vehicle vehicle)
     {
         vehicleService.saveOrUpdateVehicle(vehicle);
         return vehicle.getVehicleId();
