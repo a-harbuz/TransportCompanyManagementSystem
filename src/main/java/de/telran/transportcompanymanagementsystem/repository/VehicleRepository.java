@@ -15,5 +15,5 @@ public interface VehicleRepository extends JpaRepository<Vehicle, UUID> {
     Vehicle findByCarNumber (String string);
     @NonNull
     Vehicle saveAndFlush (@NonNull Vehicle vehicle);
-    void deleteVehicleByCarNumberContains (String carNumber);
+    void deleteVehicleByVehicleId (UUID uuid);
 }

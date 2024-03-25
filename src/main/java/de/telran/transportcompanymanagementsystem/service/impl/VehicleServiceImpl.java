@@ -54,12 +54,12 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public void deleteVehicleByCarNumber(String carNumber) {
-//        Vehicle vehicle = vehicleRepository.findByCarNumber(carNumber);
-//        if (vehicle != null) {
-//            vehicleRepository.deleteVehicleByCarNumberContains(carNumber);
-//        } else {
-//            throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND);
-//        }
+        Vehicle vehicle = vehicleRepository.findByCarNumber(carNumber);
+        if (vehicle != null) {
+            vehicleRepository.deleteVehicleByVehicleId(vehicle.getVehicleId());
+        } else {
+            throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND);
+        }
     }
 
     @Override
