@@ -2,7 +2,7 @@ package de.telran.transportcompanymanagementsystem.service.impl;
 
 import de.telran.transportcompanymanagementsystem.entity.Maintenance;
 import de.telran.transportcompanymanagementsystem.exception.DataNotFoundException;
-import de.telran.transportcompanymanagementsystem.exception.errorMessage.ErrorMessage;
+import de.telran.transportcompanymanagementsystem.exception.errormessage.ErrorMessage;
 import de.telran.transportcompanymanagementsystem.repository.MaintenanceRepository;
 import de.telran.transportcompanymanagementsystem.service.interfaces.MaintenanceService;
 import lombok.RequiredArgsConstructor;

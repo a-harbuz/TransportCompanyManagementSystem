@@ -11,5 +11,5 @@ public interface VehicleService {
     Vehicle setVehicleByCarNumber(String carNumber, String newCarNumber);
     void deleteVehicleByCarNumber(String carNumber);
     void deleteVehicleById (String id);
-    void saveOrUpdateVehicle (Vehicle vehicle);
+    Vehicle create (Vehicle vehicle);
 }

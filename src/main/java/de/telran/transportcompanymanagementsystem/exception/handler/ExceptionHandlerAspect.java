@@ -1,4 +1,4 @@
-package de.telran.transportcompanymanagementsystem.exception.exception_handler;
+package de.telran.transportcompanymanagementsystem.exception.handler;
 
 import de.telran.transportcompanymanagementsystem.exception.CompanyNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.DataNotFoundException;

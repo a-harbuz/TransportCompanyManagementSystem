@@ -2,7 +2,7 @@ package de.telran.transportcompanymanagementsystem.service.impl;
 
 import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import de.telran.transportcompanymanagementsystem.exception.VehicleNotFoundException;
-import de.telran.transportcompanymanagementsystem.exception.errorMessage.ErrorMessage;
+import de.telran.transportcompanymanagementsystem.exception.errormessage.ErrorMessage;
 import de.telran.transportcompanymanagementsystem.repository.VehicleRepository;
 import de.telran.transportcompanymanagementsystem.service.interfaces.VehicleService;
 import lombok.RequiredArgsConstructor;
@@ -41,13 +41,9 @@ public class VehicleServiceImpl implements VehicleService {
     public Vehicle setVehicleByCarNumber(String carNumber, String newCarNumber) {
         Vehicle vehicle = vehicleRepository.findByCarNumber(carNumber);
         if (vehicle != null) {
-            // Update your car number to a new one (newCarNumber)
             vehicle.setCarNumber(newCarNumber);
-            // Save the updated Vehicle object to the database
-            vehicleRepository.saveAndFlush(vehicle);
-            return vehicle;
+            return vehicleRepository.saveAndFlush(vehicle);
         } else {
-            // If the car with the specified number is not found, return null or throw an exception
             throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND);
         }
     }
@@ -68,7 +64,7 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public void saveOrUpdateVehicle(Vehicle vehicle) {
-        vehicleRepository.save(vehicle);
+    public Vehicle create(Vehicle vehicle) {
+        return vehicleRepository.save(vehicle);
     }
 }

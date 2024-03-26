@@ -1,10 +1,8 @@
 package de.telran.transportcompanymanagementsystem.service.impl;
 
 import de.telran.transportcompanymanagementsystem.entity.Company;
-import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import de.telran.transportcompanymanagementsystem.exception.CompanyNotFoundException;
-import de.telran.transportcompanymanagementsystem.exception.VehicleNotFoundException;
-import de.telran.transportcompanymanagementsystem.exception.errorMessage.ErrorMessage;
+import de.telran.transportcompanymanagementsystem.exception.errormessage.ErrorMessage;
 import de.telran.transportcompanymanagementsystem.repository.CompanyRepository;
 import de.telran.transportcompanymanagementsystem.service.interfaces.CompanyService;
 import lombok.RequiredArgsConstructor;

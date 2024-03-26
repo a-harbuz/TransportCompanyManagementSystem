@@ -3,7 +3,7 @@ package de.telran.transportcompanymanagementsystem.service.impl;
 import de.telran.transportcompanymanagementsystem.entity.EmployeeInfo;
 import de.telran.transportcompanymanagementsystem.entity.enums.DrivingLicenseCategory;
 import de.telran.transportcompanymanagementsystem.exception.EmployeeNotFoundException;
-import de.telran.transportcompanymanagementsystem.exception.errorMessage.ErrorMessage;
+import de.telran.transportcompanymanagementsystem.exception.errormessage.ErrorMessage;
 import de.telran.transportcompanymanagementsystem.repository.EmployeeInfoRepository;
 import de.telran.transportcompanymanagementsystem.service.interfaces.EmployeeInfoService;
 import lombok.RequiredArgsConstructor;

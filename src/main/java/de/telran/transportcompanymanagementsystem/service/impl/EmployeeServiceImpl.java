@@ -2,7 +2,7 @@ package de.telran.transportcompanymanagementsystem.service.impl;
 
 import de.telran.transportcompanymanagementsystem.entity.Employee;
 import de.telran.transportcompanymanagementsystem.exception.EmployeeNotFoundException;
-import de.telran.transportcompanymanagementsystem.exception.errorMessage.ErrorMessage;
+import de.telran.transportcompanymanagementsystem.exception.errormessage.ErrorMessage;
 import de.telran.transportcompanymanagementsystem.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

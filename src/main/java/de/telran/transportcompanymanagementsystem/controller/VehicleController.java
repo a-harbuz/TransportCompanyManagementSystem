@@ -53,11 +53,11 @@ public class VehicleController {
     }
 
     @PostMapping("/new")
-    public UUID saveVehicle(@RequestBody Vehicle vehicle)
+    public Vehicle createVehicle(@RequestBody Vehicle vehicle)
     {
+        //посмотреть , что же пришло в Боди
         //http://localhost:8080/vehicle/new
-        vehicleService.saveOrUpdateVehicle(vehicle);
-        return vehicle.getVehicleId();
+        return vehicleService.create(vehicle);
     }
 
 }
