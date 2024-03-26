@@ -1,6 +1,7 @@
 package de.telran.transportcompanymanagementsystem.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -45,15 +46,18 @@ public class Company {
 
     //Relationships
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    @JsonBackReference
+    //@JsonBackReference(maintenances)
+    @JsonIgnore
     private List<Maintenance> maintenances;
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    @JsonBackReference
+    //@JsonBackReference("contracts")
+    @JsonIgnore
     private List<Contract> contracts;
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    @JsonBackReference
+    //@JsonBackReference("tasks")
+    @JsonIgnore
     private List<Task> tasks;
 
     @Override

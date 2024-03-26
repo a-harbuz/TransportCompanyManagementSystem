@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS vehicle (
     initial_kilometers INT NOT NULL,
     price FLOAT,
     vehicle_status VARCHAR(50) NOT NULL,
-    created_at TIMESTAMP
+    created_at TIMESTAMP NOT NULL
 );
 
 -- changeset o.harbuz:1695300329857-2
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS employee_info (
     driving_license_category VARCHAR(20),
     login VARCHAR(50),
     password VARCHAR(50),
-    created_at TIMESTAMP
+    created_at TIMESTAMP NOT NULL
 );
 
 -- changeset o.harbuz:1695300329857-6
@@ -84,11 +84,11 @@ CREATE TABLE IF NOT EXISTS task (
     weight_cargo FLOAT,
     waybill_number VARCHAR(50) NOT NULL,
     waybill_cost DECIMAL(10,2) NOT NULL,
-    distance_traveled_kilometers int,
+    distance_traveled_kilometers INT,
     fuel_costs_traveled	DECIMAL(7,2),
     task_status	VARCHAR(50) NOT NULL,
     comment_if_task_canceled VARCHAR(150),
-    created_at	TIMESTAMP,
+    created_at	TIMESTAMP NOT NULL,
     contract_id	BINARY(16) NOT NULL,
     company_id	BINARY(16) NOT NULL,
     vehicle_id	BINARY(16) NOT NULL,

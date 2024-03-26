@@ -4,10 +4,7 @@ import de.telran.transportcompanymanagementsystem.entity.Company;
 import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import de.telran.transportcompanymanagementsystem.service.interfaces.CompanyService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +32,12 @@ public class CompanyController {
                                     @PathVariable("newNameCompany") String newNameCompany) {
         //http://localhost:8080/company/name/update/Larson-Witting/New Larson
         return companyService.setCompanyByName(nameCompany, newNameCompany);
+    }
+
+    @PostMapping("/new")
+    public Company createCompany(@RequestBody Company company)
+    {
+        //http://localhost:8080/company/new
+        return companyService.create(company);
     }
 }

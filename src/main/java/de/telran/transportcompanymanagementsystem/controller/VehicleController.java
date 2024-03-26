@@ -55,9 +55,7 @@ public class VehicleController {
     @PostMapping("/new")
     public Vehicle createVehicle(@RequestBody Vehicle vehicle)
     {
-        //посмотреть , что же пришло в Боди
         //http://localhost:8080/vehicle/new
         return vehicleService.create(vehicle);
     }
-
 }

@@ -52,12 +52,11 @@ public class Vehicle {
 
     //Relationships
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
-    //@JsonBackReference
     @JsonIgnore
     private List<Maintenance> maintenances;
 
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
-    //@JsonBackReference
+    @JsonIgnore
     private List<Task> tasks;
 
     @Override

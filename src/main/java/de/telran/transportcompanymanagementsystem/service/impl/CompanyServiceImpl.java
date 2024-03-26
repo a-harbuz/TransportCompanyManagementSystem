@@ -39,4 +39,9 @@ public class CompanyServiceImpl  implements CompanyService {
             throw new CompanyNotFoundException(ErrorMessage.COMPANY_NOT_FOUND);
         }
     }
+
+    @Override
+    public Company create(Company company) {
+        return companyRepository.save(company);
+    }
 }
