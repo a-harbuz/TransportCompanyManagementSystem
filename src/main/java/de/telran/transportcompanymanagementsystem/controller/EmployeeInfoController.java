@@ -19,7 +19,7 @@ public class EmployeeInfoController {
 
     @GetMapping("/{id}")
     public EmployeeInfo getEmployeeInfoById(@PathVariable("id") String id) {
-        //http://localhost:8080/vehicle/21679aa7-c43b-468d-8318-8090227c4acb
+        //http://localhost:8080/employeeinfo/18907be0-b307-49d6-8f4c-27f9c26589d4
         return employeeInfoService.getEmployeeInfoById(id);
     }
 

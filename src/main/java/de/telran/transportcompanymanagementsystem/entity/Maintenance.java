@@ -1,5 +1,6 @@
 package de.telran.transportcompanymanagementsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.telran.transportcompanymanagementsystem.entity.enums.*;
 import jakarta.persistence.*;
 import lombok.*;
@@ -38,10 +39,12 @@ public class Maintenance {
     //Relationships
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "vehicle_id", referencedColumnName = "id")
+    @JsonIgnore
     private Vehicle vehicle;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id", referencedColumnName = "id")
+    @JsonIgnore
     private Company company;
 
     @Override

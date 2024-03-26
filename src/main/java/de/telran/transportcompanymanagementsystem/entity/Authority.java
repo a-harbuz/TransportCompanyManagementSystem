@@ -1,5 +1,6 @@
 package de.telran.transportcompanymanagementsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ public class Authority {
 
     //Relationships
     @ManyToMany(mappedBy = "authorities")
+    @JsonIgnore
     private Set<Role> roles;
 
     @Override

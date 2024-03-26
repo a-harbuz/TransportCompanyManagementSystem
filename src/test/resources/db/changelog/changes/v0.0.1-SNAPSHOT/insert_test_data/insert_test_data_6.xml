@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="o.harbuz" id="insert test data into employee_info table">
+        <insert tableName="employee_info">
+            <column name="id" valueComputed="UNHEX('6042ec610ea04d0da989c60997db2d59')"/>
+            <column name="address" value="Apt. 338 2736 Fadel Field, Luzstad, RI 67004-5141"/>
+            <column name="phone" value="0173-619-88624"/>
+            <column name="driving_license_category" value="ABSENT"/>
+            <column name="login" value="iovanna.euschke"/>
+            <column name="password" value="m9c56mi751"/>
+            <column name="created_at" value="2024-02-15"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into employee table">
+        <insert tableName="employee">
+            <!-- Manager, fired -->
+            <column name="id" valueComputed="UNHEX('89ecc2c5c437464aaf1827b08d0768ce')"/>
+            <column name="first_name" value="Giovanna"/>
+            <column name="last_name" value="Leuschke"/>
+            <column name="is_driver" valueBoolean="false"/>
+            <column name="is_working" valueBoolean="false"/>
+            <column name="created_at" value="2024-01-03"/>
+            <column name="employee_info_id" valueComputed="UNHEX('6042ec610ea04d0da989c60997db2d59')"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="o.harbuz" id="insert test data into employee_info_role table">
+        <insert tableName="employee_info_role">
+            <!-- Manager -->
+            <column name="employee_info_id" valueComputed="UNHEX('6042ec610ea04d0da989c60997db2d59')"/>
+            <column name="role_id" valueComputed="UNHEX('b55cbf0930f943c7bdada095a3aa5c08')"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

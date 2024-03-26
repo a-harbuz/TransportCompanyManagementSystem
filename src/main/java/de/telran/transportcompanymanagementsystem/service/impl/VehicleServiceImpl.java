@@ -1,15 +1,12 @@
 package de.telran.transportcompanymanagementsystem.service.impl;
 
 import de.telran.transportcompanymanagementsystem.entity.Vehicle;
-import de.telran.transportcompanymanagementsystem.exception.CompanyNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.VehicleNotFoundException;
-import de.telran.transportcompanymanagementsystem.exception.errorMessage.ErrorMessage;
+import de.telran.transportcompanymanagementsystem.exception.errormessage.ErrorMessage;
 import de.telran.transportcompanymanagementsystem.repository.VehicleRepository;
 import de.telran.transportcompanymanagementsystem.service.interfaces.VehicleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,7 +29,42 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public Vehicle getVehicleByCarNumber(String carNumber) {
-        return vehicleRepository.findByCarNumber(carNumber);
-        //.orElseThrow(()-> new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND));
+        Vehicle vehicle = vehicleRepository.findByCarNumber(carNumber);
+        if (vehicle != null) {
+            return vehicle;
+        } else {
+            throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND);
+        }
+    }
+
+    @Override
+    public Vehicle setVehicleByCarNumber(String carNumber, String newCarNumber) {
+        Vehicle vehicle = vehicleRepository.findByCarNumber(carNumber);
+        if (vehicle != null) {
+            vehicle.setCarNumber(newCarNumber);
+            return vehicleRepository.saveAndFlush(vehicle);
+        } else {
+            throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND);
+        }
+    }
+
+    @Override
+    public void deleteVehicleByCarNumber(String carNumber) {
+        Vehicle vehicle = vehicleRepository.findByCarNumber(carNumber);
+        if (vehicle != null) {
+            vehicleRepository.deleteVehicleByVehicleId(vehicle.getVehicleId());
+        } else {
+            throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND);
+        }
+    }
+
+    @Override
+    public void deleteVehicleById(String id) {
+        vehicleRepository.deleteById(UUID.fromString(id));
+    }
+
+    @Override
+    public Vehicle create(Vehicle vehicle) {
+        return vehicleRepository.save(vehicle);
     }
 }

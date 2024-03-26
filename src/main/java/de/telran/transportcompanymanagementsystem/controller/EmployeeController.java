@@ -28,9 +28,9 @@ public class EmployeeController {
         return employeeService.getEmployeeById(id);
     }
 
-    @GetMapping("/list")
+    @GetMapping("/all")
     public List<Employee> getEmployeeList() {
-        //http://localhost:8080/employee/list
+        //http://localhost:8080/employee/all
         return employeeService.getEmployeeList();
     }
 

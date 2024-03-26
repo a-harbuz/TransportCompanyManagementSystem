@@ -1,4 +1,4 @@
-package de.telran.transportcompanymanagementsystem.exception.errorMessage;
+package de.telran.transportcompanymanagementsystem.exception.errormessage;
 
 public class ErrorMessage {
     public static final String EMPLOYEE_NOT_FOUND = "Employee with this ID was not found.";
