@@ -1,7 +1,6 @@
 package de.telran.transportcompanymanagementsystem.controller;
 
 import de.telran.transportcompanymanagementsystem.entity.Company;
-import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import de.telran.transportcompanymanagementsystem.service.interfaces.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

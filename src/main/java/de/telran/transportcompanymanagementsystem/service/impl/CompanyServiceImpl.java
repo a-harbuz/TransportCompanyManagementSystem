@@ -27,7 +27,12 @@ public class CompanyServiceImpl  implements CompanyService {
 
     @Override
     public List<Company> getCompanyByName(String companyName) {
-        return companyRepository.findByCompanyNameContainsIgnoreCase(companyName);
+        List<Company> companies = companyRepository.findByCompanyNameContainsIgnoreCase(companyName);
+        if (!companies.isEmpty()) {
+            return companies;
+        } else {
+            throw new CompanyNotFoundException(ErrorMessage.COMPANY_NAME_NOT_FOUND);
+        }
     }
 
     @Override
@@ -38,7 +43,7 @@ public class CompanyServiceImpl  implements CompanyService {
             companyRepository.saveAndFlush(company);
             return company;
         } else {
-            throw new CompanyNotFoundException(ErrorMessage.COMPANY_NOT_FOUND);
+            throw new CompanyNotFoundException(ErrorMessage.COMPANY_NAME_NOT_FOUND);
         }
     }
 

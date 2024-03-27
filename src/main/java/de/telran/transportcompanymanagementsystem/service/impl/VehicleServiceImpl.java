@@ -33,7 +33,7 @@ public class VehicleServiceImpl implements VehicleService {
         if (vehicle != null) {
             return vehicle;
         } else {
-            throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND);
+            throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND_BY_CAR_NUMBER);
         }
     }
 
@@ -44,7 +44,7 @@ public class VehicleServiceImpl implements VehicleService {
             vehicle.setCarNumber(newCarNumber);
             return vehicleRepository.saveAndFlush(vehicle);
         } else {
-            throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND);
+            throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND_BY_CAR_NUMBER);
         }
     }
 
@@ -54,12 +54,14 @@ public class VehicleServiceImpl implements VehicleService {
         if (vehicle != null) {
             vehicleRepository.deleteVehicleByVehicleId(vehicle.getVehicleId());
         } else {
-            throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND);
+            throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND_BY_CAR_NUMBER);
         }
     }
 
     @Override
     public void deleteVehicleById(String id) {
+        vehicleRepository.findById(UUID.fromString(id))
+                .orElseThrow(()-> new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND));
         vehicleRepository.deleteById(UUID.fromString(id));
     }
 

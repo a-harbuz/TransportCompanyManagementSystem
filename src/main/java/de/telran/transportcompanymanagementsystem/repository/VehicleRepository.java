@@ -13,7 +13,5 @@ import java.util.UUID;
 @Repository
 public interface VehicleRepository extends JpaRepository<Vehicle, UUID> {
     Vehicle findByCarNumber (String string);
-    @NonNull
-    Vehicle saveAndFlush (@NonNull Vehicle vehicle);
     void deleteVehicleByVehicleId (UUID uuid);
 }

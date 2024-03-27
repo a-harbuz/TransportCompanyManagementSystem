@@ -20,8 +20,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public String getNameEmployeeById(String id) {
         return (employeeRepository.findById(UUID.fromString(id)).isPresent()) ?
-                employeeRepository.findById(UUID.fromString(id)).get().getFirstName() //"Есть такой Работник"
-                : ErrorMessage.EMPLOYEE_NOT_FOUND; // "Нету такого";
+                //There is such Employee
+                employeeRepository.findById(UUID.fromString(id)).get().getFirstName()
+                //There is not such Employee
+                : ErrorMessage.EMPLOYEE_NOT_FOUND;
     }
 
     @Override
@@ -38,7 +40,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> getDriverList() {
         return employeeRepository.findAll()
-                .stream().filter(Employee::isDriver)
+                .stream()
+                .filter(Employee::isDriver)
                 .toList();
     }
 }
