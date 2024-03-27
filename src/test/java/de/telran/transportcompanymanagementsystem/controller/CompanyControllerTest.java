@@ -69,6 +69,16 @@ class CompanyControllerTest {
                 .andExpect(jsonPath("$.companyName", is("New Boehm")));
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/company/name/update/New Boehm/Boehm-Klein"))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.companyName", is("Boehm-Klein")));
     }
+
+    @Test
+    void deleteCompanyByIdTest() {
+    }
+
+    @Test
+    void createCompanyTest() {
+    }
+
 }

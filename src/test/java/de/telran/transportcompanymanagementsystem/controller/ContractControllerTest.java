@@ -36,4 +36,9 @@ class ContractControllerTest {
                 .andExpect(jsonPath("$.totalCostTransportedGoods").value(contract.getTotalCostTransportedGoods()))
                 .andExpect(jsonPath("$.contractStatus", is(contract.getContractStatus().toString())));
     }
+
+    @Test
+    void getContractByContractNumberTest() {
+
+    }
 }

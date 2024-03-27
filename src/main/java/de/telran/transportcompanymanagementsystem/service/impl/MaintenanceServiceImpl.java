@@ -8,6 +8,8 @@ import de.telran.transportcompanymanagementsystem.service.interfaces.Maintenance
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -20,5 +22,10 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     public Maintenance getMaintenanceById(String id) {
         return maintenanceRepository.findById(UUID.fromString(id))
                 .orElseThrow(()-> new DataNotFoundException(ErrorMessage.DATA_NOT_FOUND));
+    }
+
+    @Override
+    public List<Maintenance> getMaintenanceCostMoreThan(BigDecimal maintenanceCost) {
+        return maintenanceRepository.getMaintenanceByMaintenanceCostGreaterThan(maintenanceCost);
     }
 }

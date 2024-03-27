@@ -22,4 +22,11 @@ public class ContractController {
         //http://localhost:8080/contract/c8e0d900-fcd7-4182-925c-fb3a8d010243
         return contractService.getContractById(id);
     }
+
+    @GetMapping("/number/{contractNumber}")
+    public Contract getContractByContractNumber(@PathVariable("contractNumber") String contractNumber) {
+        //http://localhost:8080/contract/number/001
+        return contractService.getContractByContractNumber(contractNumber);
+    }
+
 }

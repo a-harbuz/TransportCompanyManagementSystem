@@ -11,4 +11,5 @@ import java.util.UUID;
 @Repository
 public interface ContractRepository extends JpaRepository<Contract, UUID> {
     Contract findByContractId (UUID uuid);
+    Contract getContractsByContractNumber (String contractNumber);
 }

@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 @RestController
 @RequestMapping("/maintenance")
 @RequiredArgsConstructor
@@ -18,5 +21,10 @@ public class MaintenanceController {
     @GetMapping("/{id}")
     public Maintenance getMaintenanceById(@PathVariable("id") String id) {
         return maintenanceService.getMaintenanceById(id);
+    }
+
+    @GetMapping("/cost/morethan/{maintenanceCost}")
+    public List<Maintenance> getMaintenanceCostMoreThan(@PathVariable("maintenanceCost") BigDecimal maintenanceCost) {
+        return maintenanceService.getMaintenanceCostMoreThan(maintenanceCost);
     }
 }

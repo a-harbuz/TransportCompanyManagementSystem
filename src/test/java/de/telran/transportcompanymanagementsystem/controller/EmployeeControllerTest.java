@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class EmployeeControllerTest {
 
     @Test
-    void getNameEmployeeById() {
+    void getEmployeeById() {
     }
 
     @Test
-    void getEmployeeById() {
+    void getNameEmployeeById() {
     }
 
     @Test

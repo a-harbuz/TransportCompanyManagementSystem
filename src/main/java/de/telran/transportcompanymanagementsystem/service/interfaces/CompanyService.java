@@ -9,4 +9,5 @@ public interface CompanyService {
     List<Company> getCompanyByName(String companyName);
     Company setCompanyByName(String nameCompany, String newNameCompany);
     Company create (Company company);
+    void deleteCompanyById (String id);
 }

@@ -11,7 +11,7 @@ class EmployeeInfoControllerTest {
     }
 
     @Test
-    void getEmployeeInfoAll() {
+    void getAllEmployeeInfo() {
     }
 
     @Test

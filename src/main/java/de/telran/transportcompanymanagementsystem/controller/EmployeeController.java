@@ -29,13 +29,13 @@ public class EmployeeController {
     }
 
     @GetMapping("/all")
-    public List<Employee> getEmployeeList() {
+    public List<Employee> getAllEmployee() {
         //http://localhost:8080/employee/all
         return employeeService.getEmployeeList();
     }
 
     @GetMapping("/drivers")
-    public List<Employee> getDriversList() {
+    public List<Employee> getAllDrivers() {
         //http://localhost:8080/employee/drivers
         return employeeService.getDriverList();
     }

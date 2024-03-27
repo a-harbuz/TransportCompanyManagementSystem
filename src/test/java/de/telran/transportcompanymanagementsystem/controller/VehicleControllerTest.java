@@ -117,6 +117,6 @@ class VehicleControllerTest {
     }
 
     @Test
-    void saveVehicle() {
+    void createVehicle() {
     }
 }

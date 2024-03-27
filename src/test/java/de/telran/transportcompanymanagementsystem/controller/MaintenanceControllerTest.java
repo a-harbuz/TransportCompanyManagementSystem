@@ -9,4 +9,8 @@ class MaintenanceControllerTest {
     @Test
     void getMaintenanceById() {
     }
+
+    @Test
+    void getMaintenanceCostMoreThan() {
+    }
 }

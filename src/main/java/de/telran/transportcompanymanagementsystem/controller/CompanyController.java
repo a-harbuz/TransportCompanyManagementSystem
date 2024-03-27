@@ -33,6 +33,11 @@ public class CompanyController {
         //http://localhost:8080/company/name/update/Larson-Witting/New Larson
         return companyService.setCompanyByName(nameCompany, newNameCompany);
     }
+    @GetMapping("/delete/{id}")
+    public void deleteCompanyById(@PathVariable("id") String id) {
+        //http://localhost:8080/delete/21679aa7-c43b-468d-8318-8090227c4acb
+        companyService.deleteCompanyById(id);
+    }
 
     @PostMapping("/new")
     public Company createCompany(@RequestBody Company company)

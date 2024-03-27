@@ -24,7 +24,7 @@ public class EmployeeInfoController {
     }
 
     @GetMapping("/all")
-    public List<EmployeeInfo> getEmployeeInfoAll() {
+    public List<EmployeeInfo> getAllEmployeeInfo() {
         //http://localhost:8080/employeeinfo/all
         return employeeInfoService.getEmployeeInfoList();
     }

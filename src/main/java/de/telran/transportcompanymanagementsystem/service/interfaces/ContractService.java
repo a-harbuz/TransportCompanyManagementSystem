@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ContractService {
     Contract getContractById (String id);
+    Contract getContractByContractNumber (String contractNumber);
 }
