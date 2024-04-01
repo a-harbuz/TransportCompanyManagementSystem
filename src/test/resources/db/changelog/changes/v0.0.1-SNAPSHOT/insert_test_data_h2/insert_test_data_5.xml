@@ -12,7 +12,7 @@
             <column name="phone" value="0172-619-89624"/>
             <column name="driving_license_category" value="ABSENT"/>
             <column name="login" value="duane.koepp"/>
-            <column name="password" value="m9c56mi751"/>
+            <column name="password" value="bb9549a3f63952c52f0ba5f09c0c13313fc12310be011f079720c9c3a413f19a"/>
             <column name="created_at" value="2024-02-15"/>
         </insert>
     </changeSet>

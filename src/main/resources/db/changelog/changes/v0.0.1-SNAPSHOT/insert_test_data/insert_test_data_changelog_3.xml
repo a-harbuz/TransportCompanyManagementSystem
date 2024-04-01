@@ -64,7 +64,7 @@
             <column name="phone" value="037-133-8105 x528"/>
             <column name="driving_license_category" value="C1"/>
             <column name="login" value="dena.larson"/>
-            <column name="password" value="deurd!@45w"/>
+            <column name="password" value="6837380f8398025c9d67cc6832a9bed7cf16f5d86034ec4cdf4a32d9036db9b1"/>
             <column name="created_at" value="2024-02-12"/>
 
         </insert>

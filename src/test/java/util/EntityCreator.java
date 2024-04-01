@@ -36,6 +36,20 @@ public class EntityCreator {
         return vehicle;
     }
 
+    public static Vehicle getNewVehicle() {
+        Vehicle vehicle = new Vehicle();
+        vehicle.setVehicleType(VehicleType.TRUCK20T);
+        vehicle.setName("MAN");
+        vehicle.setModel("TGS 35.480");
+        vehicle.setYearManufacture("2010");
+        vehicle.setCarNumber("TEST_CAR_NUMBER");
+        vehicle.setInitialKilometers(53000);
+        vehicle.setPrice(20000);
+        vehicle.setVehicleStatus(VehicleStatus.WORKING);
+        vehicle.setCreatedAt(Timestamp.valueOf("2024-03-31 09:00:00.000000000"));
+        return vehicle;
+    }
+
     public static Company getCompany() {
         Company company = new Company();
         company.setCompanyId(UUID.fromString("0a8de57b-4ac3-43f9-9ab4-77784de2554a"));
@@ -45,6 +59,29 @@ public class EntityCreator {
         company.setEmail("wolff@gmail.com");
         company.setAddress("Suite 366 87303 Magnolia Vista, Port Jaimieland, WA 19021");
         company.setPhone("015-888-4863");
+        return company;
+    }
+    public static Company getCompany2() {
+        Company company = new Company();
+        company.setCompanyId(UUID.fromString("875eeb54-d18a-4cfc-8efc-d984c8c362ff"));
+        company.setCompanyName("Haley-Stoltenberg");
+        company.setContactFirstName("Carlo");
+        company.setContactLastName("Mills");
+        company.setEmail("homenick@gmail.com");
+        company.setAddress("Apt. 644 83289 Frances Canyon, Purdyside, AK 93792");
+        company.setPhone("0151-501-994");
+        return company;
+    }
+    public static Company getNewCompany() {
+        Company company = new Company();
+        company.setCompanyId(UUID.fromString("a4e95cd9-6717-4c59-aa42-431d4e2bffb1"));
+        company.setCompanyName("Wisa and Sons");
+        company.setContactFirstName("Santiago");
+        company.setContactLastName("Ratke");
+        company.setEmail("santiago@gmail.com");
+        company.setAddress("Suite 142 9185 Onie Grove, Kirlinstad, ND 85329");
+        company.setPhone("0154-765-2407");
+        company.setCreatedAt(Timestamp.valueOf("2024-03-31 09:00:00.000000000"));
         return company;
     }
 

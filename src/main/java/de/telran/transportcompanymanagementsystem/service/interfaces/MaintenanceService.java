@@ -8,4 +8,5 @@ import java.util.List;
 public interface MaintenanceService {
     Maintenance getMaintenanceById(String id);
     List<Maintenance> getMaintenanceCostMoreThan (BigDecimal maintenanceCost);
+    Maintenance create (Maintenance maintenance);
 }

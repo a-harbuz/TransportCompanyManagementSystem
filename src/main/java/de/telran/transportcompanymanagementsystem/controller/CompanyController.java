@@ -2,11 +2,13 @@ package de.telran.transportcompanymanagementsystem.controller;
 
 import de.telran.transportcompanymanagementsystem.entity.Company;
 import de.telran.transportcompanymanagementsystem.service.interfaces.CompanyService;
+import de.telran.transportcompanymanagementsystem.validation.UuidChecker;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/company")
 @RequiredArgsConstructor
@@ -15,8 +17,8 @@ public class CompanyController {
     private final CompanyService companyService;
 
     @GetMapping("/{id}")
-    public Company getCompanyById(@PathVariable("id") String id) {
-        //http://localhost:8080/company/21679aa7-c43b-468d-8318-8090227c4acb
+    public Company getCompanyById(@PathVariable("id") @UuidChecker String id) {
+        //http://localhost:8080/company/2d0cc985-ffdc-40de-be58-69eba564fc47
         return companyService.getCompanyById(id);
     }
 
@@ -26,15 +28,15 @@ public class CompanyController {
         return companyService.getCompanyByName(nameCompany);
     }
 
-    @GetMapping("/name/update/{nameCompany}/{newNameCompany}")
+    @PutMapping("/name/update/{nameCompany}/{newNameCompany}")
     public Company setCompanyByName(@PathVariable("nameCompany") String nameCompany,
                                     @PathVariable("newNameCompany") String newNameCompany) {
         //http://localhost:8080/company/name/update/Larson-Witting/New Larson
         return companyService.setCompanyByName(nameCompany, newNameCompany);
     }
-    @GetMapping("/delete/{id}")
-    public void deleteCompanyById(@PathVariable("id") String id) {
-        //http://localhost:8080/delete/21679aa7-c43b-468d-8318-8090227c4acb
+    @DeleteMapping("/delete/{id}")
+    public void deleteCompanyById(@PathVariable("id") @UuidChecker String id) {
+        //http://localhost:8080/company/delete/0a8de57b-4ac3-43f9-9ab4-77784de2554a
         companyService.deleteCompanyById(id);
     }
 

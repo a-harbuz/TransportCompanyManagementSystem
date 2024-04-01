@@ -52,7 +52,7 @@ public class VehicleServiceImpl implements VehicleService {
     public void deleteVehicleByCarNumber(String carNumber) {
         Vehicle vehicle = vehicleRepository.findByCarNumber(carNumber);
         if (vehicle != null) {
-            vehicleRepository.deleteVehicleByVehicleId(vehicle.getVehicleId());
+            vehicleRepository.deleteById(vehicle.getVehicleId());
         } else {
             throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND_BY_CAR_NUMBER);
         }

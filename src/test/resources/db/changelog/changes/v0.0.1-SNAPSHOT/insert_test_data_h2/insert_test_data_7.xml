@@ -11,7 +11,7 @@
             <column name="phone" value="0175-946-0375"/>
             <column name="driving_license_category" value="B"/>
             <column name="login" value="hans.wolf"/>
-            <column name="password" value="m9c56mi751"/>
+            <column name="password" value="67cdd77dd2722577494d6e069f7c53bd84169db9991c23d8682cc8f84028fc6e"/>
             <column name="created_at" value="2024-01-03"/>
         </insert>
     </changeSet>

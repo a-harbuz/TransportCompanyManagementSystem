@@ -64,7 +64,7 @@
             <column name="phone" value="613-852-8580 x5802"/>
             <column name="driving_license_category" value="C1E"/>
             <column name="login" value="florinda1"/>
-            <column name="password" value="1qjyxAs"/>
+            <column name="password" value="3fdf5bafc7af5dc2dfb051d11888ddb01e9594061168ef3bb45ce2e811c4d13f"/>
             <column name="created_at" value="2024-01-15"/>
         </insert>
     </changeSet>

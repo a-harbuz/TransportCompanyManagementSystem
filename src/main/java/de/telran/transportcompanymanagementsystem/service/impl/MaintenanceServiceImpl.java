@@ -28,4 +28,9 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     public List<Maintenance> getMaintenanceCostMoreThan(BigDecimal maintenanceCost) {
         return maintenanceRepository.getMaintenanceByMaintenanceCostGreaterThan(maintenanceCost);
     }
+
+    @Override
+    public Maintenance create(Maintenance maintenance) {
+        return maintenanceRepository.save(maintenance);
+    }
 }

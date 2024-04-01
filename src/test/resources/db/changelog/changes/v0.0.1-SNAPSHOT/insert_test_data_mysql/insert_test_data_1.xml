@@ -65,7 +65,7 @@
             <column name="phone" value="582-201-3429"/>
             <column name="driving_license_category" value="C1"/>
             <column name="login" value="meridith.langosh"/>
-            <column name="password" value="bbthinpz263!"/>
+            <column name="password" value="69a6104361fe75cdf6abba41b1c91e681e7e6776366da80f1eb56f90b83d4224"/>
             <column name="created_at" value="2024-01-10"/>
         </insert>
     </changeSet>

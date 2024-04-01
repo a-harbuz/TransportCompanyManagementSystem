@@ -49,12 +49,9 @@ public class CompanyServiceImpl  implements CompanyService {
 
     @Override
     public void deleteCompanyById(String id) {
-        Company company = companyRepository.findByCompanyId(UUID.fromString(id));
-        if (company != null) {
-            companyRepository.deleteByCompanyId(company.getCompanyId());
-        } else {
-            throw new CompanyNotFoundException(ErrorMessage.COMPANY_NOT_FOUND);
-        }
+        companyRepository.findById(UUID.fromString(id))
+                .orElseThrow(()-> new CompanyNotFoundException(ErrorMessage.COMPANY_NOT_FOUND));
+        companyRepository.deleteById(UUID.fromString(id));
     }
 
     @Override

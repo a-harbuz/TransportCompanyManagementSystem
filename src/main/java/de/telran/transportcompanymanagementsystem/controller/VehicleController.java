@@ -46,7 +46,7 @@ public class VehicleController {
     }
     @DeleteMapping("/delete/{id}")
     public void deleteVehicleById(@PathVariable("id") String carNumber) {
-        //http://localhost:8080/vehicle/delete/21679aa7-c43b-468d-8318-8090227c4acb
+        //http://localhost:8080/vehicle/delete/26e41ad9-0482-4808-9dbb-c917631f1b56
         vehicleService.deleteVehicleById(carNumber);
     }
 

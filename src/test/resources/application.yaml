@@ -4,7 +4,8 @@ spring:
 
   # H2 Datasource
   datasource:
-    url: jdbc:h2:file:./testDB;AUTO_SERVER=TRUE
+    url: jdbc:h2:mem:dev
+    #url: jdbc:h2:file:./testDB;AUTO_SERVER=TRUE
     username: sa
     password:
     driver-class-name: org.h2.Driver
@@ -13,7 +14,6 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: none
-      #ddl-auto: create-drop
     show-sql: true
 
   h2:
@@ -33,5 +33,4 @@ spring:
 #    show-sql: true
 
   liquibase:
-    #enabled: false
     change-log: classpath:/db/changelog/changelog-master-test.xml

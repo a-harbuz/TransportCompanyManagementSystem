@@ -1,17 +1,20 @@
 package de.telran.transportcompanymanagementsystem.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import util.CheckUuidPattern;
 import util.EntityCreator;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -19,20 +22,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @DisplayName("Test class for VehicleController")
-//@Sql("/db/changelog/changes/v0.0.1-SNAPSHOT/create_tables/create-tables-h2.sql")
-//@Sql("/addTestData.sql")
 class VehicleControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Test
     void getVehicleByIdTest() throws Exception {
         Vehicle vehicle = EntityCreator.getVehicle();
         mockMvc
-                .perform(MockMvcRequestBuilders.get("/vehicle/26e41ad9-0482-4808-9dbb-c917631f1b56"))
+                .perform(MockMvcRequestBuilders.get("/vehicle/" + vehicle.getVehicleId()))
                 .andExpect(status().isOk())
-                .andDo(print())
                 .andExpect(jsonPath("$.vehicleId", is(vehicle.getVehicleId().toString())))
                 .andExpect(jsonPath("$.vehicleType", is(vehicle.getVehicleType().toString())))
                 .andExpect(jsonPath("$.name", is(vehicle.getName())))
@@ -44,44 +47,23 @@ class VehicleControllerTest {
     }
 
     @Test
+    void getVehicleByIdNegativeTest() throws Exception {
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/vehicle/26e41ad9-0482-4808-9dbb-c917631f1b5a"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     void getAllVehicleTest() throws Exception {
-        Vehicle vehicle = EntityCreator.getVehicle();
-        Vehicle vehicle2 = EntityCreator.getVehicle2();
+        String uuidPattern = CheckUuidPattern.getUuidPattern();
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/vehicle/all"))
                 .andExpect(status().isOk())
-                .andDo(print())
                 .andExpect(jsonPath("$", hasSize(4)))
-                //For MySQL
-//                .andExpect(jsonPath("$[1].vehicleId", is(vehicle.getVehicleId().toString())))
-//                .andExpect(jsonPath("$[1].vehicleType", is(vehicle.getVehicleType().toString())))
-//                .andExpect(jsonPath("$[1].name", is(vehicle.getName())))
-//                .andExpect(jsonPath("$[1].model", is(vehicle.getModel())))
-//                .andExpect(jsonPath("$[1].yearManufacture", is(vehicle.getYearManufacture())))
-//                .andExpect(jsonPath("$[1].carNumber", is(vehicle.getCarNumber())))
-//                .andExpect(jsonPath("$[1].price").value(vehicle.getPrice()))
-//                .andExpect(jsonPath("$[1].vehicleStatus").value(vehicle.getVehicleStatus().toString()))
-//
-//                .andExpect(jsonPath("$[2].vehicleId", is(vehicle2.getVehicleId().toString())))
-//                .andExpect(jsonPath("$[2].vehicleType", is(vehicle2.getVehicleType().toString())))
-//                .andExpect(jsonPath("$[2].name", is(vehicle2.getName())))
-//                .andExpect(jsonPath("$[2].carNumber", is(vehicle2.getCarNumber())))
-//                .andExpect(jsonPath("$[2].vehicleStatus").value(vehicle2.getVehicleStatus().toString()));
-                //For H2-DB
-                .andExpect(jsonPath("$[0].vehicleId", is(vehicle.getVehicleId().toString())))
-                .andExpect(jsonPath("$[0].vehicleType", is(vehicle.getVehicleType().toString())))
-                .andExpect(jsonPath("$[0].name", is(vehicle.getName())))
-                .andExpect(jsonPath("$[0].model", is(vehicle.getModel())))
-                .andExpect(jsonPath("$[0].yearManufacture", is(vehicle.getYearManufacture())))
-                .andExpect(jsonPath("$[0].carNumber", is(vehicle.getCarNumber())))
-                .andExpect(jsonPath("$[0].price").value(vehicle.getPrice()))
-                .andExpect(jsonPath("$[0].vehicleStatus").value(vehicle.getVehicleStatus().toString()))
-                .andExpect(jsonPath("$[2].vehicleId", is(vehicle2.getVehicleId().toString())))
-                .andExpect(jsonPath("$[2].vehicleType", is(vehicle2.getVehicleType().toString())))
-                .andExpect(jsonPath("$[2].name", is(vehicle2.getName())))
-                .andExpect(jsonPath("$[2].carNumber", is(vehicle2.getCarNumber())))
-                .andExpect(jsonPath("$[2].vehicleStatus").value(vehicle2.getVehicleStatus().toString()));
-
+                .andExpect(MockMvcResultMatchers
+                        .jsonPath("$[0].vehicleId", matchesPattern(uuidPattern)))
+                .andExpect(MockMvcResultMatchers
+                        .jsonPath("$[3].vehicleId", matchesPattern(uuidPattern)));
     }
 
     @Test
@@ -105,18 +87,61 @@ class VehicleControllerTest {
                 .andExpect(jsonPath("$.carNumber", is("XX7788YY")));
         mockMvc
                 .perform(MockMvcRequestBuilders.put("/vehicle/carnumber/update/XX7788YY/AE2387KM"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.carNumber", is("AE2387KM")));
+    }
+
+    @Test
+    void deleteVehicleByCarNumber() throws Exception {
+        Vehicle vehicle = EntityCreator.getVehicle2();
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/vehicle/carnumber/" + vehicle.getCarNumber()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.vehicleId", is(vehicle.getVehicleId().toString())));
+        mockMvc
+                .perform(MockMvcRequestBuilders.delete("/vehicle/carnumber/delete/" + vehicle.getCarNumber()))
                 .andExpect(status().isOk());
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/vehicle/carnumber/" + vehicle.getCarNumber()))
+                .andExpect(status().isNotFound());
     }
 
     @Test
-    void deleteVehicleByCarNumber() {
+    void deleteVehicleById() throws Exception {
+        Vehicle vehicle = EntityCreator.getVehicle();
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/vehicle/" + vehicle.getVehicleId()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.vehicleId", is(vehicle.getVehicleId().toString())));
+        mockMvc
+                .perform(MockMvcRequestBuilders.delete("/vehicle/delete/" + vehicle.getVehicleId()))
+                .andExpect(status().isOk());
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/vehicle/" + vehicle.getVehicleId()))
+                .andExpect(status().isNotFound());
     }
 
     @Test
-    void deleteVehicleById() {
-    }
+    void createVehicle() throws Exception {
+        Vehicle newVehicle = EntityCreator.getNewVehicle();
+        String requestBody = objectMapper.writeValueAsString(newVehicle);
+        mockMvc
+                .perform(MockMvcRequestBuilders.post("/vehicle/new")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers
+                        .jsonPath("$.vehicleId", matchesPattern(CheckUuidPattern.getUuidPattern())))
+                .andExpect(MockMvcResultMatchers
+                        .jsonPath("$.carNumber", is(newVehicle.getCarNumber())))
+                .andExpect(MockMvcResultMatchers
+                        .jsonPath("$.price").value(newVehicle.getPrice()));
 
-    @Test
-    void createVehicle() {
+        mockMvc
+                .perform(MockMvcRequestBuilders.delete("/vehicle/carnumber/delete/" + newVehicle.getCarNumber()))
+                .andExpect(status().isOk());
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/vehicle/carnumber/" + newVehicle.getCarNumber()))
+                .andExpect(status().isNotFound());
     }
 }

@@ -22,6 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @DisplayName("Test class for TaskController")
+//@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class TaskControllerTest {
 
     @Autowired
@@ -31,7 +32,7 @@ class TaskControllerTest {
     void getTaskByIdTest() throws Exception {
         Task task = EntityCreator.getTask();
         mockMvc
-                .perform(MockMvcRequestBuilders.get("/task/0ebb8160-7f5c-410d-8a00-13e6837b8a16"))
+                .perform(MockMvcRequestBuilders.get("/task/" + task.getTaskId()))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(jsonPath("$.taskId", is(task.getTaskId().toString())))

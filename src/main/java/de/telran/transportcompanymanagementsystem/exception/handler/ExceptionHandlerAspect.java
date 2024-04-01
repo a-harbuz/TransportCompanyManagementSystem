@@ -10,47 +10,26 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.NoHandlerFoundException;
-
 
 @RestControllerAdvice
 public class ExceptionHandlerAspect {
-    @ExceptionHandler(VehicleNotFoundException.class)
-    public ResponseEntity<String> handleVehicleNotFoundException(VehicleNotFoundException ex) {
-        return getResponse(ex);
-    }
-
-    @ExceptionHandler(CompanyNotFoundException.class)
-    public ResponseEntity<String> handleCompanyNotFoundException(CompanyNotFoundException ex) {
-        return getResponse(ex);
-    }
-
-    @ExceptionHandler(TaskNotFoundException.class)
-    public ResponseEntity<String> handleTaskNotFoundException(TaskNotFoundException ex) {
-        return getResponse(ex);
-    }
-
-    @ExceptionHandler(DataNotFoundException.class)
-    public ResponseEntity<String> handleDataNotFoundException(DataNotFoundException ex) {
-        return getResponse(ex);
+    @ExceptionHandler({VehicleNotFoundException.class, CompanyNotFoundException.class, TaskNotFoundException.class,
+            DataNotFoundException.class})
+    public ResponseEntity<String> handleException(Exception ex) {
+        return getResponse(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .headers(headers)
-                .body("!!!! Illegal argument");
+    public ResponseEntity<String> handleIllegalArgumentException() {
+        return getResponse(HttpStatus.BAD_REQUEST, "Illegal argument");
     }
 
-    public ResponseEntity<String> getResponse(Exception ex) {
+    public ResponseEntity<String> getResponse(HttpStatus status, String message) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
+                .status(status)
                 .headers(headers)
-                .body("!!!! " + ex.getMessage());
+                .body("!!!! " + message);
     }
 }
