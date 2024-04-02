@@ -22,19 +22,6 @@ public class EntityCreator {
         vehicle.setVehicleStatus(VehicleStatus.WORKING);
         return vehicle;
     }
-    public static Vehicle getVehicle2() {
-        Vehicle vehicle = new Vehicle();
-        vehicle.setVehicleId(UUID.fromString("9a04a59b-940f-4e2c-be40-5d2366b3e7b1"));
-        vehicle.setVehicleType(VehicleType.TRUCK10T);
-        vehicle.setName("VOLVO");
-        vehicle.setModel("XC90");
-        vehicle.setYearManufacture("2018");
-        vehicle.setCarNumber("K234BA");
-        vehicle.setInitialKilometers(120000);
-        vehicle.setPrice(40000);
-        vehicle.setVehicleStatus(VehicleStatus.WORKING);
-        return vehicle;
-    }
 
     public static Vehicle getNewVehicle() {
         Vehicle vehicle = new Vehicle();
@@ -91,6 +78,8 @@ public class EntityCreator {
         maintenance.setServiceType(ServiceType.REPAIR_CHASSIS);
         maintenance.setMaintenanceCost(BigDecimal.valueOf(654.24));
         maintenance.setMaintenanceKilometers(71400);
+        //maintenance.setCreatedAt(Timestamp.valueOf("2024-02-03 00:00:00.000000000"));
+        maintenance.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         return maintenance;
     }
 
@@ -108,11 +97,11 @@ public class EntityCreator {
     public static EmployeeInfo getEmployeeInfo() {
         EmployeeInfo employeeInfo = new EmployeeInfo();
         employeeInfo.setEmployeeInfoId(UUID.fromString("18907be0-b307-49d6-8f4c-27f9c26589d4"));
-        employeeInfo.setAddress("319 Cordell Square, Kazukoside");
+        employeeInfo.setAddress("319 Cordell Square, Kazukoside, DE 54119-3469");
         employeeInfo.setPhone("0171-619-9624");
         employeeInfo.setDrivingLicenseCategory(DrivingLicenseCategory.C);
         employeeInfo.setLogin("blanca.cummings");
-        employeeInfo.setPassword("m9cmi751");
+        employeeInfo.setPassword("22b684ec92deee34712b1056b280b36f2fdab220cc6");
         return employeeInfo;
     }
 

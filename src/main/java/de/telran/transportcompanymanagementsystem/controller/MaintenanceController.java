@@ -1,6 +1,5 @@
 package de.telran.transportcompanymanagementsystem.controller;
 
-import de.telran.transportcompanymanagementsystem.entity.Company;
 import de.telran.transportcompanymanagementsystem.entity.Maintenance;
 import de.telran.transportcompanymanagementsystem.service.interfaces.MaintenanceService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +17,7 @@ public class MaintenanceController {
 
     @GetMapping("/{id}")
     public Maintenance getMaintenanceById(@PathVariable("id") String id) {
-        //http://localhost:8080/maintenance/
+        //http://localhost:8080/maintenance/1d8c0c4d-e54f-4ea7-b6ba-3640ddc2aa06
         return maintenanceService.getMaintenanceById(id);
     }
 
@@ -26,12 +25,5 @@ public class MaintenanceController {
     public List<Maintenance> getMaintenanceCostMoreThan(@PathVariable("maintenanceCost") BigDecimal maintenanceCost) {
         //http://localhost:8080/maintenance/cost/morethan/500
         return maintenanceService.getMaintenanceCostMoreThan(maintenanceCost);
-    }
-
-    @PostMapping("/new")
-    public Maintenance createMaintenance(@RequestBody Maintenance maintenance)
-    {
-        //http://localhost:8080/maintenance/new
-        return maintenanceService.create(maintenance);
     }
 }

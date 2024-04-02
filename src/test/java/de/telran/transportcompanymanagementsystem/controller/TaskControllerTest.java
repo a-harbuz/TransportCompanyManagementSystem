@@ -1,19 +1,20 @@
 package de.telran.transportcompanymanagementsystem.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.telran.transportcompanymanagementsystem.entity.Task;
-import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import util.CheckUuidPattern;
 import util.EntityCreator;
-
-import java.math.BigDecimal;
-
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -22,11 +23,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @DisplayName("Test class for TaskController")
-//@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class TaskControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Test
     void getTaskByIdTest() throws Exception {
@@ -43,12 +46,27 @@ class TaskControllerTest {
     }
 
     @Test
-    void getTaskByWaybillNumberTest() {
-
+    void getTaskByWaybillNumberTest() throws Exception {
+        Task expected = EntityCreator.getTask();
+        MvcResult mvcResult = mockMvc
+                .perform(MockMvcRequestBuilders.get("/task/waybillnumber/004")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn();
+        String mvcResultJson = mvcResult.getResponse().getContentAsString();
+        Task actual = objectMapper.readValue(mvcResultJson, Task.class);
+        assertEquals(expected, actual);
     }
 
     @Test
-    void getTaskByWeightCargoWhenMoreThanTest() {
-
+    void getTaskByWeightCargoWhenMoreThanTest() throws Exception {
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/task/weightcargo/morethan/10000"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(MockMvcResultMatchers
+                        .jsonPath("$[0].taskId", matchesPattern(CheckUuidPattern.getUuidPattern())))
+                .andExpect(MockMvcResultMatchers
+                        .jsonPath("$[1].taskId", matchesPattern(CheckUuidPattern.getUuidPattern())));
     }
 }

@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS employee_info (
     phone VARCHAR(20),
     driving_license_category VARCHAR(20),
     login VARCHAR(50),
-    password VARCHAR(50),
+    password VARCHAR(75),
     created_at TIMESTAMP NOT NULL
 );
 

@@ -1,9 +1,7 @@
 package de.telran.transportcompanymanagementsystem.service.impl;
 
 import de.telran.transportcompanymanagementsystem.entity.Task;
-import de.telran.transportcompanymanagementsystem.exception.DataNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.TaskNotFoundException;
-import de.telran.transportcompanymanagementsystem.exception.VehicleNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.errormessage.ErrorMessage;
 import de.telran.transportcompanymanagementsystem.repository.TaskRepository;
 import de.telran.transportcompanymanagementsystem.service.interfaces.TaskService;

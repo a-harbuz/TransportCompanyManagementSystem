@@ -7,7 +7,6 @@ import de.telran.transportcompanymanagementsystem.repository.MaintenanceReposito
 import de.telran.transportcompanymanagementsystem.service.interfaces.MaintenanceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
@@ -27,10 +26,5 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     @Override
     public List<Maintenance> getMaintenanceCostMoreThan(BigDecimal maintenanceCost) {
         return maintenanceRepository.getMaintenanceByMaintenanceCostGreaterThan(maintenanceCost);
-    }
-
-    @Override
-    public Maintenance create(Maintenance maintenance) {
-        return maintenanceRepository.save(maintenance);
     }
 }

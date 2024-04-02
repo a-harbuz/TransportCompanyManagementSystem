@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+<!--For MySQL-->
+    <include file="db/changelog/changes/v0.0.1-SNAPSHOT/create_tables/create-tables-mysql.sql"/>
+    <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data_mysql/insert_test_data_1.xml"/>
+    <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data_mysql/insert_test_data_2.xml"/>
+    <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data_mysql/insert_test_data_3.xml"/>
+    <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data_mysql/insert_test_data_4.xml"/>
+    <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data_mysql/insert_test_data_5.xml"/>
+    <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data_mysql/insert_test_data_6.xml"/>
+    <include file="db/changelog/changes/v0.0.1-SNAPSHOT/insert_test_data_mysql/insert_test_data_7.xml"/>
+
+</databaseChangeLog>

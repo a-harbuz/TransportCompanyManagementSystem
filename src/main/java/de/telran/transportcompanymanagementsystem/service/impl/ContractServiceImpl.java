@@ -2,13 +2,11 @@ package de.telran.transportcompanymanagementsystem.service.impl;
 
 import de.telran.transportcompanymanagementsystem.entity.Contract;
 import de.telran.transportcompanymanagementsystem.exception.ContractNotFoundException;
-import de.telran.transportcompanymanagementsystem.exception.DataNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.errormessage.ErrorMessage;
 import de.telran.transportcompanymanagementsystem.repository.ContractRepository;
 import de.telran.transportcompanymanagementsystem.service.interfaces.ContractService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.UUID;
 
 @Service
@@ -25,7 +23,11 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public Contract getContractByContractNumber(String contractNumber) {
-        return contractRepository.getContractsByContractNumber(contractNumber);
-        //Or Return Exaption
+        Contract contract = contractRepository.findContractByContractNumber(contractNumber);
+        if (contract != null) {
+            return contract;
+        } else {
+            throw new ContractNotFoundException(ErrorMessage.CONTRACT_NOT_FOUND_BY_NUMBER);
+        }
     }
 }

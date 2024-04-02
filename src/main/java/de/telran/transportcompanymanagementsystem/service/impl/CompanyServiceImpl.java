@@ -1,15 +1,12 @@
 package de.telran.transportcompanymanagementsystem.service.impl;
 
 import de.telran.transportcompanymanagementsystem.entity.Company;
-import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import de.telran.transportcompanymanagementsystem.exception.CompanyNotFoundException;
-import de.telran.transportcompanymanagementsystem.exception.VehicleNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.errormessage.ErrorMessage;
 import de.telran.transportcompanymanagementsystem.repository.CompanyRepository;
 import de.telran.transportcompanymanagementsystem.service.interfaces.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -40,8 +37,7 @@ public class CompanyServiceImpl  implements CompanyService {
         Company company = companyRepository.findByCompanyName(companyName);
         if (company != null) {
             company.setCompanyName(newCompanyName);
-            companyRepository.saveAndFlush(company);
-            return company;
+            return companyRepository.saveAndFlush(company);
         } else {
             throw new CompanyNotFoundException(ErrorMessage.COMPANY_NAME_NOT_FOUND);
         }

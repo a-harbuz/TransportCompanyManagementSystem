@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import util.CheckUuidPattern;
@@ -74,32 +75,37 @@ class CompanyControllerTest {
 
     @Test
     void setCompanyByNameTest() throws Exception {
-        Company company = EntityCreator.getCompany();
+        Company company = EntityCreator.getCompany2();
         mockMvc
-                .perform(MockMvcRequestBuilders.put("/company/name/update/Boehm-Klein/New Boehm"))
+                .perform(MockMvcRequestBuilders.put("/company/name/update/Haley-Stoltenberg/New Haley"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.companyId", is(company.getCompanyId().toString())))
-                .andExpect(jsonPath("$.companyName", is("New Boehm")));
+                .andExpect(jsonPath("$.companyName", is("New Haley")));
         mockMvc
-                .perform(MockMvcRequestBuilders.put("/company/name/update/New Boehm/Boehm-Klein"))
+                .perform(MockMvcRequestBuilders.put("/company/name/update/New Haley/Haley-Stoltenberg"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.companyName", is("Boehm-Klein")));
+                .andExpect(jsonPath("$.companyName", is(company.getCompanyName())));
     }
 
     @Test
     void deleteCompanyByIdTest() throws Exception {
-        Company company = EntityCreator.getCompany2();
-        mockMvc
-                .perform(MockMvcRequestBuilders.get("/company/" + company.getCompanyId()))
+        Company company = EntityCreator.getNewCompany();
+        company.setCompanyName("TEST_NAME_FOR_DELETE");
+        String requestBody = objectMapper.writeValueAsString(company);
+        MvcResult mvcResult = mockMvc
+                .perform(MockMvcRequestBuilders.post("/company/new")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.companyId", is(company.getCompanyId().toString())));
+                .andReturn();
+        String mvcResultJson = mvcResult.getResponse().getContentAsString();
+        Company newCompany = objectMapper.readValue(mvcResultJson, Company.class);
+
         mockMvc
-                .perform(MockMvcRequestBuilders.delete("/company/delete/" + company.getCompanyId())
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+                .perform(MockMvcRequestBuilders.delete("/company/delete/" + newCompany.getCompanyId()))
                 .andExpect(status().isOk());
         mockMvc
-                .perform(MockMvcRequestBuilders.get("/company/" + company.getCompanyId()))
+                .perform(MockMvcRequestBuilders.get("/company/" + newCompany.getCompanyId()))
                 .andExpect(status().isNotFound());
     }
 
