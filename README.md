@@ -2,7 +2,7 @@
 
 This is a prototype of the BackEnd Transport Company Management System Project.
 
-Data consist of Vehicle, Driver, Maintenance, Company, Contract, Task
+Data consist of Company, Vehicle, Maintenance, Employee, EmployeeInfo, Contract, Tasks, Role, Authority.
 ___
 
 * [ApiDoc Link](http://localhost:8080/swagger-ui/index.html)
@@ -14,7 +14,7 @@ https://dbdiagram.io/d/TransportCompany-65dbc3415cd0412774c60055
 
 ## Database structure
 
-### Table vehicle ()
+### Table vehicle (Vehicle information)
 
 | Column name        | Type        | Description                                   |
 |--------------------|-------------|-----------------------------------------------|
@@ -29,7 +29,7 @@ https://dbdiagram.io/d/TransportCompany-65dbc3415cd0412774c60055
 | vehicle_status     | varchar(50) | current status                                |                                
 | created_at         | timestamp   | timestamp of row creation                     |
 
-### Table maintenance ()
+### Table maintenance (Vehicle maintenance)
 
 | Column name            | Type         | Description                                   |
 |------------------------|--------------|-----------------------------------------------|
@@ -41,7 +41,7 @@ https://dbdiagram.io/d/TransportCompany-65dbc3415cd0412774c60055
 | vehicle_id             | binary(16)   | id of vehicle                                 |
 | company_id             | binary(16)   | id of maintenance company                     |
 
-### Table company ()
+### Table company (Counterparty companies)
 
 | Column name        | Type          | Description                                   |
 |--------------------|---------------|-----------------------------------------------|
@@ -54,7 +54,7 @@ https://dbdiagram.io/d/TransportCompany-65dbc3415cd0412774c60055
 | phone              | varchar(20)   | phone of the contact person                   | 
 | created_at         | timestamp     | timestamp of row creation                     | 
 
-### Table Contract ()
+### Table contract (Contracts with companies for the transportation of goods)
 
 | Column name                         | Type           | Description                                      |
 |-------------------------------------|----------------|--------------------------------------------------|
@@ -67,7 +67,7 @@ https://dbdiagram.io/d/TransportCompany-65dbc3415cd0412774c60055
 | 	created_at                         | timestamp      | timestamp of row creation                        | 
 | 	company_id                         | binary(16)     | id of counterparty company                       |
 
-### Table Task ()
+### Table task (Transportation assignments)
 
 | Column name                   | Type          | Description                                   |
 |-------------------------------|---------------|-----------------------------------------------|
@@ -88,19 +88,19 @@ https://dbdiagram.io/d/TransportCompany-65dbc3415cd0412774c60055
 | 	vehicle_id                   | binary(16)    | id of vehicle                                 |
 | 	driver_id                    | binary(16)    | id of driver                                  |
 
-### Table Employee ()
+### Table employee (Employees information)
 
-| Column name      | Type         | Description                                    |
-|------------------|--------------|------------------------------------------------|
-| id               | binary(16)   | id key of row - unique, not null, primary key  |
-| first_name       | varchar(20)  | employee's name                                |         
-| last_name        | varchar(20)  | employee's last name                           |                               
-| is_driver        | boolean      | is driver?                                         | 
-| is_working       | boolean      | working or fired                               |                          
-| created_at       | timestamp    | timestamp of row creation                      |
-| employee_info_id | binary(16)   | id employee's personal information             |
+| Column name      | Type         | Description                                   |
+|------------------|--------------|-----------------------------------------------|
+| id               | binary(16)   | id key of row - unique, not null, primary key |
+| first_name       | varchar(20)  | employee's name                               |         
+| last_name        | varchar(20)  | employee's last name                          |                               
+| is_driver        | boolean      | is employee driver?                           | 
+| is_working       | boolean      | working or fired                              |                          
+| created_at       | timestamp    | timestamp of row creation                     |
+| employee_info_id | binary(16)   | id employee's personal information            |
 
-### Table EmployeeInfo (Employee's personal information)
+### Table employeeInfo (Employee's personal information)
 
 | Column name              | Type        | Description                                   |
 |--------------------------|-------------|-----------------------------------------------|
@@ -109,10 +109,10 @@ https://dbdiagram.io/d/TransportCompany-65dbc3415cd0412774c60055
 | phone                    | varchar(20) | employee's phone number                       |                          
 | driving_license_category | varchar(20) | driving license category                      | 
 | login                    | varchar(50) | login in management system                    |                          
-| password                 | varchar(50) | password in management system                 |
+| password                 | varchar(75) | password in management system                 |
 | created_at               | timestamp   | timestamp of row creation                     |
 
-### Table Role (Employee's roles)
+### Table role (Employee's roles)
 
 | Column name             | Type         | Description                                   |
 |-------------------------|--------------|-----------------------------------------------|
@@ -120,7 +120,7 @@ https://dbdiagram.io/d/TransportCompany-65dbc3415cd0412774c60055
 | role_name               | varchar(128) | name of role                                  |         
                               
 
-### Table Authority (Role's authority)
+### Table authority (Role's authority)
 
 | Column name              | Type         | Description                                   |
 |--------------------------|--------------|-----------------------------------------------|

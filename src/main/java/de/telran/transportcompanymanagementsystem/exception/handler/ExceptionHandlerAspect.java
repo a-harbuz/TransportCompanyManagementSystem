@@ -6,7 +6,6 @@ import de.telran.transportcompanymanagementsystem.exception.TaskNotFoundExceptio
 import de.telran.transportcompanymanagementsystem.exception.VehicleNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -26,10 +25,10 @@ public class ExceptionHandlerAspect {
 
     public ResponseEntity<String> getResponse(HttpStatus status, String message) {
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
         return ResponseEntity
                 .status(status)
                 .headers(headers)
-                .body("!!!! " + message);
+                .body("{\"message\": \"!!!! " + message + "\"}");
     }
 }
