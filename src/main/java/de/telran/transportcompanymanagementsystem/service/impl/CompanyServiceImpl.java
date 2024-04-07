@@ -33,6 +33,11 @@ public class CompanyServiceImpl  implements CompanyService {
     }
 
     @Override
+    public List<Company> getAllCompanies() {
+        return companyRepository.findAll();
+    }
+
+    @Override
     public Company setCompanyByName(String companyName, String newCompanyName) {
         Company company = companyRepository.findByCompanyName(companyName);
         if (company != null) {

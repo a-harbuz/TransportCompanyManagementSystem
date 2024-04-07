@@ -68,21 +68,31 @@ class CompanyControllerTest {
                 .perform(MockMvcRequestBuilders.get("/company/name/Larson"))
                 .andExpect(status().isOk())
                 .andDo(print())
-                //.andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].companyId", is("2d0cc985-ffdc-40de-be58-69eba564fc47")))
                 .andExpect(jsonPath("$[0].companyName", is("Larson-Witting")));
+    }
+
+    @Test
+    void getAllCompanies() throws Exception {
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/company/all"))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers
+                        .jsonPath("$[0].companyId", matchesPattern(CheckUuidPattern.getUuidPattern())))
+                .andExpect(MockMvcResultMatchers
+                        .jsonPath("$[2].companyId", matchesPattern(CheckUuidPattern.getUuidPattern())));
     }
 
     @Test
     void setCompanyByNameTest() throws Exception {
         Company company = EntityCreator.getCompany2();
         mockMvc
-                .perform(MockMvcRequestBuilders.put("/company/name/update/Haley-Stoltenberg/New Haley"))
+                .perform(MockMvcRequestBuilders.put("/company/name/Haley-Stoltenberg/New Haley"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.companyId", is(company.getCompanyId().toString())))
                 .andExpect(jsonPath("$.companyName", is("New Haley")));
         mockMvc
-                .perform(MockMvcRequestBuilders.put("/company/name/update/New Haley/Haley-Stoltenberg"))
+                .perform(MockMvcRequestBuilders.put("/company/name/New Haley/Haley-Stoltenberg"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.companyName", is(company.getCompanyName())));
     }
@@ -93,7 +103,7 @@ class CompanyControllerTest {
         company.setCompanyName("TEST_NAME_FOR_DELETE");
         String requestBody = objectMapper.writeValueAsString(company);
         MvcResult mvcResult = mockMvc
-                .perform(MockMvcRequestBuilders.post("/company/new")
+                .perform(MockMvcRequestBuilders.post("/company")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isOk())
@@ -102,7 +112,7 @@ class CompanyControllerTest {
         Company newCompany = objectMapper.readValue(mvcResultJson, Company.class);
 
         mockMvc
-                .perform(MockMvcRequestBuilders.delete("/company/delete/" + newCompany.getCompanyId()))
+                .perform(MockMvcRequestBuilders.delete("/company/" + newCompany.getCompanyId()))
                 .andExpect(status().isOk());
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/company/" + newCompany.getCompanyId()))
@@ -114,7 +124,7 @@ class CompanyControllerTest {
         Company newCompany = EntityCreator.getNewCompany();
         String requestBody = objectMapper.writeValueAsString(newCompany);
         mockMvc
-                .perform(MockMvcRequestBuilders.post("/company/new")
+                .perform(MockMvcRequestBuilders.post("/company")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isOk())

@@ -56,14 +56,13 @@ class VehicleControllerTest {
 
     @Test
     void getAllVehicleTest() throws Exception {
-        String uuidPattern = CheckUuidPattern.getUuidPattern();
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/vehicle/all"))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers
-                        .jsonPath("$[0].vehicleId", matchesPattern(uuidPattern)))
+                        .jsonPath("$[0].vehicleId", matchesPattern(CheckUuidPattern.getUuidPattern())))
                 .andExpect(MockMvcResultMatchers
-                        .jsonPath("$[2].vehicleId", matchesPattern(uuidPattern)));
+                        .jsonPath("$[2].vehicleId", matchesPattern(CheckUuidPattern.getUuidPattern())));
     }
 
     @Test
@@ -80,12 +79,12 @@ class VehicleControllerTest {
     @Test
     void setVehicleByCarNumber() throws Exception {
         mockMvc
-                .perform(MockMvcRequestBuilders.put("/vehicle/carnumber/update/SC1238KM/XX7788YY"))
+                .perform(MockMvcRequestBuilders.put("/vehicle/carnumber/SC1238KM/XX7788YY"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.vehicleId", is("21679aa7-c43b-468d-8318-8090227c4acb")))
                 .andExpect(jsonPath("$.carNumber", is("XX7788YY")));
         mockMvc
-                .perform(MockMvcRequestBuilders.put("/vehicle/carnumber/update/XX7788YY/SC1238KM"))
+                .perform(MockMvcRequestBuilders.put("/vehicle/carnumber/XX7788YY/SC1238KM"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.carNumber", is("SC1238KM")));
     }
@@ -96,7 +95,7 @@ class VehicleControllerTest {
         vehicle.setCarNumber("NUMBER_FOR_DEL");
         String requestBody = objectMapper.writeValueAsString(vehicle);
         mockMvc
-                .perform(MockMvcRequestBuilders.post("/vehicle/new")
+                .perform(MockMvcRequestBuilders.post("/vehicle")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isOk());
@@ -105,7 +104,7 @@ class VehicleControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.carNumber", is(vehicle.getCarNumber())));
         mockMvc
-                .perform(MockMvcRequestBuilders.delete("/vehicle/carnumber/delete/" + vehicle.getCarNumber()))
+                .perform(MockMvcRequestBuilders.delete("/vehicle/carnumber/" + vehicle.getCarNumber()))
                 .andExpect(status().isOk());
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/vehicle/carnumber/" + vehicle.getCarNumber()))
@@ -118,7 +117,7 @@ class VehicleControllerTest {
         vehicle.setCarNumber("NUMBER2_FOR_DEL");
         String requestBody = objectMapper.writeValueAsString(vehicle);
         MvcResult mvcResult = mockMvc
-                .perform(MockMvcRequestBuilders.post("/vehicle/new")
+                .perform(MockMvcRequestBuilders.post("/vehicle")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
                 .andExpect(status().isOk())
@@ -127,7 +126,7 @@ class VehicleControllerTest {
         Vehicle newVehicle = objectMapper.readValue(mvcResultJson, Vehicle.class);
 
         mockMvc
-                .perform(MockMvcRequestBuilders.delete("/vehicle/delete/" + newVehicle.getVehicleId()))
+                .perform(MockMvcRequestBuilders.delete("/vehicle/" + newVehicle.getVehicleId()))
                 .andExpect(status().isOk());
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/vehicle/" + newVehicle.getVehicleId()))
@@ -139,7 +138,7 @@ class VehicleControllerTest {
         Vehicle newVehicle = EntityCreator.getNewVehicle();
         String requestBody = objectMapper.writeValueAsString(newVehicle);
         mockMvc
-                .perform(MockMvcRequestBuilders.post("/vehicle/new")
+                .perform(MockMvcRequestBuilders.post("/vehicle")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isOk())
@@ -151,7 +150,7 @@ class VehicleControllerTest {
                         .jsonPath("$.price").value(newVehicle.getPrice()));
 
         mockMvc
-                .perform(MockMvcRequestBuilders.delete("/vehicle/carnumber/delete/" + newVehicle.getCarNumber()))
+                .perform(MockMvcRequestBuilders.delete("/vehicle/carnumber/" + newVehicle.getCarNumber()))
                 .andExpect(status().isOk());
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/vehicle/carnumber/" + newVehicle.getCarNumber()))

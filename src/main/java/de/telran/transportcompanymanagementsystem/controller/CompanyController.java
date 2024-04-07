@@ -4,6 +4,7 @@ import de.telran.transportcompanymanagementsystem.entity.Company;
 import de.telran.transportcompanymanagementsystem.service.interfaces.CompanyService;
 import de.telran.transportcompanymanagementsystem.validation.UuidChecker;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -31,7 +32,8 @@ public class CompanyController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = Company.class))
             })
-    public Company getCompanyById(@PathVariable("id") @UuidChecker String id) {
+    public Company getCompanyById(@PathVariable("id") @UuidChecker @Parameter(required = true, description =
+        "Company UUID") String id) {
         //http://localhost:8080/company/2d0cc985-ffdc-40de-be58-69eba564fc47
         return companyService.getCompanyById(id);
     }
@@ -48,12 +50,30 @@ public class CompanyController {
                             mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Company.class)))
             })
-    public List<Company> getCompanyByName(@PathVariable("nameCompany") String nameCompany) {
+    public List<Company> getCompanyByName(@PathVariable("nameCompany") @Parameter(required = true, description =
+        "Company name") String nameCompany) {
         //http://localhost:8080/company/name/Boehm-Klein
         return companyService.getCompanyByName(nameCompany);
     }
 
-    @PutMapping("/name/update/{nameCompany}/{newNameCompany}")
+    @GetMapping("/all")
+    @Operation(
+            summary = "Show all companies",
+            description = "Getting all companies")
+    @ApiResponse(
+            responseCode = "200",
+            description = "Successfully returned companies",
+            content = {
+                    @Content(
+                            mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = Company.class)))
+            })
+    public List<Company> getAllCompanies() {
+        //http://localhost:8080/company/all
+        return companyService.getAllCompanies();
+    }
+
+    @PutMapping("/name/{nameCompany}/{newNameCompany}")
     @Operation(
             summary = "Find company by name and update name",
             description = "Updating name of company")
@@ -67,10 +87,10 @@ public class CompanyController {
             })
     public Company setCompanyByName(@PathVariable("nameCompany") String nameCompany,
                                     @PathVariable("newNameCompany") String newNameCompany) {
-        //http://localhost:8080/company/name/update/Larson-Witting/New Larson
+        //http://localhost:8080/company/name/Larson-Witting/New Larson
         return companyService.setCompanyByName(nameCompany, newNameCompany);
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @Operation(
             summary = "Delete the company by Id",
             description = "Delete the company by Id")
@@ -82,12 +102,13 @@ public class CompanyController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = Company.class))
             })
-    public void deleteCompanyById(@PathVariable("id") @UuidChecker String id) {
-        //http://localhost:8080/company/delete/0a8de57b-4ac3-43f9-9ab4-77784de2554a
+    public void deleteCompanyById(@PathVariable("id") @UuidChecker @Parameter(required = true, description =
+        "Company UUID") String id) {
+        //http://localhost:8080/company/0a8de57b-4ac3-43f9-9ab4-77784de2554a
         companyService.deleteCompanyById(id);
     }
 
-    @PostMapping("/new")
+    @PostMapping("")
     @Operation(
             summary = "Add new company",
             description = "Add new company")
@@ -101,7 +122,7 @@ public class CompanyController {
             })
     public Company createCompany(@RequestBody Company company)
     {
-        //http://localhost:8080/company/new
+        //http://localhost:8080/company
         return companyService.create(company);
     }
 }

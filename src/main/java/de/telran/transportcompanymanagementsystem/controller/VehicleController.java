@@ -3,6 +3,7 @@ package de.telran.transportcompanymanagementsystem.controller;
 import de.telran.transportcompanymanagementsystem.service.interfaces.VehicleService;
 import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -30,7 +31,8 @@ public class VehicleController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = Vehicle.class))
             })
-    public Vehicle getVehicleById(@PathVariable("id") String id) {
+    public Vehicle getVehicleById(@PathVariable("id") @Parameter(required = true, description =
+            "Vehicle UUID") String id) {
         //http://localhost:8080/vehicle/21679aa7-c43b-468d-8318-8090227c4acb
         return vehicleService.getVehicleById(id);
     }
@@ -41,7 +43,7 @@ public class VehicleController {
             description = "Getting all vehicles")
     @ApiResponse(
             responseCode = "200",
-            description = "Successfully returned vehicle",
+            description = "Successfully returned vehicles",
             content = {
                     @Content(
                             mediaType = "application/json",
@@ -64,12 +66,13 @@ public class VehicleController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = Vehicle.class))
             })
-    public Vehicle getVehicleByCarNumber(@PathVariable("carNumber") String carNumber) {
+    public Vehicle getVehicleByCarNumber(@PathVariable("carNumber") @Parameter(required = true, description =
+            "Car number of vehicle") String carNumber) {
         //http://localhost:8080/vehicle/carnumber/AE2387KM
         return vehicleService.getVehicleByCarNumber(carNumber);
     }
 
-    @PutMapping("/carnumber/update/{carNumber}/{newCarNumber}")
+    @PutMapping("/carnumber/{carNumber}/{newCarNumber}")
     @Operation(
             summary = "Update car number of vehicle",
             description = "Update car number of vehicle")
@@ -81,13 +84,15 @@ public class VehicleController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = Vehicle.class))
             })
-    public Vehicle setVehicleByCarNumber(@PathVariable("carNumber") String carNumber,
-                                         @PathVariable("newCarNumber") String newCarNumber) {
-        //http://localhost:8080/vehicle/carnumber/update/AE2387KM/XX7788YY
+    public Vehicle setVehicleByCarNumber(@PathVariable("carNumber") @Parameter(required = true, description =
+            "Current car number") String carNumber,
+                                         @PathVariable("newCarNumber") @Parameter(required = true, description =
+            "New car number") String newCarNumber) {
+        //http://localhost:8080/vehicle/carnumber/AE2387KM/XX7788YY
         return vehicleService.setVehicleByCarNumber(carNumber, newCarNumber);
     }
 
-    @DeleteMapping("/carnumber/delete/{carNumber}")
+    @DeleteMapping("/carnumber/{carNumber}")
     @Operation(
             summary = "Delete vehicle by car number",
             description = "Delete vehicle by car number")
@@ -99,12 +104,13 @@ public class VehicleController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = Vehicle.class))
             })
-    public void deleteVehicleByCarNumber(@PathVariable("carNumber") String carNumber) {
-        //http://localhost:8080/vehicle/carnumber/delete/AE2387KM
-        //http://localhost:8080/vehicle/carnumber/delete/XX7788YY
+    public void deleteVehicleByCarNumber(@PathVariable("carNumber")  @Parameter(required = true, description =
+            "Car number") String carNumber) {
+        //http://localhost:8080/vehicle/carnumber/AE2387KM
+        //http://localhost:8080/vehicle/carnumber/XX7788YY
         vehicleService.deleteVehicleByCarNumber(carNumber);
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @Operation(
             summary = "Delete vehicle by Id",
             description = "Delete vehicle by Id")
@@ -116,15 +122,16 @@ public class VehicleController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = Vehicle.class))
             })
-    public void deleteVehicleById(@PathVariable("id") String carNumber) {
-        //http://localhost:8080/vehicle/delete/26e41ad9-0482-4808-9dbb-c917631f1b56
-        vehicleService.deleteVehicleById(carNumber);
+    public void deleteVehicleById(@PathVariable("id") @Parameter(required = true, description =
+            "Vehicle UUID") String id) {
+        //http://localhost:8080/vehicle/26e41ad9-0482-4808-9dbb-c917631f1b56
+        vehicleService.deleteVehicleById(id);
     }
 
-    @PostMapping("/new")
+    @PostMapping("")
     @Operation(
-            summary = "Delete vehicle by Id",
-            description = "Delete vehicle by Id")
+            summary = "Add new vehicle",
+            description = "Add new vehicle")
     @ApiResponse(
             responseCode = "201",
             description = "Successfully returned vehicle",
@@ -133,9 +140,8 @@ public class VehicleController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = Vehicle.class))
             })
-    public Vehicle createVehicle(@RequestBody Vehicle vehicle)
-    {
-        //http://localhost:8080/vehicle/new
+    public Vehicle createVehicle(@RequestBody Vehicle vehicle) {
+        //http://localhost:8080/vehicle
         return vehicleService.create(vehicle);
     }
 }
