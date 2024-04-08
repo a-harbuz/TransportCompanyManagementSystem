@@ -10,6 +10,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -143,5 +145,23 @@ public class VehicleController {
     public Vehicle createVehicle(@RequestBody Vehicle vehicle) {
         //http://localhost:8080/vehicle
         return vehicleService.create(vehicle);
+    }
+
+    @GetMapping("/maintenancecost/{maintenanceCost}")
+    @Operation(
+            summary = "Find vehicle where maintenance cost more or equal value",
+            description = "Find vehicle where maintenance cost more or equal value")
+    @ApiResponse(
+            responseCode = "201",
+            description = "Successfully returned vehicles",
+            content = {
+                    @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = Vehicle.class))
+            })
+    public List<Vehicle> getVehicleWithMaintenanceCostMoreOrEqual(@PathVariable("maintenanceCost")
+            @Parameter(required = true, description = "maintenance cost") BigDecimal maintenanceCost) {
+        //http://localhost:8080/vehicle/maintenancecost/500
+        return vehicleService.getVehicleWithMaintenanceCostMoreOrEqual(maintenanceCost);
     }
 }

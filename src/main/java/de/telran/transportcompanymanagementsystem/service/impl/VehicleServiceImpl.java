@@ -7,6 +7,8 @@ import de.telran.transportcompanymanagementsystem.repository.VehicleRepository;
 import de.telran.transportcompanymanagementsystem.service.interfaces.VehicleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -68,5 +70,16 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public Vehicle create(Vehicle vehicle) {
         return vehicleRepository.save(vehicle);
+    }
+
+    @Override
+    public List<Vehicle> getVehicleWithMaintenanceCostMoreOrEqual(BigDecimal maintenanceCost) {
+        List<Vehicle> tasks = vehicleRepository.getVehicleWithMaintenanceCostMoreOrEqual(maintenanceCost);
+        if (!tasks.isEmpty()) {
+            return tasks;
+        } else {
+            throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND);
+        }
+
     }
 }

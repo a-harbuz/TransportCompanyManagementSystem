@@ -77,7 +77,7 @@ class VehicleControllerTest {
     }
 
     @Test
-    void setVehicleByCarNumber() throws Exception {
+    void setVehicleByCarNumberTest() throws Exception {
         mockMvc
                 .perform(MockMvcRequestBuilders.put("/vehicle/carnumber/SC1238KM/XX7788YY"))
                 .andExpect(status().isOk())
@@ -90,7 +90,7 @@ class VehicleControllerTest {
     }
 
     @Test
-    void deleteVehicleByCarNumber() throws Exception {
+    void deleteVehicleByCarNumberTest() throws Exception {
         Vehicle vehicle = EntityCreator.getNewVehicle();
         vehicle.setCarNumber("NUMBER_FOR_DEL");
         String requestBody = objectMapper.writeValueAsString(vehicle);
@@ -112,7 +112,7 @@ class VehicleControllerTest {
     }
 
     @Test
-    void deleteVehicleById() throws Exception {
+    void deleteVehicleByIdTest() throws Exception {
         Vehicle vehicle = EntityCreator.getNewVehicle();
         vehicle.setCarNumber("NUMBER2_FOR_DEL");
         String requestBody = objectMapper.writeValueAsString(vehicle);
@@ -134,7 +134,7 @@ class VehicleControllerTest {
     }
 
     @Test
-    void createVehicle() throws Exception {
+    void createVehicleTest() throws Exception {
         Vehicle newVehicle = EntityCreator.getNewVehicle();
         String requestBody = objectMapper.writeValueAsString(newVehicle);
         mockMvc

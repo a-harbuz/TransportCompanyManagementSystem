@@ -4,6 +4,7 @@ import de.telran.transportcompanymanagementsystem.exception.CompanyNotFoundExcep
 import de.telran.transportcompanymanagementsystem.exception.DataNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.TaskNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.VehicleNotFoundException;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,11 @@ public class ExceptionHandlerAspect {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handleIllegalArgumentException() {
         return getResponse(HttpStatus.BAD_REQUEST, "Illegal argument");
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<String> handleConstraintViolationException(Exception ex) {
+        return getResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
     }
 
     public ResponseEntity<String> getResponse(HttpStatus status, String message) {

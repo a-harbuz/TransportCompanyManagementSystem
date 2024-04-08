@@ -8,6 +8,7 @@ import de.telran.transportcompanymanagementsystem.service.interfaces.TaskService
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,6 +37,16 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> getTaskByWeightCargoWhenMoreThan(Float weight) {
         List<Task> tasks = taskRepository.getTaskByWeightCargoGreaterThan(weight);
+        if (!tasks.isEmpty()) {
+            return tasks;
+        } else {
+            throw new TaskNotFoundException(ErrorMessage.TASK_NOT_FOUND);
+        }
+    }
+
+    @Override
+    public List<Task> getTasksByCompanyNameAndWaybillCostMoreThan(String companyName, BigDecimal waybillCost) {
+        List<Task> tasks = taskRepository.getTasksByCompanyNameAndWaybillCostMoreThan(companyName, waybillCost);
         if (!tasks.isEmpty()) {
             return tasks;
         } else {

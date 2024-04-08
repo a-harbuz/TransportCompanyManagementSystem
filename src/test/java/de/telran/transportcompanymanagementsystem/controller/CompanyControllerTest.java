@@ -73,7 +73,7 @@ class CompanyControllerTest {
     }
 
     @Test
-    void getAllCompanies() throws Exception {
+    void getAllCompaniesTest() throws Exception {
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/company/all"))
                 .andExpect(status().isOk())

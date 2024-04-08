@@ -2,6 +2,7 @@ package de.telran.transportcompanymanagementsystem.service.interfaces;
 
 import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface VehicleService {
@@ -12,4 +13,5 @@ public interface VehicleService {
     void deleteVehicleByCarNumber(String carNumber);
     void deleteVehicleById (String id);
     Vehicle create (Vehicle vehicle);
+    List<Vehicle> getVehicleWithMaintenanceCostMoreOrEqual (BigDecimal maintenanceCost);
 }
