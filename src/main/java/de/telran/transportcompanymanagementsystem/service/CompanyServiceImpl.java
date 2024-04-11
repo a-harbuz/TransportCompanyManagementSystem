@@ -1,4 +1,4 @@
-package de.telran.transportcompanymanagementsystem.service.impl;
+package de.telran.transportcompanymanagementsystem.service;
 
 import de.telran.transportcompanymanagementsystem.dto.CompanyDto;
 import de.telran.transportcompanymanagementsystem.dto.CreateUpdateCompanyDto;
