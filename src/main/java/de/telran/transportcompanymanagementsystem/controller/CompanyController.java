@@ -1,5 +1,6 @@
 package de.telran.transportcompanymanagementsystem.controller;
 
+import de.telran.transportcompanymanagementsystem.dto.CompanyDto;
 import de.telran.transportcompanymanagementsystem.entity.Company;
 import de.telran.transportcompanymanagementsystem.service.interfaces.CompanyService;
 import de.telran.transportcompanymanagementsystem.validation.UuidChecker;
@@ -21,6 +22,11 @@ import java.util.List;
 public class CompanyController {
 
     private final CompanyService companyService;
+
+    @GetMapping("/dto")
+    public List<CompanyDto> getCompanyDto() {
+        return companyService.getCompanyDto();
+    }
 
     @GetMapping("/{id}")
     @Operation(summary = "Find company by Id", description = "Getting company by Id")
@@ -50,10 +56,10 @@ public class CompanyController {
                             mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Company.class)))
             })
-    public List<Company> getCompanyByName(@PathVariable("nameCompany") @Parameter(required = true, description =
+    public List<CompanyDto> getCompanyByName(@PathVariable("nameCompany") @Parameter(required = true, description =
         "Company name") String nameCompany) {
         //http://localhost:8080/company/name/Boehm-Klein
-        return companyService.getCompanyByName(nameCompany);
+        return companyService.getCompanyByNameDto(nameCompany);
     }
 
     @GetMapping("/all")

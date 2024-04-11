@@ -1,5 +1,7 @@
 package de.telran.transportcompanymanagementsystem.service.interfaces;
 
+import de.telran.transportcompanymanagementsystem.dto.CreateVehicleDto;
+import de.telran.transportcompanymanagementsystem.dto.VehicleDto;
 import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 
 import java.math.BigDecimal;
@@ -14,4 +16,5 @@ public interface VehicleService {
     void deleteVehicleById (String id);
     Vehicle create (Vehicle vehicle);
     List<Vehicle> getVehicleWithMaintenanceCostMoreOrEqual (BigDecimal maintenanceCost);
+    VehicleDto createDto (CreateVehicleDto createVehicleDto);
 }

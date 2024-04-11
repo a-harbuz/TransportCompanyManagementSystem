@@ -1,8 +1,10 @@
 package de.telran.transportcompanymanagementsystem.service.impl;
 
+import de.telran.transportcompanymanagementsystem.dto.CompanyDto;
 import de.telran.transportcompanymanagementsystem.entity.Company;
 import de.telran.transportcompanymanagementsystem.exception.CompanyNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.errormessage.ErrorMessage;
+import de.telran.transportcompanymanagementsystem.mapper.CompanyMapper;
 import de.telran.transportcompanymanagementsystem.repository.CompanyRepository;
 import de.telran.transportcompanymanagementsystem.service.interfaces.CompanyService;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,12 @@ import java.util.UUID;
 public class CompanyServiceImpl  implements CompanyService {
 
     private final CompanyRepository companyRepository;
+    private final CompanyMapper companyMapper;
+
+    @Override
+    public List<CompanyDto> getCompanyDto() {
+        return companyMapper.toDto(companyRepository.findAll());
+    }
 
     @Override
     public Company getCompanyById(String id) {
@@ -23,10 +31,10 @@ public class CompanyServiceImpl  implements CompanyService {
     }
 
     @Override
-    public List<Company> getCompanyByName(String companyName) {
+    public List<CompanyDto> getCompanyByNameDto(String companyName) {
         List<Company> companies = companyRepository.findByCompanyNameContainsIgnoreCase(companyName);
         if (!companies.isEmpty()) {
-            return companies;
+            return companyMapper.toDto(companies);
         } else {
             throw new CompanyNotFoundException(ErrorMessage.COMPANY_NAME_NOT_FOUND);
         }

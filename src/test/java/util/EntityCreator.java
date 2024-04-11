@@ -2,12 +2,14 @@ package util;
 
 import de.telran.transportcompanymanagementsystem.entity.*;
 import de.telran.transportcompanymanagementsystem.entity.enums.*;
+import lombok.experimental.UtilityClass;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@UtilityClass
 public class EntityCreator {
     public static Vehicle getVehicle() {
         Vehicle vehicle = new Vehicle();

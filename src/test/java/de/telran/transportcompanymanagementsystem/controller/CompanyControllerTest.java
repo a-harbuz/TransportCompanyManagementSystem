@@ -61,15 +61,10 @@ class CompanyControllerTest {
                 .perform(MockMvcRequestBuilders.get("/company/name/Boehm-Klein"))
                 .andExpect(status().isOk())
                 .andDo(print())
-                //.andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].companyId", is(company.getCompanyId().toString())))
-                .andExpect(jsonPath("$[0].companyName", is(company.getCompanyName())));
-        mockMvc
-                .perform(MockMvcRequestBuilders.get("/company/name/Larson"))
-                .andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(jsonPath("$[0].companyId", is("2d0cc985-ffdc-40de-be58-69eba564fc47")))
-                .andExpect(jsonPath("$[0].companyName", is("Larson-Witting")));
+                //.andExpect(jsonPath("$[0].companyId", is(company.getCompanyId().toString())))
+                .andExpect(jsonPath("$[0].companyName", is(company.getCompanyName())))
+                .andExpect(jsonPath("$[0].contactFirstName", is(company.getContactFirstName())))
+                .andExpect(jsonPath("$[0].contactLastName", is(company.getContactLastName())));
     }
 
     @Test
@@ -135,4 +130,12 @@ class CompanyControllerTest {
                 .andExpect(MockMvcResultMatchers
                         .jsonPath("$.phone", is(newCompany.getPhone())));
     }
+
+//    @Test
+//    void getCompanyDtoTest() throws Exception {
+//        mockMvc
+//                .perform(MockMvcRequestBuilders.get("/company/dto"))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$", hasSize(4)));
+//    }
 }

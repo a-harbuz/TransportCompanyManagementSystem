@@ -1,14 +1,18 @@
 package de.telran.transportcompanymanagementsystem.service.impl;
 
+import de.telran.transportcompanymanagementsystem.dto.CreateVehicleDto;
+import de.telran.transportcompanymanagementsystem.dto.VehicleDto;
 import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import de.telran.transportcompanymanagementsystem.exception.VehicleNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.errormessage.ErrorMessage;
+import de.telran.transportcompanymanagementsystem.mapper.VehicleMapper;
 import de.telran.transportcompanymanagementsystem.repository.VehicleRepository;
 import de.telran.transportcompanymanagementsystem.service.interfaces.VehicleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,6 +21,7 @@ import java.util.UUID;
 public class VehicleServiceImpl implements VehicleService {
 
     private final VehicleRepository vehicleRepository;
+    private final VehicleMapper mapper;
 
     @Override
     public Vehicle getVehicleById(String id) {
@@ -81,5 +86,14 @@ public class VehicleServiceImpl implements VehicleService {
             throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND);
         }
 
+    }
+
+    @Override
+    public VehicleDto createDto(CreateVehicleDto createVehicleDto) {
+        Vehicle vehicle = mapper.toVehicle(createVehicleDto);
+        System.out.println(vehicle);
+        vehicle.setCreatedAt(Timestamp.valueOf(java.time.LocalDateTime.now()));
+        return mapper.toDto(vehicleRepository.save(vehicle));
+        //return mapper.toDto(vehicle);
     }
 }

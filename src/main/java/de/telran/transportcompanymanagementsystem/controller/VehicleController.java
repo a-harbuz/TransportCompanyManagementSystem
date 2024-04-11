@@ -1,5 +1,7 @@
 package de.telran.transportcompanymanagementsystem.controller;
 
+import de.telran.transportcompanymanagementsystem.dto.CreateVehicleDto;
+import de.telran.transportcompanymanagementsystem.dto.VehicleDto;
 import de.telran.transportcompanymanagementsystem.service.interfaces.VehicleService;
 import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import io.swagger.v3.oas.annotations.Operation;
@@ -145,6 +147,12 @@ public class VehicleController {
     public Vehicle createVehicle(@RequestBody Vehicle vehicle) {
         //http://localhost:8080/vehicle
         return vehicleService.create(vehicle);
+    }
+
+    @PostMapping("/dto")
+    public VehicleDto createVehicleDto(@RequestBody CreateVehicleDto createVehicleDto) {
+        //http://localhost:8080/vehicle/dto
+        return vehicleService.createDto(createVehicleDto);
     }
 
     @GetMapping("/maintenancecost/{maintenanceCost}")

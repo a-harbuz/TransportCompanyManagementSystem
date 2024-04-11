@@ -1,5 +1,6 @@
 package de.telran.transportcompanymanagementsystem.service.interfaces;
 
+import de.telran.transportcompanymanagementsystem.dto.TaskForDriver;
 import de.telran.transportcompanymanagementsystem.entity.Task;
 
 import java.math.BigDecimal;
@@ -10,4 +11,5 @@ public interface TaskService {
     Task getTaskByWaybillNumber (String waybillNumber);
     List<Task> getTaskByWeightCargoWhenMoreThan (Float weight);
     List<Task> getTasksByCompanyNameAndWaybillCostMoreThan(String companyName, BigDecimal waybillCost);
+    TaskForDriver getTaskForDriverByWaybillNumberDto (String waybillNumber);
 }

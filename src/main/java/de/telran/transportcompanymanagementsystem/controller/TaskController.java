@@ -1,5 +1,6 @@
 package de.telran.transportcompanymanagementsystem.controller;
 
+import de.telran.transportcompanymanagementsystem.dto.TaskForDriver;
 import de.telran.transportcompanymanagementsystem.entity.Task;
 import de.telran.transportcompanymanagementsystem.service.interfaces.TaskService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,12 @@ import java.util.List;
 public class TaskController {
 
     private final TaskService taskService;
+
+    @GetMapping("/fordriver/waybillnumber/{waybillNumber}")
+    public TaskForDriver getTaskForDriverByWaybillNumber(@PathVariable("waybillNumber") String waybillNumber) {
+        //http://localhost:8080/task/fordriver/waybillnumber/001
+        return taskService.getTaskForDriverByWaybillNumberDto(waybillNumber);
+    }
 
     @GetMapping("/{id}")
     public Task getTaskById(@PathVariable("id") String id) {

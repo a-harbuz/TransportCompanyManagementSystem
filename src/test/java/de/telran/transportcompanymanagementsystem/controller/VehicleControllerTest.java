@@ -156,4 +156,22 @@ class VehicleControllerTest {
                 .perform(MockMvcRequestBuilders.get("/vehicle/carnumber/" + newVehicle.getCarNumber()))
                 .andExpect(status().isNotFound());
     }
+
+    @Test
+    void createVehicleDto() throws Exception {
+        Vehicle newVehicle = EntityCreator.getNewVehicle();
+        newVehicle.setCarNumber("tst num2");
+        String requestBody = objectMapper.writeValueAsString(newVehicle);
+        mockMvc
+                .perform(MockMvcRequestBuilders.post("/vehicle/dto")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers
+                        .jsonPath("$.vehicleId", matchesPattern(CheckUuidPattern.getUuidPattern())))
+                .andExpect(MockMvcResultMatchers
+                        .jsonPath("$.carNumber", is(newVehicle.getCarNumber())))
+                .andExpect(MockMvcResultMatchers
+                        .jsonPath("$.price").value(newVehicle.getPrice()));
+    }
 }
