@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS vehicle (
 -- changeset o.harbuz:190923-m-be-2
 CREATE TABLE IF NOT EXISTS company (
                                        id VARCHAR(36) PRIMARY KEY,
-                                       company_name VARCHAR(50) NOT NULL,
+                                       company_name VARCHAR(50) NOT NULL UNIQUE,
                                        contact_first_name VARCHAR(20) NOT NULL,
                                        contact_last_name VARCHAR(20) NOT NULL,
                                        email VARCHAR(60),

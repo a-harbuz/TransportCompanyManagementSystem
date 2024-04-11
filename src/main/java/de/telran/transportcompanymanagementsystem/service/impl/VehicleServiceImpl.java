@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
@@ -90,10 +89,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public VehicleDto createDto(CreateVehicleDto createVehicleDto) {
-        Vehicle vehicle = mapper.toVehicle(createVehicleDto);
-        System.out.println(vehicle);
-        vehicle.setCreatedAt(Timestamp.valueOf(java.time.LocalDateTime.now()));
+        Vehicle vehicle = mapper.toEntity(createVehicleDto);
         return mapper.toDto(vehicleRepository.save(vehicle));
-        //return mapper.toDto(vehicle);
     }
 }

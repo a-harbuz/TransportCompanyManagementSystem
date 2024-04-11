@@ -137,7 +137,7 @@ class VehicleControllerTest {
     void createVehicleTest() throws Exception {
         Vehicle newVehicle = EntityCreator.getNewVehicle();
         String requestBody = objectMapper.writeValueAsString(newVehicle);
-        mockMvc
+        MvcResult mvcResult = mockMvc
                 .perform(MockMvcRequestBuilders.post("/vehicle")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
@@ -147,22 +147,23 @@ class VehicleControllerTest {
                 .andExpect(MockMvcResultMatchers
                         .jsonPath("$.carNumber", is(newVehicle.getCarNumber())))
                 .andExpect(MockMvcResultMatchers
-                        .jsonPath("$.price").value(newVehicle.getPrice()));
-
+                        .jsonPath("$.price").value(newVehicle.getPrice()))
+                .andReturn();
+        String mvcResultJson = mvcResult.getResponse().getContentAsString();
+        Vehicle actualVehicle = objectMapper.readValue(mvcResultJson, Vehicle.class);
         mockMvc
-                .perform(MockMvcRequestBuilders.delete("/vehicle/carnumber/" + newVehicle.getCarNumber()))
+                .perform(MockMvcRequestBuilders.delete("/vehicle/" + actualVehicle.getVehicleId()))
                 .andExpect(status().isOk());
         mockMvc
-                .perform(MockMvcRequestBuilders.get("/vehicle/carnumber/" + newVehicle.getCarNumber()))
+                .perform(MockMvcRequestBuilders.get("/vehicle/" + actualVehicle.getVehicleId()))
                 .andExpect(status().isNotFound());
     }
 
     @Test
     void createVehicleDto() throws Exception {
         Vehicle newVehicle = EntityCreator.getNewVehicle();
-        newVehicle.setCarNumber("tst num2");
         String requestBody = objectMapper.writeValueAsString(newVehicle);
-        mockMvc
+        MvcResult mvcResult = mockMvc
                 .perform(MockMvcRequestBuilders.post("/vehicle/dto")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
@@ -172,6 +173,15 @@ class VehicleControllerTest {
                 .andExpect(MockMvcResultMatchers
                         .jsonPath("$.carNumber", is(newVehicle.getCarNumber())))
                 .andExpect(MockMvcResultMatchers
-                        .jsonPath("$.price").value(newVehicle.getPrice()));
+                        .jsonPath("$.price").value(newVehicle.getPrice()))
+                .andReturn();
+        String mvcResultJson = mvcResult.getResponse().getContentAsString();
+        Vehicle actualVehicle = objectMapper.readValue(mvcResultJson, Vehicle.class);
+        mockMvc
+                .perform(MockMvcRequestBuilders.delete("/vehicle/" + actualVehicle.getVehicleId()))
+                .andExpect(status().isOk());
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/vehicle/" + actualVehicle.getVehicleId()))
+                .andExpect(status().isNotFound());
     }
 }

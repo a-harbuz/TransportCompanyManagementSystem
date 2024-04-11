@@ -1,13 +1,15 @@
 package de.telran.transportcompanymanagementsystem.mapper;
 
 import de.telran.transportcompanymanagementsystem.dto.CompanyDto;
+import de.telran.transportcompanymanagementsystem.dto.CreateUpdateCompanyDto;
 import de.telran.transportcompanymanagementsystem.entity.Company;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
+import java.sql.Timestamp;
 import java.util.List;
 
-@Mapper(componentModel = "spring") //, uses = ProductMapper.class, imports = Random.class)
+//@Mapper(componentModel = "spring") //, uses = ProductMapper.class, imports = Random.class)
+@Mapper(componentModel = "spring", imports = Timestamp.class)
 public interface CompanyMapper {
 //    @Mapping(source = "companyName", target = "companyName")
 //    @Mapping(source = "contactFirstName", target = "contactFirstName")
@@ -15,5 +17,7 @@ public interface CompanyMapper {
 //    @Mapping(source = "address", target = "address")
 //    @Mapping(source = "email", target = "email")
 //    @Mapping(source = "phone", target = "phone")
-    List<CompanyDto> toDto(List<Company> companies);
+    List<CompanyDto> toDtoList(List<Company> companies);
+    CompanyDto toDto(Company company);
+    Company toEntity (CreateUpdateCompanyDto createCompanyDto);
 }

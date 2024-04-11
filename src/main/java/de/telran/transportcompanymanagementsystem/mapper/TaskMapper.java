@@ -5,7 +5,9 @@ import de.telran.transportcompanymanagementsystem.entity.Task;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+import java.sql.Timestamp;
+
+@Mapper(componentModel = "spring", imports = Timestamp.class)
 public interface TaskMapper {
     @Mapping(source = "transportationDate", target = "transportationDate")
     TaskForDriver toDtoForDriver(Task task);

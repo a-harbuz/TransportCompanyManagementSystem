@@ -1,20 +1,18 @@
 package de.telran.transportcompanymanagementsystem.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-import java.sql.Timestamp;
 import java.util.UUID;
 
 @Data
-public class CompanyDto {
+@Schema(description = "Data for creation company")
+public class CreateUpdateCompanyDto {
     private UUID companyId;
     private String companyName;
     private String contactFirstName;
     private String contactLastName;
-    private String address;
     private String email;
+    private String address;
     private String phone;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Timestamp createdAt;
 }

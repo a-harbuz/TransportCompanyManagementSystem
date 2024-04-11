@@ -1,7 +1,6 @@
 package de.telran.transportcompanymanagementsystem.repository;
 
 import de.telran.transportcompanymanagementsystem.entity.Company;
-import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +11,4 @@ import java.util.UUID;
 public interface CompanyRepository extends JpaRepository<Company, UUID> {
     List<Company> findByCompanyNameContainsIgnoreCase(String nameCompany);
     Company findByCompanyName(String nameCompany);
-    Company findByCompanyId(UUID uuid);
-    void deleteByCompanyId(UUID uuid);
 }
