@@ -16,11 +16,6 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    @GetMapping("/name/{id}")
-    public String getNameEmployeeById(@PathVariable("id") String id) {
-        //http://localhost:8080/employee/name/1c9859bd-8d9b-49e0-88d7-58f8f3c1c4b3
-        return employeeService.getNameEmployeeById(id);
-    }
     @GetMapping("/{id}")
     public Employee getEmployeeById(@PathVariable("id") String id) {
         //http://localhost:8080/employee/a060e1b8-7c07-4619-85dc-32c6a5afa269
@@ -28,13 +23,13 @@ public class EmployeeController {
     }
 
     @GetMapping("/all")
-    public List<Employee> getAllEmployee() {
+    public List<Employee> getEmployeeList() {
         //http://localhost:8080/employee/all
         return employeeService.getEmployeeList();
     }
 
     @GetMapping("/drivers")
-    public List<Employee> getAllDrivers() {
+    public List<Employee> getDriverList() {
         //http://localhost:8080/employee/drivers
         return employeeService.getDriverList();
     }

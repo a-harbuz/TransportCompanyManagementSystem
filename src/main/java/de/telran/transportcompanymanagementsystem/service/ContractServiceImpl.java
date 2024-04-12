@@ -24,7 +24,6 @@ public class ContractServiceImpl implements ContractService {
                 .orElseThrow(()-> new ContractNotFoundException(ErrorMessage.CONTRACT_NOT_FOUND));
         System.out.println(contract);
         return contractMapper.toDto(contract);
-        //return null;
     }
 
     @Override

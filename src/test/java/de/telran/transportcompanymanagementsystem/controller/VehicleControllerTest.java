@@ -77,41 +77,6 @@ class VehicleControllerTest {
     }
 
     @Test
-    void setVehicleByCarNumberTest() throws Exception {
-        mockMvc
-                .perform(MockMvcRequestBuilders.put("/vehicle/carnumber/SC1238KM/XX7788YY"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.vehicleId", is("21679aa7-c43b-468d-8318-8090227c4acb")))
-                .andExpect(jsonPath("$.carNumber", is("XX7788YY")));
-        mockMvc
-                .perform(MockMvcRequestBuilders.put("/vehicle/carnumber/XX7788YY/SC1238KM"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.carNumber", is("SC1238KM")));
-    }
-
-    @Test
-    void deleteVehicleByCarNumberTest() throws Exception {
-        Vehicle vehicle = EntityCreator.getNewVehicle();
-        vehicle.setCarNumber("NUMBER_FOR_DEL");
-        String requestBody = objectMapper.writeValueAsString(vehicle);
-        mockMvc
-                .perform(MockMvcRequestBuilders.post("/vehicle")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBody))
-                .andExpect(status().isOk());
-        mockMvc
-                .perform(MockMvcRequestBuilders.get("/vehicle/carnumber/" + vehicle.getCarNumber()))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.carNumber", is(vehicle.getCarNumber())));
-        mockMvc
-                .perform(MockMvcRequestBuilders.delete("/vehicle/carnumber/" + vehicle.getCarNumber()))
-                .andExpect(status().isOk());
-        mockMvc
-                .perform(MockMvcRequestBuilders.get("/vehicle/carnumber/" + vehicle.getCarNumber()))
-                .andExpect(status().isNotFound());
-    }
-
-    @Test
     void deleteVehicleByIdTest() throws Exception {
         Vehicle vehicle = EntityCreator.getNewVehicle();
         vehicle.setCarNumber("NUMBER2_FOR_DEL");

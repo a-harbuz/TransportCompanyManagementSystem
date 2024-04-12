@@ -24,7 +24,7 @@ public class RoleController {
     }
 
     @GetMapping("/all")
-    public List<Role> getAllRole() {
+    public List<Role> getRoleList() {
         //http://localhost:8080/role/all
         return roleService.getAllRole();
     }

@@ -44,36 +44,10 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public Vehicle setVehicleByCarNumber(String carNumber, String newCarNumber) {
-        Vehicle vehicle = vehicleRepository.findByCarNumber(carNumber);
-        if (vehicle != null) {
-            vehicle.setCarNumber(newCarNumber);
-            return vehicleRepository.saveAndFlush(vehicle);
-        } else {
-            throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND_BY_CAR_NUMBER);
-        }
-    }
-
-    @Override
-    public void deleteVehicleByCarNumber(String carNumber) {
-        Vehicle vehicle = vehicleRepository.findByCarNumber(carNumber);
-        if (vehicle != null) {
-            vehicleRepository.deleteById(vehicle.getVehicleId());
-        } else {
-            throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND_BY_CAR_NUMBER);
-        }
-    }
-
-    @Override
     public void deleteVehicleById(String id) {
         vehicleRepository.findById(UUID.fromString(id))
                 .orElseThrow(()-> new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND));
         vehicleRepository.deleteById(UUID.fromString(id));
-    }
-
-    @Override
-    public Vehicle create(Vehicle vehicle) {
-        return vehicleRepository.save(vehicle);
     }
 
     @Override
@@ -88,7 +62,7 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public VehicleDto createDto(CreateVehicleDto createVehicleDto) {
+    public VehicleDto create(CreateVehicleDto createVehicleDto) {
         Vehicle vehicle = mapper.toEntity(createVehicleDto);
         return mapper.toDto(vehicleRepository.save(vehicle));
     }

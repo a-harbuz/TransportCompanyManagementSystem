@@ -53,7 +53,7 @@ public class VehicleController {
                             mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Vehicle.class)))
             })
-    public List<Vehicle> getAllVehicle() {
+    public List<Vehicle> getVehicleList() {
         //http://localhost:8080/vehicle/all
         return vehicleService.getAllVehicle();
     }
@@ -76,44 +76,6 @@ public class VehicleController {
         return vehicleService.getVehicleByCarNumber(carNumber);
     }
 
-    @PutMapping("/carnumber/{carNumber}/{newCarNumber}")
-    @Operation(
-            summary = "Update car number of vehicle",
-            description = "Update car number of vehicle")
-    @ApiResponse(
-            responseCode = "200",
-            description = "Successfully returned vehicle",
-            content = {
-                    @Content(
-                            mediaType = "application/json",
-                            schema = @Schema(implementation = Vehicle.class))
-            })
-    public Vehicle setVehicleByCarNumber(@PathVariable("carNumber") @Parameter(required = true, description =
-            "Current car number") String carNumber,
-                                         @PathVariable("newCarNumber") @Parameter(required = true, description =
-            "New car number") String newCarNumber) {
-        //http://localhost:8080/vehicle/carnumber/AE2387KM/XX7788YY
-        return vehicleService.setVehicleByCarNumber(carNumber, newCarNumber);
-    }
-
-    @DeleteMapping("/carnumber/{carNumber}")
-    @Operation(
-            summary = "Delete vehicle by car number",
-            description = "Delete vehicle by car number")
-    @ApiResponse(
-            responseCode = "200",
-            description = "return responseCode = 200",
-            content = {
-                    @Content(
-                            mediaType = "application/json",
-                            schema = @Schema(implementation = Vehicle.class))
-            })
-    public void deleteVehicleByCarNumber(@PathVariable("carNumber")  @Parameter(required = true, description =
-            "Car number") String carNumber) {
-        //http://localhost:8080/vehicle/carnumber/AE2387KM
-        //http://localhost:8080/vehicle/carnumber/XX7788YY
-        vehicleService.deleteVehicleByCarNumber(carNumber);
-    }
     @DeleteMapping("/{id}")
     @Operation(
             summary = "Delete vehicle by Id",
@@ -132,7 +94,6 @@ public class VehicleController {
         vehicleService.deleteVehicleById(id);
     }
 
-    @PostMapping("")
     @Operation(
             summary = "Add new vehicle",
             description = "Add new vehicle")
@@ -144,15 +105,11 @@ public class VehicleController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = Vehicle.class))
             })
-    public Vehicle createVehicle(@RequestBody Vehicle vehicle) {
-        //http://localhost:8080/vehicle
-        return vehicleService.create(vehicle);
-    }
 
-    @PostMapping("/dto")
-    public VehicleDto createVehicleDto(@RequestBody CreateVehicleDto createVehicleDto) {
+    @PostMapping("/new")
+    public VehicleDto createVehicle(@RequestBody CreateVehicleDto createVehicleDto) {
         //http://localhost:8080/vehicle/dto
-        return vehicleService.createDto(createVehicleDto);
+        return vehicleService.create(createVehicleDto);
     }
 
     @GetMapping("/maintenancecost/{maintenanceCost}")
