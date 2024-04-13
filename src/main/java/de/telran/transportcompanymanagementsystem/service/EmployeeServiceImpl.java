@@ -1,8 +1,12 @@
 package de.telran.transportcompanymanagementsystem.service;
 
+import de.telran.transportcompanymanagementsystem.dto.EmployeeAfterRegistrationDto;
+import de.telran.transportcompanymanagementsystem.dto.EmployeeRegistrationDto;
 import de.telran.transportcompanymanagementsystem.entity.Employee;
+import de.telran.transportcompanymanagementsystem.exception.EmployeeExistException;
 import de.telran.transportcompanymanagementsystem.exception.EmployeeNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.errormessage.ErrorMessage;
+import de.telran.transportcompanymanagementsystem.mapper.EmployeeRegistrationMapper;
 import de.telran.transportcompanymanagementsystem.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +19,7 @@ import java.util.UUID;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final EmployeeRegistrationMapper employeeRegistrationMapper;
 
     @Override
     public Employee getEmployeeById(String id) {
@@ -33,5 +38,20 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .stream()
                 .filter(Employee::isDriver)
                 .toList();
+    }
+
+    @Override
+    public EmployeeAfterRegistrationDto createEmployee(EmployeeRegistrationDto employeeRegistrationDto) {
+        Employee employee = employeeRepository.findByFirstNameAndLastName(
+                employeeRegistrationDto.getFirstName(), employeeRegistrationDto.getLastName());
+        if (employee != null) {
+            throw new EmployeeExistException(ErrorMessage.EMPLOYEE_EXIST);
+        }
+        Employee newEmployee = employeeRegistrationMapper.toEntity(employeeRegistrationDto);
+        System.out.println(newEmployee);
+        Employee employeeAfterSaving = employeeRepository.saveAndFlush(newEmployee);
+        System.out.println(employeeAfterSaving);
+        return employeeRegistrationMapper.toDto(employeeAfterSaving);
+        //return null;
     }
 }

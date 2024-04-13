@@ -1,12 +1,12 @@
 package de.telran.transportcompanymanagementsystem.controller;
 
+import de.telran.transportcompanymanagementsystem.dto.EmployeeAfterRegistrationDto;
+import de.telran.transportcompanymanagementsystem.dto.EmployeeRegistrationDto;
 import de.telran.transportcompanymanagementsystem.entity.Employee;
 import de.telran.transportcompanymanagementsystem.service.interfaces.EmployeeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -34,4 +34,9 @@ public class EmployeeController {
         return employeeService.getDriverList();
     }
 
+    @PostMapping("/registration")
+    public EmployeeAfterRegistrationDto createEmployee(@RequestBody EmployeeRegistrationDto employeeRegistrationDto) {
+        //http://localhost:8080/employee/registration
+        return employeeService.createEmployee(employeeRegistrationDto);
+    }
 }

@@ -21,7 +21,8 @@ public class ExceptionHandlerAspect {
         return getResponse(HttpStatus.BAD_REQUEST, "Illegal argument");
     }
 
-    @ExceptionHandler({ConstraintViolationException.class, CompanyBadRequestException.class})
+    @ExceptionHandler({ConstraintViolationException.class, CompanyBadRequestException.class,
+            EmployeeExistException.class})
     public ResponseEntity<String> handleConstraintViolationException(Exception ex) {
         return getResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
     }
