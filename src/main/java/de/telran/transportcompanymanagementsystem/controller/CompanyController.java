@@ -36,6 +36,7 @@ public class CompanyController {
                             mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Company.class)))
             })
+    //http://localhost:8080/company/all
     public List<CompanyDto> getCompanies() {
         return companyService.getCompanies();
     }
