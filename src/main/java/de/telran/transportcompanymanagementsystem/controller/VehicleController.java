@@ -35,7 +35,7 @@ public class VehicleController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = Vehicle.class))
             })
-    public Vehicle getVehicleById(@PathVariable("id") @Parameter(required = true, description =
+    public VehicleDto getVehicleById(@PathVariable("id") @Parameter(required = true, description =
             "Vehicle UUID") String id) {
         //http://localhost:8080/vehicle/21679aa7-c43b-468d-8318-8090227c4acb
         return vehicleService.getVehicleById(id);
@@ -53,7 +53,7 @@ public class VehicleController {
                             mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Vehicle.class)))
             })
-    public List<Vehicle> getVehicleList() {
+    public List<VehicleDto> getVehicleList() {
         //http://localhost:8080/vehicle/all
         return vehicleService.getAllVehicle();
     }
@@ -70,7 +70,7 @@ public class VehicleController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = Vehicle.class))
             })
-    public Vehicle getVehicleByCarNumber(@PathVariable("carNumber") @Parameter(required = true, description =
+    public VehicleDto getVehicleByCarNumber(@PathVariable("carNumber") @Parameter(required = true, description =
             "Car number of vehicle") String carNumber) {
         //http://localhost:8080/vehicle/carnumber/AE2387KM
         return vehicleService.getVehicleByCarNumber(carNumber);
@@ -108,7 +108,7 @@ public class VehicleController {
 
     @PostMapping("/new")
     public VehicleDto createVehicle(@RequestBody CreateVehicleDto createVehicleDto) {
-        //http://localhost:8080/vehicle/dto
+        //http://localhost:8080/vehicle/new
         return vehicleService.create(createVehicleDto);
     }
 
@@ -124,7 +124,7 @@ public class VehicleController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = Vehicle.class))
             })
-    public List<Vehicle> getVehicleWithMaintenanceCostMoreOrEqual(@PathVariable("maintenanceCost")
+    public List<VehicleDto> getVehicleWithMaintenanceCostMoreOrEqual(@PathVariable("maintenanceCost")
             @Parameter(required = true, description = "maintenance cost") BigDecimal maintenanceCost) {
         //http://localhost:8080/vehicle/maintenancecost/500
         return vehicleService.getVehicleWithMaintenanceCostMoreOrEqual(maintenanceCost);

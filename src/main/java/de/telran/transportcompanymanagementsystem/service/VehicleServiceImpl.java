@@ -20,24 +20,24 @@ import java.util.UUID;
 public class VehicleServiceImpl implements VehicleService {
 
     private final VehicleRepository vehicleRepository;
-    private final VehicleMapper mapper;
+    private final VehicleMapper vehicleMapper;
 
     @Override
-    public Vehicle getVehicleById(String id) {
-        return vehicleRepository.findById(UUID.fromString(id))
-                .orElseThrow(()-> new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND));
+    public VehicleDto getVehicleById(String id) {
+        return vehicleMapper.toDto(vehicleRepository.findById(UUID.fromString(id))
+                .orElseThrow(()-> new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND)));
     }
 
     @Override
-    public List<Vehicle> getAllVehicle() {
-        return vehicleRepository.findAll();
+    public List<VehicleDto> getAllVehicle() {
+        return vehicleMapper.toDtoList(vehicleRepository.findAll());
     }
 
     @Override
-    public Vehicle getVehicleByCarNumber(String carNumber) {
+    public VehicleDto getVehicleByCarNumber(String carNumber) {
         Vehicle vehicle = vehicleRepository.findByCarNumber(carNumber);
         if (vehicle != null) {
-            return vehicle;
+            return vehicleMapper.toDto(vehicle);
         } else {
             throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND_BY_CAR_NUMBER);
         }
@@ -51,10 +51,10 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public List<Vehicle> getVehicleWithMaintenanceCostMoreOrEqual(BigDecimal maintenanceCost) {
+    public List<VehicleDto> getVehicleWithMaintenanceCostMoreOrEqual(BigDecimal maintenanceCost) {
         List<Vehicle> tasks = vehicleRepository.getVehicleWithMaintenanceCostMoreOrEqual(maintenanceCost);
         if (!tasks.isEmpty()) {
-            return tasks;
+            return vehicleMapper.toDtoList(tasks);
         } else {
             throw new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND);
         }
@@ -63,7 +63,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public VehicleDto create(CreateVehicleDto createVehicleDto) {
-        Vehicle vehicle = mapper.toEntity(createVehicleDto);
-        return mapper.toDto(vehicleRepository.save(vehicle));
+        Vehicle vehicle = vehicleMapper.toEntity(createVehicleDto);
+        return vehicleMapper.toDto(vehicleRepository.save(vehicle));
     }
 }

@@ -6,10 +6,12 @@ import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import org.mapstruct.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Mapper(componentModel = "spring", imports = Timestamp.class)
 public interface VehicleMapper {
     VehicleDto toDto(Vehicle vehicle);
+    List<VehicleDto> toDtoList(List<Vehicle> vehicles);
     @Mappings({
             @Mapping(target = "createdAt", expression = "java(new Timestamp(System.currentTimeMillis()))")
     })
