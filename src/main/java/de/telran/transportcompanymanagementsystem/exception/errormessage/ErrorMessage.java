@@ -3,6 +3,9 @@ package de.telran.transportcompanymanagementsystem.exception.errormessage;
 public class ErrorMessage {
     public static final String EMPLOYEE_NOT_FOUND = "Employee with this ID was not found.";
     public static final String EMPLOYEE_EXIST = "Employee with this FirstName and LastName is already present.";
+    public static final String EMPLOYEE_WITH_LOGIN_EXIST = "This Login is already present. Choose a different login.";
+    public static final String EMPLOYEE_NOT_VALID_NAME = "First and last name must be at least 3 characters long.";
+    public static final String EMPLOYEE_NOT_VALID_LOGIN = "Login must be at least 5 characters";
     public static final String VEHICLE_NOT_FOUND = "Vehicle with this ID was not found.";
     public static final String VEHICLE_NOT_FOUND_BY_CAR_NUMBER = "Vehicle with this car number was not found.";
     public static final String COMPANY_ID_IS_ABSENT = "CompanyID is absent.";

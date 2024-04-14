@@ -22,7 +22,7 @@ public class ExceptionHandlerAspect {
     }
 
     @ExceptionHandler({ConstraintViolationException.class, CompanyBadRequestException.class,
-            EmployeeExistException.class})
+            EmployeeExistException.class, DataNotValidException.class})
     public ResponseEntity<String> handleConstraintViolationException(Exception ex) {
         return getResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
     }

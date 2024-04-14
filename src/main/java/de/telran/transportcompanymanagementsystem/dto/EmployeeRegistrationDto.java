@@ -14,6 +14,7 @@ public class EmployeeRegistrationDto {
     /*
     EmployeeInfo.class
     */
+    private String login;
     private String address;
     private String phone;
     private DrivingLicenseCategory drivingLicenseCategory;

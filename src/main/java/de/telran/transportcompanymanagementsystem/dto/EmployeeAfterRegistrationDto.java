@@ -4,8 +4,9 @@ import lombok.Value;
 
 @Value
 public class EmployeeAfterRegistrationDto {
-    String operation;
-    String status;
+    String operation = "EMPLOYEE CREATION";
+    String status = "CREATED";
+    String creationDate;
     String login;
     String password;
 }
