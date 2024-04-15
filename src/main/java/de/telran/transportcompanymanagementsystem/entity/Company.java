@@ -45,17 +45,14 @@ public class Company {
 
     //Relationships
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    //@JsonBackReference(maintenances)
     @JsonIgnore
     private List<Maintenance> maintenances;
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    //@JsonBackReference("contracts")
     @JsonIgnore
     private List<Contract> contracts;
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    //@JsonBackReference("tasks")
     @JsonIgnore
     private List<Task> tasks;
 

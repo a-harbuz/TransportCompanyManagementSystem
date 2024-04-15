@@ -4,10 +4,7 @@ import de.telran.transportcompanymanagementsystem.dto.TaskDto;
 import de.telran.transportcompanymanagementsystem.dto.TaskForDriverDto;
 import de.telran.transportcompanymanagementsystem.service.interfaces.TaskService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -49,4 +46,23 @@ public class TaskController {
         //http://localhost:8080/task/companyname-waybillcost/Boehm-Klein/9000
         return taskService.getTasksByCompanyNameAndWaybillCostMoreThan(companyName,waybillCost);
     }
+
+    @PostMapping("/new")
+    public TaskDto createTask(@RequestBody TaskDto taskDto) {
+        //http://localhost:8080/task/new
+        return taskService.create(taskDto);
+    }
+
+    @PutMapping("/update")
+    public TaskDto updateTask(@RequestBody TaskDto taskDto) {
+        //http://localhost:8080/task/update
+        return taskService.update(taskDto);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteTaskById(@PathVariable("id") String id) {
+        //http://localhost:8080/task/delete/
+        taskService.deleteTaskById(id);
+    }
+
 }

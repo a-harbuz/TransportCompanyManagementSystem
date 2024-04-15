@@ -12,4 +12,7 @@ public interface TaskService {
     List<TaskDto> getTaskByWeightCargoWhenMoreThan (Float weight);
     List<TaskDto> getTasksByCompanyNameAndWaybillCostMoreThan(String companyName, BigDecimal waybillCost);
     TaskForDriverDto getTaskForDriverByWaybillNumberDto (String waybillNumber);
+    TaskDto create(TaskDto taskDto);
+    TaskDto update(TaskDto taskDto);
+    void deleteTaskById(String id);
 }

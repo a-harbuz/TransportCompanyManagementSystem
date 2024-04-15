@@ -17,4 +17,7 @@ public class ErrorMessage {
     public static final String CONTRACT_NOT_FOUND = "Contract with this ID was not found.";
     public static final String CONTRACT_NOT_FOUND_BY_NUMBER = "Contract with this number was not found.";
     public static final String TASK_NOT_FOUND = "Task with this argument was not found.";
+    public static final String TASK_WAYBILL_CAN_NOT_BE_EMPTY = "Waybill number can not be empty";
+    public static final String TASK_WAYBILL_NUMBER_EXIST = "Task with this waybill number is already present.";
+    public static final String TASK_ID_IS_ABSENT = "TaskID is absent.";
 }

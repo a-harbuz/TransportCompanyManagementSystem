@@ -60,24 +60,28 @@ public class Task {
     private Timestamp createdAt;
 
     //Relationships
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
+            fetch = FetchType.LAZY)
     @JoinColumn(name = "contract_id", referencedColumnName = "id")
     @JsonIgnore
     private Contract contract;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
+            fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     @JsonIgnore
     private Company company;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
+            fetch = FetchType.LAZY)
     @JoinColumn(name = "vehicle_id", referencedColumnName = "id")
     @JsonIgnore
     private Vehicle vehicle;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
+            fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
-    @JsonIgnore
+    //@JsonIgnore
     private Employee employee;
 
     @Override

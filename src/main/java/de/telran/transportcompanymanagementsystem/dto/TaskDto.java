@@ -12,17 +12,20 @@ import java.util.UUID;
 @Data
 public class TaskDto {
     private UUID taskId;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDateTime transportationDate;
     private String addressFrom;
     private String addressTo;
-    private float weightCargo;
+    private Float weightCargo;
     private String waybillNumber;
-    private BigDecimal waybillCost;
-    private int distanceTraveledKilometers;
-    private BigDecimal fuelCostsTraveled;
+    private BigDecimal waybillCost; //BigDecimal
+    private Integer distanceTraveledKilometers;
+    private BigDecimal fuelCostsTraveled; //BigDecimal
     private TaskStatus taskStatus;
     private String commentIfTaskCanceled;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Timestamp createdAt;
+    private String contract_id;
+    private String company_id;
+    private String vehicle_id;
+    private String employee_id;
 }
