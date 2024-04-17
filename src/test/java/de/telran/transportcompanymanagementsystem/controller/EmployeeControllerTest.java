@@ -79,4 +79,19 @@ class EmployeeControllerTest {
                 .andExpect(jsonPath("$[3].employeeId", matchesPattern(uuidPattern)))
                 .andExpect(jsonPath("$[3].driver").value(true));
     }
+
+    @Test
+    void getEmployeeWithOneOrMoreVehicleMaintenanceTest() throws Exception {
+        String uuidPattern = CheckUuidPattern.getUuidPattern();
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/employee/with-vehicle-maintenance"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(4)))
+                .andExpect(jsonPath("$[0].employeeId", matchesPattern(uuidPattern)))
+                .andExpect(jsonPath("$[0].firstName").isNotEmpty())
+                .andExpect(jsonPath("$[0].lastName").isNotEmpty())
+                .andExpect(jsonPath("$[3].employeeId", matchesPattern(uuidPattern)))
+                .andExpect(jsonPath("$[3].firstName").isNotEmpty())
+                .andExpect(jsonPath("$[3].lastName").isNotEmpty());
+    }
 }

@@ -7,6 +7,11 @@ import de.telran.transportcompanymanagementsystem.entity.Employee;
 import de.telran.transportcompanymanagementsystem.service.interfaces.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 import java.util.List;
 
@@ -30,6 +35,18 @@ public class EmployeeController {
     }
 
     @GetMapping("/drivers")
+    @Operation(
+            summary = "Looking for employees who are drivers..",
+            description = "Looking for employees who are drivers..")
+    @ApiResponse(
+            responseCode = "200",
+            description = "Successfully returned employees",
+            content = {
+                    @Content(
+                            mediaType = "application/json",
+                            array = @ArraySchema(
+                                    schema = @Schema(implementation = Employee.class)))
+            })
     public List<Employee> getDriverList() {
         //http://localhost:8080/employee/drivers
         return employeeService.getDriverList();
@@ -42,6 +59,18 @@ public class EmployeeController {
     }
 
     @GetMapping("/with-vehicle-maintenance")
+    @Operation(
+            summary = "Looks for employees who contain tasks in which vehicles contain one or more maintenance jobs.",
+            description = "Looks for employees who contain tasks in which vehicles contain one or more maintenance jobs.")
+    @ApiResponse(
+            responseCode = "200",
+            description = "Successfully returned employees",
+            content = {
+                    @Content(
+                            mediaType = "application/json",
+                            array = @ArraySchema(
+                                    schema = @Schema(implementation = EmployeeWithVehicleAndMaintenanceDto.class)))
+            })
     public List<EmployeeWithVehicleAndMaintenanceDto> getEmployeeWithOneOrMoreVehicleMaintenance() {
         //http://localhost:8080/employee/with-vehicle-maintenance
         return employeeService.getEmployeeWithOneOrMoreVehicleMaintenance();
