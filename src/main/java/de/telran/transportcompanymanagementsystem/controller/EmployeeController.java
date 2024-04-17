@@ -2,6 +2,7 @@ package de.telran.transportcompanymanagementsystem.controller;
 
 import de.telran.transportcompanymanagementsystem.dto.EmployeeAfterRegistrationDto;
 import de.telran.transportcompanymanagementsystem.dto.EmployeeRegistrationDto;
+import de.telran.transportcompanymanagementsystem.dto.EmployeeWithVehicleAndMaintenanceDto;
 import de.telran.transportcompanymanagementsystem.entity.Employee;
 import de.telran.transportcompanymanagementsystem.service.interfaces.EmployeeService;
 import lombok.RequiredArgsConstructor;
@@ -38,5 +39,11 @@ public class EmployeeController {
     public EmployeeAfterRegistrationDto createEmployee(@RequestBody EmployeeRegistrationDto employeeRegistrationDto) {
         //http://localhost:8080/employee/registration
         return employeeService.createEmployee(employeeRegistrationDto);
+    }
+
+    @GetMapping("/with-vehicle-maintenance")
+    public List<EmployeeWithVehicleAndMaintenanceDto> getEmployeeWithOneOrMoreVehicleMaintenance() {
+        //http://localhost:8080/employee/with-vehicle-maintenance
+        return employeeService.getEmployeeWithOneOrMoreVehicleMaintenance();
     }
 }

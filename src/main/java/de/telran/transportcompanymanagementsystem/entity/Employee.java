@@ -44,7 +44,7 @@ public class Employee {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_info_id", referencedColumnName = "id")
-    //@JsonIgnore
+    @JsonIgnore
     private EmployeeInfo employeeInfo;
 
     @Override
