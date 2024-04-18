@@ -47,6 +47,7 @@ public class Employee {
     @JsonIgnore
     private EmployeeInfo employeeInfo;
 
+    //private String stCount = "";
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

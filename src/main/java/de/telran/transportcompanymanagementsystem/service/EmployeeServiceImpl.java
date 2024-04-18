@@ -12,6 +12,7 @@ import de.telran.transportcompanymanagementsystem.mapper.EmployeeMapper;
 import de.telran.transportcompanymanagementsystem.mapper.EmployeeRegistrationMapper;
 import de.telran.transportcompanymanagementsystem.repository.EmployeeInfoRepository;
 import de.telran.transportcompanymanagementsystem.repository.EmployeeRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import de.telran.transportcompanymanagementsystem.service.interfaces.EmployeeService;
@@ -65,6 +66,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @Transactional
     public List<EmployeeWithVehicleAndMaintenanceDto> getEmployeeWithOneOrMoreVehicleMaintenance() {
         List<Employee> employees = employeeRepository.findEmployeeWithOneOrMoreVehicleMaintenance();
         employees.forEach(System.out::println);

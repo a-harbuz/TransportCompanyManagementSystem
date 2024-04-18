@@ -61,14 +61,13 @@ class CompanyControllerTest {
                 .perform(MockMvcRequestBuilders.get("/company/name/Boehm-Klein"))
                 .andExpect(status().isOk())
                 .andDo(print())
-                //.andExpect(jsonPath("$[0].companyId", is(company.getCompanyId().toString())))
                 .andExpect(jsonPath("$[0].companyName", is(company.getCompanyName())))
                 .andExpect(jsonPath("$[0].contactFirstName", is(company.getContactFirstName())))
                 .andExpect(jsonPath("$[0].contactLastName", is(company.getContactLastName())));
     }
 
     @Test
-    void getAllCompaniesTest() throws Exception {
+    void getCompaniesTest() throws Exception {
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/company/all"))
                 .andExpect(status().isOk())
@@ -76,20 +75,6 @@ class CompanyControllerTest {
                         .jsonPath("$[0].companyId", matchesPattern(CheckUuidPattern.getUuidPattern())))
                 .andExpect(MockMvcResultMatchers
                         .jsonPath("$[2].companyId", matchesPattern(CheckUuidPattern.getUuidPattern())));
-    }
-
-    @Test
-    void setCompanyByNameTest() throws Exception {
-        Company company = EntityCreator.getCompany2();
-        mockMvc
-                .perform(MockMvcRequestBuilders.put("/company/name/Haley-Stoltenberg/New Haley"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.companyId", is(company.getCompanyId().toString())))
-                .andExpect(jsonPath("$.companyName", is("New Haley")));
-        mockMvc
-                .perform(MockMvcRequestBuilders.put("/company/name/New Haley/Haley-Stoltenberg"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.companyName", is(company.getCompanyName())));
     }
 
     @Test

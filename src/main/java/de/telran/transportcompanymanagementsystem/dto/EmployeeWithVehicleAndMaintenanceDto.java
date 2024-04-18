@@ -10,4 +10,5 @@ public class EmployeeWithVehicleAndMaintenanceDto {
     private String lastName;
     private boolean isDriver;
     private boolean isWorking;
+    private String stCount;
 }

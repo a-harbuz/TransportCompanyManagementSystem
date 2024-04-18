@@ -12,8 +12,8 @@ import java.util.UUID;
 public interface EmployeeRepository extends JpaRepository<Employee, UUID> {
     Employee findByFirstNameAndLastName(String firstName, String lastName);
 
-    @Query("select e, count(m.serviceType) as stCount from Employee e join e.tasks t " +
+    @Query("select e, count(m.serviceType) as st_count from Employee e join e.tasks t " +
         "join t.vehicle v join v.maintenances m " +
-        "GROUP BY e.employeeId, e.firstName, e.lastName")
+        "GROUP BY e.employeeId, e.firstName, e.lastName, m.serviceType")
     List<Employee> findEmployeeWithOneOrMoreVehicleMaintenance();
 }
