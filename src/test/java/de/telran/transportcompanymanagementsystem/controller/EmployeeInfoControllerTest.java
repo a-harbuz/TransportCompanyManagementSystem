@@ -46,7 +46,7 @@ class EmployeeInfoControllerTest {
     }
 
     @Test
-    void getAllEmployeeInfo() throws Exception {
+    void getEmployeeInfoListTest() throws Exception {
         String uuidPattern = CheckUuidPattern.getUuidPattern();
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/employeeinfo/all"))

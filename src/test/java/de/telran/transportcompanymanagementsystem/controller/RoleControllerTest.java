@@ -42,7 +42,7 @@ class RoleControllerTest {
     }
 
     @Test
-    void getAllRole() throws Exception {
+    void getRoleListTest() throws Exception {
         String uuidPattern = CheckUuidPattern.getUuidPattern();
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/role/all"))

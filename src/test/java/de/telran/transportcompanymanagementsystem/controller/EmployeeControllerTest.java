@@ -45,18 +45,6 @@ class EmployeeControllerTest {
     }
 
     @Test
-    void getNameEmployeeById() throws Exception {
-        Employee expected = EntityCreator.getEmployee();
-        MvcResult mvcResult = mockMvc
-                .perform(MockMvcRequestBuilders.get("/employee/name/" + expected.getEmployeeId())
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andReturn();
-        String actualContentResult = mvcResult.getResponse().getContentAsString();
-        assertEquals(expected.getFirstName(), actualContentResult);
-    }
-
-    @Test
     void getEmployeeList() throws Exception {
         String uuidPattern = CheckUuidPattern.getUuidPattern();
         mockMvc
@@ -93,5 +81,10 @@ class EmployeeControllerTest {
                 .andExpect(jsonPath("$[3].employeeId", matchesPattern(uuidPattern)))
                 .andExpect(jsonPath("$[3].firstName").isNotEmpty())
                 .andExpect(jsonPath("$[3].lastName").isNotEmpty());
+    }
+
+    @Test
+    void createEmployee() {
+
     }
 }

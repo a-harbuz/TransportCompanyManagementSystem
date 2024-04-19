@@ -4,6 +4,7 @@ import de.telran.transportcompanymanagementsystem.dto.MaintenanceDto;
 import de.telran.transportcompanymanagementsystem.dto.VehicleWithMaintenanceDto;
 import de.telran.transportcompanymanagementsystem.entity.Maintenance;
 import de.telran.transportcompanymanagementsystem.exception.DataNotFoundException;
+import de.telran.transportcompanymanagementsystem.exception.MaintenanceNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.errormessage.ErrorMessage;
 import de.telran.transportcompanymanagementsystem.mapper.MaintenanceMapper;
 import de.telran.transportcompanymanagementsystem.repository.MaintenanceRepository;
@@ -28,14 +29,22 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     }
 
     @Override
-    public List<MaintenanceDto> getMaintenanceCostMoreThan(BigDecimal maintenanceCost) {
-        return maintenanceMapper.toDtoList(
-                maintenanceRepository.getMaintenanceByMaintenanceCostGreaterThan(maintenanceCost));
+    public List<MaintenanceDto> getMaintenanceList() {
+        List<Maintenance> maintenanceList = maintenanceRepository.findAll();
+        if (maintenanceList.isEmpty()) throw new MaintenanceNotFoundException(ErrorMessage.MAINTENANCE_NOT_FOUND);
+        return maintenanceMapper.toDtoList(maintenanceList);
     }
 
     @Override
-    public List<VehicleWithMaintenanceDto> getVehiclesWithMaintenance() {
+    public List<VehicleWithMaintenanceDto> getMaintenanceWithVehiclesAndCompany() {
         List<Maintenance> maintenanceList = maintenanceRepository.findAll();
+        if (maintenanceList.isEmpty()) throw new MaintenanceNotFoundException(ErrorMessage.MAINTENANCE_NOT_FOUND);
         return maintenanceMapper.toVehicleWithMaintenanceDto(maintenanceList);
+    }
+
+    @Override
+    public List<MaintenanceDto> getMaintenanceCostMoreThan(BigDecimal maintenanceCost) {
+        return maintenanceMapper.toDtoList(
+                maintenanceRepository.getMaintenanceByMaintenanceCostGreaterThan(maintenanceCost));
     }
 }

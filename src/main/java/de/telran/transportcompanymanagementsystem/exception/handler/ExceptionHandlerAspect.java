@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ExceptionHandlerAspect {
     @ExceptionHandler({VehicleNotFoundException.class, CompanyNotFoundException.class, TaskNotFoundException.class,
-            ContractNotFoundException.class, DataNotFoundException.class})
+            ContractNotFoundException.class, DataNotFoundException.class, MaintenanceNotFoundException.class,
+            RoleNotFoundException.class})
     public ResponseEntity<String> handleException(Exception ex) {
         return getResponse(HttpStatus.NOT_FOUND, ex.getMessage());
     }

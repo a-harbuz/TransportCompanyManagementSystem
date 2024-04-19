@@ -80,7 +80,6 @@ public class EntityCreator {
         maintenance.setServiceType(ServiceType.REPAIR_CHASSIS);
         maintenance.setMaintenanceCost(BigDecimal.valueOf(654.24));
         maintenance.setMaintenanceKilometers(71400);
-        //maintenance.setCreatedAt(Timestamp.valueOf("2024-02-03 00:00:00.000000000"));
         maintenance.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         return maintenance;
     }

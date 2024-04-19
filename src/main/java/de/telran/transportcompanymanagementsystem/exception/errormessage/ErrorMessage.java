@@ -20,4 +20,6 @@ public class ErrorMessage {
     public static final String TASK_WAYBILL_CAN_NOT_BE_EMPTY = "Waybill number can not be empty";
     public static final String TASK_WAYBILL_NUMBER_EXIST = "Task with this waybill number is already present.";
     public static final String TASK_ID_IS_ABSENT = "TaskID is absent.";
+    public static final String MAINTENANCE_NOT_FOUND = "Maintenance was not found.";
+    public static final String DEFAULT_ROLE_NOT_FOUND = "Default role was not found.";
 }

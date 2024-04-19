@@ -15,7 +15,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import util.CheckUuidPattern;
 import util.EntityCreator;
 
+import java.util.UUID;
+
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -71,10 +74,10 @@ class CompanyControllerTest {
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/company/all"))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers
-                        .jsonPath("$[0].companyId", matchesPattern(CheckUuidPattern.getUuidPattern())))
-                .andExpect(MockMvcResultMatchers
-                        .jsonPath("$[2].companyId", matchesPattern(CheckUuidPattern.getUuidPattern())));
+                .andExpect(jsonPath("$[0].companyId", matchesPattern(CheckUuidPattern.getUuidPattern())))
+                .andExpect(jsonPath("$[0].companyName").isNotEmpty())
+                .andExpect(jsonPath("$[2].companyId", matchesPattern(CheckUuidPattern.getUuidPattern())))
+                .andExpect(jsonPath("$[2].companyName").isNotEmpty());
     }
 
     @Test
@@ -83,7 +86,7 @@ class CompanyControllerTest {
         company.setCompanyName("TEST_NAME_FOR_DELETE");
         String requestBody = objectMapper.writeValueAsString(company);
         MvcResult mvcResult = mockMvc
-                .perform(MockMvcRequestBuilders.post("/company")
+                .perform(MockMvcRequestBuilders.post("/company/new")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isOk())
@@ -92,7 +95,7 @@ class CompanyControllerTest {
         Company newCompany = objectMapper.readValue(mvcResultJson, Company.class);
 
         mockMvc
-                .perform(MockMvcRequestBuilders.delete("/company/" + newCompany.getCompanyId()))
+                .perform(MockMvcRequestBuilders.delete("/company/delete/" + newCompany.getCompanyId()))
                 .andExpect(status().isOk());
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/company/" + newCompany.getCompanyId()))
@@ -104,7 +107,7 @@ class CompanyControllerTest {
         Company newCompany = EntityCreator.getNewCompany();
         String requestBody = objectMapper.writeValueAsString(newCompany);
         mockMvc
-                .perform(MockMvcRequestBuilders.post("/company")
+                .perform(MockMvcRequestBuilders.post("/company/new")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isOk())
@@ -116,11 +119,40 @@ class CompanyControllerTest {
                         .jsonPath("$.phone", is(newCompany.getPhone())));
     }
 
-//    @Test
-//    void getCompanyDtoTest() throws Exception {
-//        mockMvc
-//                .perform(MockMvcRequestBuilders.get("/company/dto"))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(4)));
-//    }
+    @Test
+    void getCompanyByNameIncludingString() throws Exception {
+        Company company = EntityCreator.getCompany();
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/company/name/" + company.getCompanyName()))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$[0].companyId", is(company.getCompanyId().toString())))
+                .andExpect(jsonPath("$[0].companyName", is(company.getCompanyName())))
+                .andExpect(jsonPath("$[0].contactFirstName", is(company.getContactFirstName())))
+                .andExpect(jsonPath("$[0].contactLastName", is(company.getContactLastName())))
+                .andExpect(jsonPath("$[0].email", is(company.getEmail())))
+                .andExpect(jsonPath("$[0].address", is(company.getAddress())))
+                .andExpect(jsonPath("$[0].phone", is(company.getPhone())));
+    }
+
+    @Test
+    void updateCompanyById() throws Exception {
+        Company expectedCompany = new Company();
+        expectedCompany.setCompanyId(UUID.fromString("875eeb54-d18a-4cfc-8efc-d984c8c362ff"));
+        expectedCompany.setCompanyName("TEST_NAME_FOR_UPDATE");
+        expectedCompany.setAddress("TEST_ADDRESS_FOR_UPDATE");
+        expectedCompany.setPhone("12344321");
+        String requestBody = objectMapper.writeValueAsString(expectedCompany);
+        MvcResult mvcResult = mockMvc
+                .perform(MockMvcRequestBuilders.put("/company/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody))
+                .andExpect(status().isOk())
+                .andReturn();
+        String mvcResultJson = mvcResult.getResponse().getContentAsString();
+        Company actualCompany = objectMapper.readValue(mvcResultJson, Company.class);
+        assertEquals(expectedCompany.getCompanyName(), actualCompany.getCompanyName());
+        assertEquals(expectedCompany.getAddress(), actualCompany.getAddress());
+        assertEquals(expectedCompany.getPhone(), actualCompany.getPhone());
+    }
 }
