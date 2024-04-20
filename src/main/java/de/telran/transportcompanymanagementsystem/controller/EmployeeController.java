@@ -65,7 +65,7 @@ public class EmployeeController {
             description = "Looks for employees who contain tasks in which vehicles contain one or more maintenance jobs.")
     @ApiResponse(
             responseCode = "200",
-            description = "Successfully returned employees",
+            description = "Successfully returned employees with maintenances",
             content = {
                     @Content(
                             mediaType = "application/json",

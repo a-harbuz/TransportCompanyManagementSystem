@@ -1,7 +1,9 @@
 package de.telran.transportcompanymanagementsystem.dto;
 
+import de.telran.transportcompanymanagementsystem.entity.Maintenance;
 import lombok.Data;
 
+import java.util.List;
 import java.util.UUID;
 @Data
 public class EmployeeWithVehicleAndMaintenanceDto {
@@ -10,5 +12,5 @@ public class EmployeeWithVehicleAndMaintenanceDto {
     private String lastName;
     private boolean isDriver;
     private boolean isWorking;
-    private String stCount;
+    private List<List<Maintenance>> maintenanceList;
 }
