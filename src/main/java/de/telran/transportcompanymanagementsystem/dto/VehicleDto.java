@@ -3,13 +3,16 @@ package de.telran.transportcompanymanagementsystem.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import de.telran.transportcompanymanagementsystem.entity.enums.VehicleStatus;
 import de.telran.transportcompanymanagementsystem.entity.enums.VehicleType;
+import lombok.Builder;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 @Data
+@Builder
 public class VehicleDto {
-    private String vehicleId;
+    private UUID vehicleId;
     private VehicleType vehicleType;
     private String name;
     private String model;

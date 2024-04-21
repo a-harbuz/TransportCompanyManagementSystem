@@ -7,7 +7,6 @@ import de.telran.transportcompanymanagementsystem.entity.Company;
 import de.telran.transportcompanymanagementsystem.service.interfaces.CompanyService;
 import de.telran.transportcompanymanagementsystem.validation.UuidChecker;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -16,8 +15,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@Validated
 @RestController
+@Validated
 @RequestMapping("/company")
 @RequiredArgsConstructor
 public class CompanyController {
@@ -62,8 +61,7 @@ public class CompanyController {
 
     @DeleteMapping("/delete/{id}")
     @DeleteCompanyByIdDocumentation
-    public void deleteCompanyById(@PathVariable("id") @UuidChecker @Parameter(required = true, description =
-        "Company UUID") String id) {
+    public void deleteCompanyById(@PathVariable("id") @UuidChecker String id) {
         //http://localhost:8080/company/delete/0a8de57b-4ac3-43f9-9ab4-77784de2554a
         companyService.deleteCompanyById(id);
     }

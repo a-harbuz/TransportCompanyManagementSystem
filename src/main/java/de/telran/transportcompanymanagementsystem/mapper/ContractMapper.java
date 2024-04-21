@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 
 import java.sql.Timestamp;
 
-@Mapper(componentModel = "spring", imports = Timestamp.class) //imports = {Timestamp.class, ContractStatus.class}
+@Mapper(componentModel = "spring", imports = Timestamp.class)
 public interface ContractMapper {
     ContractDto toDto(Contract contract);
 }

@@ -14,8 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import util.CheckUuidPattern;
 import util.EntityCreator;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.matchesPattern;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -83,9 +82,19 @@ class EmployeeControllerTest {
                 .andExpect(jsonPath("$[3].lastName").isNotEmpty());
     }
 
-    @Test
-    void createEmployee() {
-        //create
-        //delete
-    }
+//    @Test
+//    void createEmployee() {
+////        EmployeeRegistrationDto employeeRegistrationDto = EntityCreator.getNewEmployeeRegistration();
+////        String requestBody = objectMapper.writeValueAsString(employeeRegistrationDto);
+////        MvcResult mvcResult = mockMvc
+////                .perform(MockMvcRequestBuilders.post("/employee/registration")
+////                        .contentType(MediaType.APPLICATION_JSON)
+////                        .content(requestBody))
+////                .andExpect(status().isOk())
+////                .andExpect(jsonPath("$.operation", is("EMPLOYEE CREATION")))
+////                .andExpect(jsonPath("$.status", is("CREATED")))
+////                .andExpect(jsonPath("$.login", is(employeeRegistrationDto.getLogin())))
+////                .andReturn();
+////        //repeat throw
+//    }
 }

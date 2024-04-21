@@ -1,7 +1,6 @@
 package de.telran.transportcompanymanagementsystem.controller;
 
 import de.telran.transportcompanymanagementsystem.entity.Contract;
-import jakarta.servlet.ServletException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import util.EntityCreator;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,10 +35,11 @@ class ContractControllerTest {
     }
 
     @Test
-    void getContractByIdNegativeTest() {
-        assertThrows(ServletException.class, () ->
-                mockMvc.perform(MockMvcRequestBuilders.get("/contract/0a8de57b-4ac3-43f9-9ab4-77784de2554c"))
-                .andExpect(status().isInternalServerError()));
+    void getContractByIdNegativeTest() throws Exception {
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/contract/0a8de57b-4ac3-43f9-9ab4-77784de2554c"))
+                .andExpect(status().isNotFound());
+
     }
 
     @Test
@@ -59,9 +58,9 @@ class ContractControllerTest {
                 .andExpect(jsonPath("$.contractStatus", is(contract.getContractStatus().toString())));
     }
     @Test
-    void getContractByContractNumberNegativeTest() {
-        assertThrows(ServletException.class, () ->
-                mockMvc.perform(MockMvcRequestBuilders.get("/contract/number/0011"))
-                .andExpect(status().isInternalServerError()));
+    void getContractByContractNumberNegativeTest() throws Exception {
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/contract/number/0011"))
+                .andExpect(status().isNotFound());
     }
 }

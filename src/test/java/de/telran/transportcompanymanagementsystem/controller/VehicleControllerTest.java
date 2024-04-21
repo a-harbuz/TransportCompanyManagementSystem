@@ -14,7 +14,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import util.CheckUuidPattern;
 import util.EntityCreator;
-
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -79,19 +78,19 @@ class VehicleControllerTest {
     @Test
     void deleteVehicleByIdTest() throws Exception {
         Vehicle vehicle = EntityCreator.getNewVehicle();
-        vehicle.setCarNumber("NUMBER2_FOR_DEL");
+        vehicle.setCarNumber("NUM_FOR_DEL");
         String requestBody = objectMapper.writeValueAsString(vehicle);
         MvcResult mvcResult = mockMvc
-                .perform(MockMvcRequestBuilders.post("/vehicle")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestBody))
+                .perform(MockMvcRequestBuilders.post("/vehicle/new")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody))
                 .andExpect(status().isOk())
                 .andReturn();
         String mvcResultJson = mvcResult.getResponse().getContentAsString();
         Vehicle newVehicle = objectMapper.readValue(mvcResultJson, Vehicle.class);
 
         mockMvc
-                .perform(MockMvcRequestBuilders.delete("/vehicle/" + newVehicle.getVehicleId()))
+                .perform(MockMvcRequestBuilders.delete("/vehicle/delete/" + newVehicle.getVehicleId()))
                 .andExpect(status().isOk());
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/vehicle/" + newVehicle.getVehicleId()))
@@ -103,7 +102,7 @@ class VehicleControllerTest {
         Vehicle newVehicle = EntityCreator.getNewVehicle();
         String requestBody = objectMapper.writeValueAsString(newVehicle);
         MvcResult mvcResult = mockMvc
-                .perform(MockMvcRequestBuilders.post("/vehicle")
+                .perform(MockMvcRequestBuilders.post("/vehicle/new")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isOk())
@@ -117,7 +116,7 @@ class VehicleControllerTest {
         String mvcResultJson = mvcResult.getResponse().getContentAsString();
         Vehicle actualVehicle = objectMapper.readValue(mvcResultJson, Vehicle.class);
         mockMvc
-                .perform(MockMvcRequestBuilders.delete("/vehicle/" + actualVehicle.getVehicleId()))
+                .perform(MockMvcRequestBuilders.delete("/vehicle/delete/" + actualVehicle.getVehicleId()))
                 .andExpect(status().isOk());
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/vehicle/" + actualVehicle.getVehicleId()))
@@ -125,6 +124,12 @@ class VehicleControllerTest {
     }
 
     @Test
-    void getVehicleWithMaintenanceCostMoreOrEqual() {
+    void getVehicleWithMaintenanceCostMoreOrEqual() throws Exception {
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/vehicle/maintenancecost/500"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(jsonPath("$[0].vehicleId", matchesPattern(CheckUuidPattern.getUuidPattern())))
+                .andExpect(jsonPath("$[2].vehicleId", matchesPattern(CheckUuidPattern.getUuidPattern())));
     }
 }
