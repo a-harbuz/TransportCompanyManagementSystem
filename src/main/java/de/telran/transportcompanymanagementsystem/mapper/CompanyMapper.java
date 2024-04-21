@@ -8,7 +8,6 @@ import org.mapstruct.Mapper;
 import java.sql.Timestamp;
 import java.util.List;
 
-//@Mapper(componentModel = "spring") //, uses = ProductMapper.class, imports = Random.class)
 @Mapper(componentModel = "spring", imports = Timestamp.class)
 public interface CompanyMapper {
     List<CompanyDto> toDtoList(List<Company> companies);

@@ -9,5 +9,6 @@ import java.util.List;
 public interface MaintenanceService {
     MaintenanceDto getMaintenanceById(String id);
     List<MaintenanceDto> getMaintenanceCostMoreThan (BigDecimal maintenanceCost);
-    List<VehicleWithMaintenanceDto> getVehiclesWithMaintenance();
+    List<VehicleWithMaintenanceDto> getMaintenanceWithVehiclesAndCompany();
+    List<MaintenanceDto> getMaintenanceList();
 }

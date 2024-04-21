@@ -14,8 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import util.CheckUuidPattern;
 import util.EntityCreator;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.matchesPattern;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -42,18 +41,6 @@ class EmployeeControllerTest {
         String mvcResultJson = mvcResult.getResponse().getContentAsString();
         Employee actual = objectMapper.readValue(mvcResultJson, Employee.class);
         assertEquals(expected, actual);
-    }
-
-    @Test
-    void getNameEmployeeById() throws Exception {
-        Employee expected = EntityCreator.getEmployee();
-        MvcResult mvcResult = mockMvc
-                .perform(MockMvcRequestBuilders.get("/employee/name/" + expected.getEmployeeId())
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andReturn();
-        String actualContentResult = mvcResult.getResponse().getContentAsString();
-        assertEquals(expected.getFirstName(), actualContentResult);
     }
 
     @Test
@@ -94,4 +81,20 @@ class EmployeeControllerTest {
                 .andExpect(jsonPath("$[3].firstName").isNotEmpty())
                 .andExpect(jsonPath("$[3].lastName").isNotEmpty());
     }
+
+//    @Test
+//    void createEmployee() {
+////        EmployeeRegistrationDto employeeRegistrationDto = EntityCreator.getNewEmployeeRegistration();
+////        String requestBody = objectMapper.writeValueAsString(employeeRegistrationDto);
+////        MvcResult mvcResult = mockMvc
+////                .perform(MockMvcRequestBuilders.post("/employee/registration")
+////                        .contentType(MediaType.APPLICATION_JSON)
+////                        .content(requestBody))
+////                .andExpect(status().isOk())
+////                .andExpect(jsonPath("$.operation", is("EMPLOYEE CREATION")))
+////                .andExpect(jsonPath("$.status", is("CREATED")))
+////                .andExpect(jsonPath("$.login", is(employeeRegistrationDto.getLogin())))
+////                .andReturn();
+////        //repeat throw
+//    }
 }

@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import util.CheckUuidPattern;
 import util.EntityCreator;
+import util.EnumsToArrays;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -54,5 +55,31 @@ class MaintenanceControllerTest {
                         .jsonPath("$[0].mid", matchesPattern(CheckUuidPattern.getUuidPattern())))
                 .andExpect(MockMvcResultMatchers
                         .jsonPath("$[1].mid", matchesPattern(CheckUuidPattern.getUuidPattern())));
+    }
+
+    @Test
+    void getMaintenanceWithVehiclesAndCompany() throws Exception {
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/maintenance/with-vehicle-and-company"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(4)))
+                .andExpect(jsonPath("$[0].vehicleId", matchesPattern(CheckUuidPattern.getUuidPattern())))
+                .andExpect(jsonPath("$[0].serviceType").value(in(EnumsToArrays.getArrayOfServiceType())))
+                .andExpect(jsonPath("$[0].companyName").isNotEmpty())
+                .andExpect(jsonPath("$[3].vehicleId", matchesPattern(CheckUuidPattern.getUuidPattern())))
+                .andExpect(jsonPath("$[3].serviceType").value(in(EnumsToArrays.getArrayOfServiceType())))
+                .andExpect(jsonPath("$[0].companyName").isNotEmpty());
+    }
+
+    @Test
+    void getMaintenanceList() throws Exception  {
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/maintenance/all"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(4)))
+                .andExpect(jsonPath("$[0].mid", matchesPattern(CheckUuidPattern.getUuidPattern())))
+                .andExpect(jsonPath("$[0].serviceType").value(in(EnumsToArrays.getArrayOfServiceType())))
+                .andExpect(jsonPath("$[3].mid", matchesPattern(CheckUuidPattern.getUuidPattern())))
+                .andExpect(jsonPath("$[3].serviceType").value(in(EnumsToArrays.getArrayOfServiceType())));
     }
 }

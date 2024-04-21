@@ -42,12 +42,12 @@ class RoleControllerTest {
     }
 
     @Test
-    void getAllRole() throws Exception {
+    void getRoleListTest() throws Exception {
         String uuidPattern = CheckUuidPattern.getUuidPattern();
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/role/all"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(jsonPath("$", hasSize(4)))
                 .andExpect(MockMvcResultMatchers
                         .jsonPath("$[0].rid", matchesPattern(uuidPattern)));
     }

@@ -110,4 +110,24 @@
         </insert>
     </changeSet>
 
+    <!--    Add Role and Authority for User-->
+    <changeSet author="o.harbuz" id="insert test data into role table">
+        <insert tableName="role">
+            <column name="id" value="e01207b86353419d940ccf39638f672b"/>
+            <column name="role_name" value="User"/>
+        </insert>
+    </changeSet>
+    <changeSet author="o.harbuz" id="insert test data into authority table">
+        <insert tableName="authority">
+            <column name="id" value="d336b892dab143f79bfd4556440ba800"/>
+            <column name="authority_name" value="UserAuthority"/>
+        </insert>
+    </changeSet>
+    <changeSet author="o.harbuz" id="insert test data into role_authority table">
+        <insert tableName="role_authority">
+            <column name="role_id" value="e01207b86353419d940ccf39638f672b"/>
+            <column name="authority_id" value="d336b892dab143f79bfd4556440ba800"/>
+        </insert>
+    </changeSet>
+
 </databaseChangeLog>

@@ -69,4 +69,24 @@ class TaskControllerTest {
                 .andExpect(MockMvcResultMatchers
                         .jsonPath("$[1].taskId", matchesPattern(CheckUuidPattern.getUuidPattern())));
     }
+
+    @Test
+    void getTaskByWaybillNumber() {
+    }
+
+    @Test
+    void getTasksByCompanyNameAndWaybillCostMoreThan() {
+    }
+
+    @Test
+    void createTask() {
+    }
+
+    @Test
+    void updateTask() {
+    }
+
+    @Test
+    void deleteTaskById() {
+    }
 }

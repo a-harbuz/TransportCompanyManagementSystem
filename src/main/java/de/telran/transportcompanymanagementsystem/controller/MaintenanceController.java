@@ -22,16 +22,21 @@ public class MaintenanceController {
         return maintenanceService.getMaintenanceById(id);
     }
 
+    @GetMapping("/all")
+    public List<MaintenanceDto> getMaintenanceList() {
+        //http://localhost:8080/maintenance/all
+        return maintenanceService.getMaintenanceList();
+    }
+
+    @GetMapping("/with-vehicle-and-company")
+    public List<VehicleWithMaintenanceDto> getMaintenanceWithVehiclesAndCompany() {
+        //http://localhost:8080/maintenance/with-vehicle-and-company
+        return maintenanceService.getMaintenanceWithVehiclesAndCompany();
+    }
+
     @GetMapping("/cost/morethan/{maintenanceCost}")
     public List<MaintenanceDto> getMaintenanceCostMoreThan(@PathVariable("maintenanceCost") BigDecimal maintenanceCost) {
         //http://localhost:8080/maintenance/cost/morethan/500
         return maintenanceService.getMaintenanceCostMoreThan(maintenanceCost);
-    }
-
-    //@GetMapping("/vehicles-with-maintenance")
-    @GetMapping("/vehicle-with-maintenance")
-    public List<VehicleWithMaintenanceDto> getVehiclesWithMaintenance() {
-        //http://localhost:8080/maintenance/vehicle-with-maintenance
-        return maintenanceService.getVehiclesWithMaintenance();
     }
 }
