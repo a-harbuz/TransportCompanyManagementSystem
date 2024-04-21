@@ -53,8 +53,4 @@ public interface EmployeeRegistrationMapper {
         Faker faker = new Faker();
         return faker.internet().password(8, 12);
     }
-
-//    default Set<Role> combineParameters(Set<Role> roles) {
-//        return roles;
-//    }
 }
