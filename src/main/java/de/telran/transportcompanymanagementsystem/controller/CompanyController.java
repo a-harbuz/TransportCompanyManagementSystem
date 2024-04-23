@@ -3,13 +3,8 @@ package de.telran.transportcompanymanagementsystem.controller;
 import de.telran.transportcompanymanagementsystem.annotation.company.*;
 import de.telran.transportcompanymanagementsystem.dto.CompanyDto;
 import de.telran.transportcompanymanagementsystem.dto.CreateUpdateCompanyDto;
-import de.telran.transportcompanymanagementsystem.entity.Company;
 import de.telran.transportcompanymanagementsystem.service.interfaces.CompanyService;
 import de.telran.transportcompanymanagementsystem.validation.UuidChecker;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -67,17 +62,6 @@ public class CompanyController {
     }
 
     @PostMapping("/new")
-    @Operation(
-            summary = "Add new company",
-            description = "Add new company")
-    @ApiResponse(
-            responseCode = "200",
-            description = "Successfully returned the new company",
-            content = {
-                    @Content(
-                            mediaType = "application/json",
-                            schema = @Schema(implementation = Company.class))
-            })
     @CreateCompanyDocumentation
     public CompanyDto createCompany(@RequestBody CreateUpdateCompanyDto createUpdateCompanyDto)
     {
