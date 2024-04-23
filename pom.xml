@@ -147,9 +147,11 @@
 						<exclude>de/telran/transportcompanymanagementsystem/aspect/*</exclude>
 						<exclude>de/telran/transportcompanymanagementsystem/entity/*</exclude>
 						<exclude>de/telran/transportcompanymanagementsystem/dto/*</exclude>
-						<exclude>de/telran/transportcompanymanagementsystem/exception/*</exclude>
+						<exclude>de/telran/transportcompanymanagementsystem/exception/**</exclude>
 						<exclude>de/telran/transportcompanymanagementsystem/mapper/*</exclude>
 						<exclude>de/telran/transportcompanymanagementsystem/model/*</exclude>
+						<exclude>de/telran/transportcompanymanagementsystem/config/*</exclude>
+						<exclude>de/telran/transportcompanymanagementsystem/validation/**</exclude>
 						<exclude>de/telran/transportcompanymanagementsystem/TransportCompanyManagementSystemApplication.class</exclude>
 					</excludes>
 				</configuration>
