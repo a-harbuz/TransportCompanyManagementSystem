@@ -23,11 +23,6 @@
 		</developer>
 	</developers>
 
-<!--	<properties>-->
-<!--		<java.version>17</java.version>-->
-<!--		<project.basedir>"C:\JAVA\TransportCompanyManagementSystem"</project.basedir>-->
-<!--	</properties>-->
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -35,14 +30,14 @@
 			<version>3.2.4</version>
 		</dependency>
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
 		<dependency>
@@ -92,7 +87,6 @@
 			<artifactId>mapstruct-processor</artifactId>
 			<version>1.5.5.Final</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok-mapstruct-binding</artifactId>
@@ -104,12 +98,6 @@
 			<artifactId>javafaker</artifactId>
 			<version>1.0.2</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-maven-plugin</artifactId>
-			<version>3.2.5</version>
-		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.jacoco/org.jacoco.agent -->
 		<dependency>
 			<groupId>org.jacoco</groupId>
@@ -117,8 +105,6 @@
 			<version>0.8.10</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
-
 	</dependencies>
 
 	<build>
@@ -140,39 +126,15 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.10</version>
-				<configuration>
-<!--					<outputDirectory>-->
-<!--						${project.basedir}/target/site-->
-<!--					</outputDirectory>-->
-
-<!--					<excludes>-->
-<!--						<exclude>com/example/hibernatecasacde/aspect/*</exclude>-->
-<!--						<exclude>com/example/hibernatecasacde/controller/exception_handler/*</exclude>-->
-<!--						<exclude>com/example/hibernatecasacde/dto/*</exclude>-->
-<!--						<exclude>com/example/hibernatecasacde/exceptions/*</exclude>-->
-<!--						<exclude>com/example/hibernatecasacde/exceptions/error_messages/*</exclude>-->
-<!--						<exclude>com/example/hibernatecasacde/mapper/*</exclude>-->
-<!--						<exclude>com/example/hibernatecasacde/model/*</exclude>-->
-<!--						<exclude>com/example/hibernatecasacde/TransportCompanyManagementSystemApplication.class</exclude>-->
-<!--					</excludes>-->
-
-				</configuration>
-
 				<executions>
 					<execution>
-						<id>jacoco-initialize</id>
+						<id>prepare-agent</id>
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
 					</execution>
-
 					<execution>
-<!--						<id>jcc-report</id>-->
-<!--						<phase>test</phase>-->
-<!--						<goals>-->
-<!--							<goal>report</goal>-->
-<!--						</goals>-->
-						<id>jacoco-site</id>
+						<id>jcc-report</id>
 						<phase>test</phase>
 						<goals>
 							<goal>report</goal>
@@ -180,8 +142,21 @@
 					</execution>
 				</executions>
 
+				<configuration>
+					<excludes>
+						<exclude>de/telran/transportcompanymanagementsystem/aspect/*</exclude>
+						<exclude>de/telran/transportcompanymanagementsystem/entity/*</exclude>
+						<exclude>de/telran/transportcompanymanagementsystem/dto/*</exclude>
+						<exclude>de/telran/transportcompanymanagementsystem/exception/*</exclude>
+						<exclude>de/telran/transportcompanymanagementsystem/mapper/*</exclude>
+						<exclude>de/telran/transportcompanymanagementsystem/model/*</exclude>
+						<exclude>de/telran/transportcompanymanagementsystem/TransportCompanyManagementSystemApplication.class</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>
+			TransportCompanyManagementSystem
+		</finalName>
 	</build>
-
 </project>

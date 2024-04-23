@@ -6,10 +6,11 @@ spring:
 #    url: ${DATASOURCE.URL}
 #    username: ${DATASOURCE.USERNAME}
 #    password: ${DATASOURCE.PASSWORD}
+
   datasource:
-     url: jdbc:mysql://192.168.2.101:3306/transport_company
-     username: alex
-     password: 1234
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:transport_company}
+    username: ${MYSQL_USER:alex}
+    password: ${MYSQL_PASSWORD:1234}
 
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
