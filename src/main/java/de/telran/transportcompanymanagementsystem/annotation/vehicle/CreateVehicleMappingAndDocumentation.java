@@ -23,7 +23,7 @@ import java.lang.annotation.Target;
         summary = "Add new vehicle",
         description = "Add new vehicle",
         requestBody = @RequestBody(
-                description = "The Vehicle to be created",
+                description = "The vehicle to be created",
                 required = true,
                 content = @Content(
                         mediaType = "application/json",

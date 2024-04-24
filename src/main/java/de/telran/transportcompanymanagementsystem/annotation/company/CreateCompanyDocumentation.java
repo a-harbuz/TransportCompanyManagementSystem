@@ -1,9 +1,10 @@
 package de.telran.transportcompanymanagementsystem.annotation.company;
 
+import de.telran.transportcompanymanagementsystem.entity.Company;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
@@ -17,27 +18,22 @@ import java.lang.annotation.Target;
 @Operation(
         summary = "Create the company",
         description = "Create the company",
-//        parameters = {
-//                @Parameter(
-//                        name = "id",
-//                        description = "The unique UUID identifier of the company",
-//                        required = true,
-//                        in = ParameterIn.PATH,
-//                        schema = @Schema(type = "string", format = "uuid")
-//                )
-//        },
+        requestBody = @RequestBody(
+                description = "The company to be created",
+                required = true,
+                content = @Content(
+                        mediaType = "application/json",
+                        schema = @Schema(implementation = Company.class)
+                )
+        ),
         responses = {
                 @ApiResponse(
-                        responseCode = "200",
-                        description = "The company was successful deleted."
-                ),
-                @ApiResponse(
-                        responseCode = "404",
-                        description = "Company with this ID was not found."
-                ),
-                @ApiResponse(
-                        responseCode = "400",
-                        description = "** It is not UUID format **"
+                        responseCode = "201",
+                        description = "Successfully returned company",
+                        content = @Content(
+                                mediaType = "application/json",
+                                schema = @Schema(implementation = Company.class)
+                        )
                 )
         },
         security = {
