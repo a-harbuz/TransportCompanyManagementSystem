@@ -26,8 +26,8 @@ class VehicleRepositoryTest {
     @Test
     void testGet() {
         Optional<Vehicle> vehicle = vehicleRepository.findById(UUID.fromString(TEST_ID));
-        Assertions.assertTrue(vehicle.isPresent());
-        Assertions.assertEquals(TEST_ID, vehicle.get().getVehicleId().toString());
+        assertTrue(vehicle.isPresent());
+        assertEquals(TEST_ID, vehicle.get().getVehicleId().toString());
     }
     @Test
     void findByCarNumber() {

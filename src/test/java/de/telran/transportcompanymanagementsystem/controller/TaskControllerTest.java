@@ -71,22 +71,22 @@ class TaskControllerTest {
     }
 
     @Test
-    void getTaskByWaybillNumber() {
+    void getTaskForDriverByWaybillNumberTest() {
     }
 
     @Test
-    void getTasksByCompanyNameAndWaybillCostMoreThan() {
+    void getTasksByCompanyNameAndWaybillCostMoreThanTest() {
     }
 
     @Test
-    void createTask() {
+    void createTaskTest() {
     }
 
     @Test
-    void updateTask() {
+    void updateTaskTest() {
     }
 
     @Test
-    void deleteTaskById() {
+    void deleteTaskByIdTest() {
     }
 }

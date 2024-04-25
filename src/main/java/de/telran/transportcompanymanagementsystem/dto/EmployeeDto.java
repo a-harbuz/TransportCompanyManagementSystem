@@ -15,5 +15,4 @@ public class EmployeeDto {
     private boolean isWorking;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Timestamp createdAt;
-
 }

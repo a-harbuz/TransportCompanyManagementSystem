@@ -1,9 +1,10 @@
 package de.telran.transportcompanymanagementsystem.service;
 
-import de.telran.transportcompanymanagementsystem.entity.EmployeeInfo;
+import de.telran.transportcompanymanagementsystem.dto.EmployeeInfoDto;
 import de.telran.transportcompanymanagementsystem.entity.enums.DrivingLicenseCategory;
 import de.telran.transportcompanymanagementsystem.exception.EmployeeNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.errormessage.ErrorMessage;
+import de.telran.transportcompanymanagementsystem.mapper.EmployeeInfoMapper;
 import de.telran.transportcompanymanagementsystem.repository.EmployeeInfoRepository;
 import de.telran.transportcompanymanagementsystem.service.interfaces.EmployeeInfoService;
 import lombok.RequiredArgsConstructor;
@@ -16,22 +17,23 @@ import java.util.UUID;
 public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 
     private final EmployeeInfoRepository employeeInfoRepository;
+    private final EmployeeInfoMapper employeeInfoMapper;
 
     @Override
-    public EmployeeInfo getEmployeeInfoById(String id) {
-        return employeeInfoRepository.findById(UUID.fromString(id))
-                .orElseThrow(()-> new EmployeeNotFoundException(ErrorMessage.EMPLOYEE_NOT_FOUND));
+    public EmployeeInfoDto getEmployeeInfoById(String id) {
+        return employeeInfoMapper.toDto(employeeInfoRepository.findById(UUID.fromString(id))
+                .orElseThrow(()-> new EmployeeNotFoundException(ErrorMessage.EMPLOYEE_NOT_FOUND)));
     }
 
     @Override
-    public List<EmployeeInfo> getEmployeeInfoList() {
-        return employeeInfoRepository.findAll();
+    public List<EmployeeInfoDto> getEmployeeInfoList() {
+        return employeeInfoMapper.toDtoList(employeeInfoRepository.findAll());
     }
 
     @Override
-    public List<EmployeeInfo> getEmployeeInfoNoDriverLicense() {
-        return employeeInfoRepository.findAll().stream()
+    public List<EmployeeInfoDto> getEmployeeInfoNoDriverLicense() {
+        return employeeInfoMapper.toDtoList(employeeInfoRepository.findAll().stream()
                 .filter(x->x.getDrivingLicenseCategory().equals(DrivingLicenseCategory.ABSENT))
-                .toList();
+                .toList());
     }
 }

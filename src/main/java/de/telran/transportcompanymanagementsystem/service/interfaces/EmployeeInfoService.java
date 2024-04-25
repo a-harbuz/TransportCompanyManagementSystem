@@ -1,11 +1,11 @@
 package de.telran.transportcompanymanagementsystem.service.interfaces;
 
-import de.telran.transportcompanymanagementsystem.entity.EmployeeInfo;
+import de.telran.transportcompanymanagementsystem.dto.EmployeeInfoDto;
 
 import java.util.List;
 
 public interface EmployeeInfoService {
-    EmployeeInfo getEmployeeInfoById(String id);
-    List<EmployeeInfo> getEmployeeInfoList();
-    List<EmployeeInfo> getEmployeeInfoNoDriverLicense();
+    EmployeeInfoDto getEmployeeInfoById(String id);
+    List<EmployeeInfoDto> getEmployeeInfoList();
+    List<EmployeeInfoDto> getEmployeeInfoNoDriverLicense();
 }

@@ -32,7 +32,7 @@ class VehicleServiceImplTest {
     private VehicleMapper vehicleMapperMock;
 
     @Test
-    void getVehicleById() {
+    void getVehicleByIdTest() {
         VehicleDto expectedVehicleDto = VehicleDto.builder()
                 .vehicleId(UUID.fromString(TEST_ID))
                 .vehicleType(VehicleType.TRUCK20T)
@@ -54,7 +54,7 @@ class VehicleServiceImplTest {
     }
 
     @Test
-    void getVehicleByCarNumber() {
+    void getVehicleByCarNumberTest() {
         VehicleDto expectedVehicleDto = VehicleDto.builder()
                 .vehicleId(UUID.fromString(TEST_ID))
                 .vehicleType(VehicleType.TRUCK20T)
