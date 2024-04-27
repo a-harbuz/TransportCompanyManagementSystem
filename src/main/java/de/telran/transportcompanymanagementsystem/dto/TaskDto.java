@@ -2,6 +2,7 @@ package de.telran.transportcompanymanagementsystem.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import de.telran.transportcompanymanagementsystem.entity.enums.TaskStatus;
+import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
+@Builder
 public class TaskDto {
     private UUID taskId;
     private LocalDateTime transportationDate;

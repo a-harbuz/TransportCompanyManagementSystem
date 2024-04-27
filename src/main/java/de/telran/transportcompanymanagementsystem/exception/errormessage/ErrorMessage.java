@@ -22,4 +22,5 @@ public class ErrorMessage {
     public static final String TASK_ID_IS_ABSENT = "TaskID is absent.";
     public static final String MAINTENANCE_NOT_FOUND = "Maintenance was not found.";
     public static final String DEFAULT_ROLE_NOT_FOUND = "Default role was not found.";
+    public static final String ERROR_SAVING_PASSWORD = "Error saving password.";
 }

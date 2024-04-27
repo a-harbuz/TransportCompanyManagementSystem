@@ -4,6 +4,8 @@ import de.telran.transportcompanymanagementsystem.dto.CompanyDto;
 import de.telran.transportcompanymanagementsystem.dto.CreateUpdateCompanyDto;
 import de.telran.transportcompanymanagementsystem.entity.Company;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -12,5 +14,11 @@ import java.util.List;
 public interface CompanyMapper {
     List<CompanyDto> toDtoList(List<Company> companies);
     CompanyDto toDto(Company company);
+    @Mappings({
+            @Mapping(target = "createdAt", ignore = true),
+            @Mapping(target = "maintenances", ignore = true),
+            @Mapping(target = "contracts", ignore = true),
+            @Mapping(target = "tasks", ignore = true)
+    })
     Company toEntity (CreateUpdateCompanyDto createCompanyDto);
 }

@@ -4,6 +4,27 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
+    <changeSet author="o.harbuz" id="insert test data into task table">
+        <insert tableName="task">
+            <column name="id" valueComputed="UNHEX('f2efb16973ce49019d28dbf5cc7040c2')"/>
+            <column name="transportation_date" value="2024-04-20"/>
+            <column name="address_from" value="Suite 300 2226 Kub Stravenue, Vanville, WY 80105"/>
+            <column name="address_to" value="Suite 590 03938 Kanisha Skyway, East Lakiesha, DE 15981-7502"/>
+            <column name="weight_cargo" value="2500"/>
+            <column name="waybill_number" value="006"/>
+            <column name="waybill_cost" value="1900"/>
+            <column name="distance_traveled_kilometers" value="150"/>
+            <column name="fuel_costs_traveled" value="60"/>
+            <column name="task_status" value="PLANNED"/>
+            <column name="comment_if_task_canceled" value=""/>
+            <column name="created_at"  value="2024-04-19"/>
+            <column name="contract_id" valueComputed="UNHEX('c8e0d900fcd74182925cfb3a8d010243')"/>
+            <column name="company_id"  valueComputed="UNHEX('2d0cc985ffdc40debe5869eba564fc47')"/>
+            <column name="vehicle_id"  valueComputed="UNHEX('26e41ad9048248089dbbc917631f1b56')"/>
+            <column name="employee_id" valueComputed="UNHEX('a060e1b87c07461985dc32c6a5afa269')"/>
+        </insert>
+    </changeSet>
+
     <changeSet author="o.harbuz" id="insert test data into employee_info table">
         <insert tableName="employee_info">
             <column name="id" valueComputed="UNHEX('6042ec610ea04d0da989c60997db2d59')"/>

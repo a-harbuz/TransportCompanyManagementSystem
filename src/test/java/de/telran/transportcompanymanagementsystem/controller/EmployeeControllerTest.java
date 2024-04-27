@@ -82,19 +82,26 @@ class EmployeeControllerTest {
                 .andExpect(jsonPath("$[3].lastName").isNotEmpty());
     }
 
-//    @Test
-//    void createEmployee() {
-////        EmployeeRegistrationDto employeeRegistrationDto = EntityCreator.getNewEmployeeRegistration();
-////        String requestBody = objectMapper.writeValueAsString(employeeRegistrationDto);
-////        MvcResult mvcResult = mockMvc
-////                .perform(MockMvcRequestBuilders.post("/employee/registration")
-////                        .contentType(MediaType.APPLICATION_JSON)
-////                        .content(requestBody))
-////                .andExpect(status().isOk())
-////                .andExpect(jsonPath("$.operation", is("EMPLOYEE CREATION")))
-////                .andExpect(jsonPath("$.status", is("CREATED")))
-////                .andExpect(jsonPath("$.login", is(employeeRegistrationDto.getLogin())))
-////                .andReturn();
-////        //repeat throw
-//    }
+    @Test
+    void createEmployee() throws Exception {
+//        mockMvc
+//                .perform(MockMvcRequestBuilders.post("/employee/registration")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content("""
+//                                {
+//                                    "firstName" : "Alex1",
+//                                    "lastName" : "new last name",
+//                                    "login" : "alex.n1",
+//                                    "driver" : 1,
+//                                    "address" : "new address",
+//                                    "phone" : "0175-563-54-56",
+//                                    "drivingLicenseCategory" : "B"
+//                                }
+//                                """))
+//                .andDo(print())
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.operation", is("EMPLOYEE CREATION")))
+//                .andExpect(jsonPath("$.status", is("CREATED")))
+//                .andExpect(jsonPath("$.login", is("alex.n1")));
+    }
 }

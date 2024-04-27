@@ -1,5 +1,6 @@
 package util;
 
+import de.telran.transportcompanymanagementsystem.dto.TaskDto;
 import de.telran.transportcompanymanagementsystem.entity.*;
 import de.telran.transportcompanymanagementsystem.entity.enums.*;
 import lombok.experimental.UtilityClass;
@@ -122,6 +123,25 @@ public class EntityCreator {
         return task;
     }
 
+    public static TaskDto getNewTask() {
+        return TaskDto.builder()
+                .taskId(UUID.fromString("f2efb169-73ce-4901-9d28-dbf5cc7040c2"))
+                .transportationDate(LocalDateTime.parse("2024-04-01T00:00:00"))
+                .addressFrom("new address from")
+                .addressTo("new address to")
+                .weightCargo(4000f)
+                .waybillNumber("007")
+                .waybillCost(BigDecimal.valueOf(2000.50))
+                .distanceTraveledKilometers(250)
+                .fuelCostsTraveled(BigDecimal.valueOf(120))
+                .taskStatus(TaskStatus.PLANNED)
+                .contract_id("c8e0d900-fcd7-4182-925c-fb3a8d010243")
+                .company_id ("edebc21f-c4da-4701-85e2-246c86d7aa5c")
+                .vehicle_id("e70c1c8c-4798-42af-8d00-a36e8e804ce7")
+                .employee_id("fc9b6860-e3e9-4634-ab4e-dd35216d52b3")
+                .build();
+    }
+
     public static Role getRole(){
         Role role = new Role();
         role.setRId(UUID.fromString("4faba779-9226-4e9c-a28b-f6a534e95365"));
@@ -135,17 +155,4 @@ public class EntityCreator {
         role.setAuthorityName("DriverAuthority");
         return null;
     }
-
-//    public static EmployeeRegistrationDto getNewEmployeeRegistration(){
-//        return EmployeeRegistrationDto.builder()
-//                .firstName("New")
-//                .lastName("Employee")
-//                .isDriver(true)
-//                .login("superdriver")
-//                .address("test address1")
-//                .phone("0175-234-23-45")
-//                .drivingLicenseCategory(DrivingLicenseCategory.C)
-//                .build();
-//    }
-
 }

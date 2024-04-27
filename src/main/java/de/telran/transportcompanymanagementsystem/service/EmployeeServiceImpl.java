@@ -7,6 +7,7 @@ import de.telran.transportcompanymanagementsystem.dto.EmployeeWithVehicleAndMain
 import de.telran.transportcompanymanagementsystem.entity.Employee;
 import de.telran.transportcompanymanagementsystem.entity.EmployeeInfo;
 import de.telran.transportcompanymanagementsystem.entity.Role;
+import de.telran.transportcompanymanagementsystem.exception.DataNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.EmployeeExistException;
 import de.telran.transportcompanymanagementsystem.exception.EmployeeNotFoundException;
 import de.telran.transportcompanymanagementsystem.exception.RoleNotFoundException;
@@ -25,6 +26,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import org.mindrot.jbcrypt.BCrypt;
 
 @Service
 @RequiredArgsConstructor
@@ -76,7 +78,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         setRole.add(dafaultRole);
         Employee newEmployee = employeeRegistrationMapper.toEntity(employeeRegistrationDto, setRole);
 
+        String originalPassword = newEmployee.getEmployeeInfo().getPassword();
+        String hashedPassword = BCrypt.hashpw(originalPassword, BCrypt.gensalt());
+        newEmployee.getEmployeeInfo().setPassword(hashedPassword);
+
         Employee employeeAfterSaving = employeeRepository.saveAndFlush(newEmployee);
+
+        String hashedPasswordAfterSaving = employeeAfterSaving.getEmployeeInfo().getPassword();
+        //check password
+        if (!BCrypt.checkpw(originalPassword, hashedPasswordAfterSaving)) {
+            throw new DataNotFoundException(ErrorMessage.ERROR_SAVING_PASSWORD);
+        }
+
+        employeeAfterSaving.getEmployeeInfo().setPassword(originalPassword);
         return employeeRegistrationMapper.toDto(employeeAfterSaving);
     }
 

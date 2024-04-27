@@ -11,7 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import util.CheckUuidPattern;
 import util.EntityCreator;
 import static org.hamcrest.Matchers.*;
@@ -64,29 +63,83 @@ class TaskControllerTest {
                 .perform(MockMvcRequestBuilders.get("/task/weightcargo/morethan/10000"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)))
-                .andExpect(MockMvcResultMatchers
-                        .jsonPath("$[0].taskId", matchesPattern(CheckUuidPattern.getUuidPattern())))
-                .andExpect(MockMvcResultMatchers
-                        .jsonPath("$[1].taskId", matchesPattern(CheckUuidPattern.getUuidPattern())));
+                .andExpect(jsonPath("$[0].taskId", matchesPattern(CheckUuidPattern.getUuidPattern())))
+                .andExpect(jsonPath("$[1].taskId", matchesPattern(CheckUuidPattern.getUuidPattern())));
     }
 
     @Test
-    void getTaskForDriverByWaybillNumberTest() {
+    void getTaskForDriverByWaybillNumberTest() throws Exception {
+        Task expectedTask = EntityCreator.getTask();
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/task/fordriver/waybillnumber/004"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.transportationDate",
+                        is(expectedTask.getTransportationDate().toLocalDate().toString())))
+                .andExpect(jsonPath("$.addressFrom", is(expectedTask.getAddressFrom())))
+                .andExpect(jsonPath("$.addressTo", is(expectedTask.getAddressTo())))
+                .andExpect(jsonPath("$.waybillNumber", is(expectedTask.getWaybillNumber())));
     }
 
     @Test
-    void getTasksByCompanyNameAndWaybillCostMoreThanTest() {
+    void getTasksByCompanyNameAndWaybillCostMoreThanTest() throws Exception {
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/task/companyname-waybillcost/Boehm-Klein/9000"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].taskId", matchesPattern(CheckUuidPattern.getUuidPattern())))
+                .andExpect(jsonPath("$[0].waybillNumber", is("003")))
+                .andExpect(jsonPath("$[0].waybillCost", greaterThan(9000.00)));
     }
 
     @Test
-    void createTaskTest() {
+    void createTaskTest() throws Exception {
+//        TaskDto newTaskDto = EntityCreator.getNewTask();
+//        String requestBody = objectMapper.writeValueAsString(newTaskDto);
+//        mockMvc
+//                .perform(MockMvcRequestBuilders.post("/task/new")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(requestBody))
+//                .andDo(print())
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.taskId", matchesPattern(CheckUuidPattern.getUuidPattern())))
+//                .andExpect(jsonPath("$.addressFrom", is(newTaskDto.getAddressFrom())))
+//                .andExpect(jsonPath("$.addressTo", is(newTaskDto.getAddressTo())))
+//                .andExpect(jsonPath("$.waybillNumber", is(newTaskDto.getWaybillNumber())))
+//                .andExpect(jsonPath("$.taskStatus", is(newTaskDto.getTaskStatus().toString())));
     }
 
     @Test
-    void updateTaskTest() {
+    void updateTaskTest() throws Exception {
+        //when(taskServiceMock.update(any(TaskDto.class))).thenReturn(EntityCreator.getNewTask());
+//        mockMvc
+//                .perform(MockMvcRequestBuilders.put("/task/update")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content("""
+//                                {
+//                                    "taskId" : "f2efb169-73ce-4901-9d28-dbf5cc7040c2",
+//                                    "addressTo" : "new address to",
+//                                    "weightCargo" : 4000,
+//                                    "taskStatus" : "PLANNED"
+//                                }
+//                                """))
+//                .andDo(print())
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.taskId", is("f2efb169-73ce-4901-9d28-dbf5cc7040c2")))
+//                .andExpect(jsonPath("$.addressTo", is("new address to")))
+//                .andExpect(jsonPath("$.weightCargo").value(4000))
+//                .andExpect(jsonPath("$.taskStatus", is("PLANNED")));
     }
 
     @Test
-    void deleteTaskByIdTest() {
+    void deleteTaskByIdTest() throws Exception {
+        // for waybillNumber - 005
+        String id = "5e1d09bd-8aed-410b-a51f-2b5c45d909bd";
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/task/" + id))
+                .andExpect(status().isOk())
+                .andDo(print());
+        mockMvc
+                .perform(MockMvcRequestBuilders.delete("/task/delete/" + id))
+                .andExpect(status().isOk());
     }
 }

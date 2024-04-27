@@ -13,7 +13,10 @@ public interface VehicleMapper {
     VehicleDto toDto(Vehicle vehicle);
     List<VehicleDto> toDtoList(List<Vehicle> vehicles);
     @Mappings({
-            @Mapping(target = "createdAt", expression = "java(new Timestamp(System.currentTimeMillis()))")
+            @Mapping(target = "createdAt", expression = "java(new Timestamp(System.currentTimeMillis()))"),
+            @Mapping(target = "vehicleId", ignore = true),
+            @Mapping(target = "maintenances", ignore = true),
+            @Mapping(target = "tasks", ignore = true)
     })
     Vehicle toEntity (CreateVehicleDto createVehicleDto);
 }

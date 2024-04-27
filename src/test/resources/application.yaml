@@ -5,7 +5,6 @@ spring:
   # H2 Datasource
   datasource:
     url: jdbc:h2:mem:dev
-    #url: jdbc:h2:file:./testDB;AUTO_SERVER=TRUE
     username: sa
     password:
     driver-class-name: org.h2.Driver
@@ -20,7 +19,7 @@ spring:
     console:
       enabled: true
 
-   # MySQL Datasource
+  # MySQL Datasource
 #  datasource:
 #    url: jdbc:mysql://localhost:3306/tc_test
 #    username: alex
@@ -29,7 +28,7 @@ spring:
 #  jpa:
 #    database-platform: org.hibernate.dialect.MySQLDialect
 #    hibernate:
-#      ddl-auto: none
+#      ddl-auto: update
 #    show-sql: true
 
   liquibase:
