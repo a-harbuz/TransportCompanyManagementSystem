@@ -45,7 +45,7 @@ public class Contract {
     //Relationships
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id", referencedColumnName = "id")
-    //@JsonIgnore
+    @JsonIgnore
     private Company company;
 
     @OneToMany(mappedBy = "contract", cascade = CascadeType.ALL)

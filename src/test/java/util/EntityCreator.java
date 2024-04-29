@@ -1,6 +1,6 @@
 package util;
 
-import de.telran.transportcompanymanagementsystem.dto.TaskDto;
+import de.telran.transportcompanymanagementsystem.dto.CreateTaskDto;
 import de.telran.transportcompanymanagementsystem.entity.*;
 import de.telran.transportcompanymanagementsystem.entity.enums.*;
 import lombok.experimental.UtilityClass;
@@ -123,8 +123,8 @@ public class EntityCreator {
         return task;
     }
 
-    public static TaskDto getNewTask() {
-        return TaskDto.builder()
+    public static CreateTaskDto getNewTask() {
+        return CreateTaskDto.builder()
                 .taskId(UUID.fromString("f2efb169-73ce-4901-9d28-dbf5cc7040c2"))
                 .transportationDate(LocalDateTime.parse("2024-04-01T00:00:00"))
                 .addressFrom("new address from")

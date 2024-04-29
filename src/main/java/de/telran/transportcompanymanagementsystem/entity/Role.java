@@ -30,7 +30,7 @@ public class Role {
     @JsonIgnore
     private Set<EmployeeInfo> employeeInfos;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     //role_authority - The join table
     @JoinTable(name = "role_authority",
             joinColumns = @JoinColumn(name = "role_id"),

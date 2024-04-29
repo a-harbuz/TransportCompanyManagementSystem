@@ -19,7 +19,7 @@ public interface EmployeeRegistrationMapper {
             @Mapping(target = "firstName", source = "employeeRegistrationDto.firstName"),
             @Mapping(target = "lastName", source = "employeeRegistrationDto.lastName"),
             @Mapping(target = "driver", source = "employeeRegistrationDto.driver"),
-            @Mapping(target = "working", expression = "java(true)"), //ignore = true
+            @Mapping(target = "working", expression = "java(true)"),
             @Mapping(target = "createdAt", expression = "java(new Timestamp(System.currentTimeMillis()))"),
 
             @Mapping(target = "employeeInfo.address", source = "employeeRegistrationDto.address"),

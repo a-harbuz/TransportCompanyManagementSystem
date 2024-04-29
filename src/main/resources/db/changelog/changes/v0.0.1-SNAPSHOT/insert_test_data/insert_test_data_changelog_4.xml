@@ -64,7 +64,7 @@
             <column name="phone" value="0171-619-9624"/>
             <column name="driving_license_category" value="C"/>
             <column name="login" value="blanca.cummings"/>
-            <column name="password" value="22b684ec92deee34712b1056b280b36f2fdab220cc633f6546f81d8be0beb72d"/>
+            <column name="password" value="$2a$10$Lm8sQ5m0ODJDP9qrarNUDO5baRIFcnfwebG708cc/nOXTaH/pMLLu"/>
             <column name="created_at" value="2024-01-15"/>
         </insert>
     </changeSet>

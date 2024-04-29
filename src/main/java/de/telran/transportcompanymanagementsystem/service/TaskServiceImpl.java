@@ -1,5 +1,6 @@
 package de.telran.transportcompanymanagementsystem.service;
 
+import de.telran.transportcompanymanagementsystem.dto.CreateTaskDto;
 import de.telran.transportcompanymanagementsystem.dto.TaskDto;
 import de.telran.transportcompanymanagementsystem.dto.TaskForDriverDto;
 import de.telran.transportcompanymanagementsystem.entity.*;
@@ -30,6 +31,16 @@ public class TaskServiceImpl implements TaskService {
     public TaskDto getTaskById(String id) {
         return taskMapper.toDto(taskRepository.findById(UUID.fromString(id))
                 .orElseThrow(()-> new TaskNotFoundException(ErrorMessage.TASK_NOT_FOUND)));
+    }
+
+    @Override
+    public List<TaskDto> getAllTasks() {
+        List<Task> tasks = taskRepository.findAll();
+        if (!tasks.isEmpty()) {
+            return taskMapper.toDtoList(tasks);
+        } else {
+            throw new TaskNotFoundException(ErrorMessage.TASK_NOT_FOUND);
+        }
     }
 
     @Override
@@ -73,24 +84,24 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public TaskDto create(TaskDto taskDto) {
-        Task task = taskMapper.toEntity(taskDto);
-        if (taskDto.getWaybillNumber() == null) {
+    public TaskDto create(CreateTaskDto createTaskDto) {
+        Task task = taskMapper.toEntity(createTaskDto);
+        if (createTaskDto.getWaybillNumber() == null) {
             throw new DataNotValidException(ErrorMessage.TASK_WAYBILL_CAN_NOT_BE_EMPTY);
-        } else if (taskDto.getWaybillNumber().isEmpty()) {
+        } else if (createTaskDto.getWaybillNumber().isEmpty()) {
             throw new DataNotValidException(ErrorMessage.TASK_WAYBILL_CAN_NOT_BE_EMPTY);
         }
-        Task taskByWaybillNumber = taskRepository.getTaskByWaybillNumber(taskDto.getWaybillNumber());
+        Task taskByWaybillNumber = taskRepository.getTaskByWaybillNumber(createTaskDto.getWaybillNumber());
         if (taskByWaybillNumber != null) {
             throw new DataNotValidException(ErrorMessage.TASK_WAYBILL_NUMBER_EXIST);
         }
-        Contract contract = contractRepository.findById(UUID.fromString(taskDto.getContract_id()))
+        Contract contract = contractRepository.findById(UUID.fromString(createTaskDto.getContract_id()))
                 .orElseThrow(()-> new DataNotFoundException(ErrorMessage.DATA_NOT_FOUND));
-        Company company = companyRepository.findById(UUID.fromString(taskDto.getCompany_id()))
+        Company company = companyRepository.findById(UUID.fromString(createTaskDto.getCompany_id()))
                 .orElseThrow(()-> new DataNotFoundException(ErrorMessage.DATA_NOT_FOUND));
-        Vehicle vehicle = vehicleRepository.findById(UUID.fromString(taskDto.getVehicle_id()))
+        Vehicle vehicle = vehicleRepository.findById(UUID.fromString(createTaskDto.getVehicle_id()))
                 .orElseThrow(()-> new DataNotFoundException(ErrorMessage.DATA_NOT_FOUND));
-        Employee employee = employeeRepository.findById(UUID.fromString(taskDto.getEmployee_id()))
+        Employee employee = employeeRepository.findById(UUID.fromString(createTaskDto.getEmployee_id()))
                 .orElseThrow(()-> new DataNotFoundException(ErrorMessage.DATA_NOT_FOUND));
         task.setContract(contract);
         task.setCompany(company);
@@ -100,45 +111,45 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public TaskDto update(TaskDto taskDto) {
-        if (taskDto.getTaskId()==null)
+    public TaskDto update(CreateTaskDto createTaskDto) {
+        if (createTaskDto.getTaskId()==null)
             throw new TaskNotFoundException(ErrorMessage.TASK_ID_IS_ABSENT);
-        Optional<Task> taskOptional = taskRepository.findById(taskDto.getTaskId());
+        Optional<Task> taskOptional = taskRepository.findById(createTaskDto.getTaskId());
         if (taskOptional.isEmpty()) throw new TaskNotFoundException(ErrorMessage.TASK_NOT_FOUND);
         Task task = taskOptional.get();
-        if (taskDto.getTransportationDate()!=null)
-            task.setTransportationDate(taskDto.getTransportationDate());
-        if (taskDto.getAddressFrom()!=null)
-            task.setAddressFrom(taskDto.getAddressFrom());
-        if (taskDto.getAddressTo()!=null)
-            task.setAddressTo(taskDto.getAddressTo());
-        if (taskDto.getWeightCargo()!=null)
-            task.setWeightCargo(taskDto.getWeightCargo());
-        if (taskDto.getWaybillCost()!=null)
-            task.setWaybillCost(taskDto.getWaybillCost());
-        if (taskDto.getDistanceTraveledKilometers()!=null)
-            task.setDistanceTraveledKilometers(taskDto.getDistanceTraveledKilometers());
-        if (taskDto.getFuelCostsTraveled()!=null)
-            task.setFuelCostsTraveled(taskDto.getFuelCostsTraveled());
-        if (taskDto.getTaskStatus()!=null)
-            task.setTaskStatus(taskDto.getTaskStatus());
-        if (taskDto.getCommentIfTaskCanceled()!=null)
-            task.setCommentIfTaskCanceled(taskDto.getCommentIfTaskCanceled());
+        if (createTaskDto.getTransportationDate()!=null)
+            task.setTransportationDate(createTaskDto.getTransportationDate());
+        if (createTaskDto.getAddressFrom()!=null)
+            task.setAddressFrom(createTaskDto.getAddressFrom());
+        if (createTaskDto.getAddressTo()!=null)
+            task.setAddressTo(createTaskDto.getAddressTo());
+        if (createTaskDto.getWeightCargo()!=null)
+            task.setWeightCargo(createTaskDto.getWeightCargo());
+        if (createTaskDto.getWaybillCost()!=null)
+            task.setWaybillCost(createTaskDto.getWaybillCost());
+        if (createTaskDto.getDistanceTraveledKilometers()!=null)
+            task.setDistanceTraveledKilometers(createTaskDto.getDistanceTraveledKilometers());
+        if (createTaskDto.getFuelCostsTraveled()!=null)
+            task.setFuelCostsTraveled(createTaskDto.getFuelCostsTraveled());
+        if (createTaskDto.getTaskStatus()!=null)
+            task.setTaskStatus(createTaskDto.getTaskStatus());
+        if (createTaskDto.getCommentIfTaskCanceled()!=null)
+            task.setCommentIfTaskCanceled(createTaskDto.getCommentIfTaskCanceled());
         //Checking the presence of the contract_id
-        if (taskDto.getContract_id()!=null)
-            task.setContract(contractRepository.findById(UUID.fromString(taskDto.getContract_id()))
+        if (createTaskDto.getContract_id()!=null)
+            task.setContract(contractRepository.findById(UUID.fromString(createTaskDto.getContract_id()))
                             .orElseThrow(()-> new DataNotFoundException(ErrorMessage.DATA_NOT_FOUND)));
         //Checking the presence of the company_id
-        if (taskDto.getCompany_id()!=null)
-            task.setCompany(companyRepository.findById(UUID.fromString(taskDto.getCompany_id()))
+        if (createTaskDto.getCompany_id()!=null)
+            task.setCompany(companyRepository.findById(UUID.fromString(createTaskDto.getCompany_id()))
                     .orElseThrow(()-> new DataNotFoundException(ErrorMessage.DATA_NOT_FOUND)));
         //Checking the presence of the vehicle_id
-        if (taskDto.getVehicle_id()!=null)
-            task.setVehicle(vehicleRepository.findById(UUID.fromString(taskDto.getVehicle_id()))
+        if (createTaskDto.getVehicle_id()!=null)
+            task.setVehicle(vehicleRepository.findById(UUID.fromString(createTaskDto.getVehicle_id()))
                     .orElseThrow(()-> new DataNotFoundException(ErrorMessage.DATA_NOT_FOUND)));
         //Checking the presence of the employee
-        if (taskDto.getEmployee_id()!=null)
-            task.setEmployee(employeeRepository.findById(UUID.fromString(taskDto.getEmployee_id()))
+        if (createTaskDto.getEmployee_id()!=null)
+            task.setEmployee(employeeRepository.findById(UUID.fromString(createTaskDto.getEmployee_id()))
                     .orElseThrow(()-> new DataNotFoundException(ErrorMessage.DATA_NOT_FOUND)));
         return taskMapper.toDto(taskRepository.saveAndFlush(task));
     }

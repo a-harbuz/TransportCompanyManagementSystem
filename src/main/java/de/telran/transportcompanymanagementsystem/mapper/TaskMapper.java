@@ -1,5 +1,6 @@
 package de.telran.transportcompanymanagementsystem.mapper;
 
+import de.telran.transportcompanymanagementsystem.dto.CreateTaskDto;
 import de.telran.transportcompanymanagementsystem.dto.TaskDto;
 import de.telran.transportcompanymanagementsystem.dto.TaskForDriverDto;
 import de.telran.transportcompanymanagementsystem.entity.Task;
@@ -12,19 +13,11 @@ import java.util.List;
         unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface TaskMapper {
     TaskDto toDto(Task task);
-    @AfterMapping
-    default void getTaskRelatedId(@MappingTarget TaskDto taskDto,
-                                Task task){
-        taskDto.setContract_id(task.getContract().getContractId().toString());
-        taskDto.setCompany_id(task.getCompany().getCompanyId().toString());
-        taskDto.setVehicle_id(task.getVehicle().getVehicleId().toString());
-        taskDto.setEmployee_id(task.getEmployee().getEmployeeId().toString());
-    }
     @Mappings({
             @Mapping(target = "createdAt", expression = "java(new Timestamp(System.currentTimeMillis()))"),
-            @Mapping(target = "weightCargo", expression = "java(Float.valueOf(taskDto.getWeightCargo()))"),
+            @Mapping(target = "weightCargo", expression = "java(Float.valueOf(createTaskDto.getWeightCargo()))"),
     })
-    Task toEntity(TaskDto taskDto);
+    Task toEntity(CreateTaskDto createTaskDto);
     List<TaskDto> toDtoList(List<Task> tasks);
     @Mapping(source = "transportationDate", target = "transportationDate")
     TaskForDriverDto toDtoForDriver(Task task);

@@ -1,5 +1,6 @@
 package de.telran.transportcompanymanagementsystem.controller;
 
+import de.telran.transportcompanymanagementsystem.dto.CreateTaskDto;
 import de.telran.transportcompanymanagementsystem.dto.TaskDto;
 import de.telran.transportcompanymanagementsystem.dto.TaskForDriverDto;
 import de.telran.transportcompanymanagementsystem.service.interfaces.TaskService;
@@ -22,6 +23,12 @@ public class TaskController {
         return taskService.getTaskById(id);
     }
 
+    @GetMapping("/all")
+    public List<TaskDto> getTaskList() {
+        //http://localhost:8080/task/all
+        return taskService.getAllTasks();
+    }
+
     @GetMapping("/fordriver/waybillnumber/{waybillNumber}")
     public TaskForDriverDto getTaskForDriverByWaybillNumber(@PathVariable("waybillNumber") String waybillNumber) {
         //http://localhost:8080/task/fordriver/waybillnumber/001
@@ -42,21 +49,21 @@ public class TaskController {
 
     @GetMapping("/companyname-waybillcost/{companyName}/{waybillCost}")
     public List<TaskDto> getTasksByCompanyNameAndWaybillCostMoreThan(@PathVariable("companyName") String companyName,
-                                                                  @PathVariable("waybillCost") BigDecimal waybillCost) {
+                                                                           @PathVariable("waybillCost") BigDecimal waybillCost) {
         //http://localhost:8080/task/companyname-waybillcost/Boehm-Klein/9000
         return taskService.getTasksByCompanyNameAndWaybillCostMoreThan(companyName,waybillCost);
     }
 
     @PostMapping("/new")
-    public TaskDto createTask(@RequestBody TaskDto taskDto) {
+    public TaskDto createTask(@RequestBody CreateTaskDto createTaskDto) {
         //http://localhost:8080/task/new
-        return taskService.create(taskDto);
+        return taskService.create(createTaskDto);
     }
 
     @PutMapping("/update")
-    public TaskDto updateTask(@RequestBody TaskDto taskDto) {
+    public TaskDto updateTask(@RequestBody CreateTaskDto createTaskDto) {
         //http://localhost:8080/task/update
-        return taskService.update(taskDto);
+        return taskService.update(createTaskDto);
     }
 
     @DeleteMapping("/delete/{id}")

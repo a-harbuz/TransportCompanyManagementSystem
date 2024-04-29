@@ -44,7 +44,7 @@ public class EmployeeInfo {
     @JsonIgnore
     private Employee employee;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "employeeInfo_role",
             joinColumns = @JoinColumn(name = "employeeInfo_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))

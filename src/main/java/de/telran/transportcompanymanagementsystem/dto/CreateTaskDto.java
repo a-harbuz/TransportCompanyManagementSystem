@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class TaskDto {
+public class CreateTaskDto {
     private UUID taskId;
     private LocalDateTime transportationDate;
     private String addressFrom;
@@ -26,8 +26,8 @@ public class TaskDto {
     private String commentIfTaskCanceled;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Timestamp createdAt;
-    private ContractDtoShort contract;
-    private CompanyDto company;
-    private VehicleDto vehicle;
-    private EmployeeDto employee;
+    private String contract_id;
+    private String company_id;
+    private String vehicle_id;
+    private String employee_id;
 }

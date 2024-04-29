@@ -93,7 +93,7 @@ class TaskControllerTest {
 
     @Test
     void createTaskTest() throws Exception {
-//        TaskDto newTaskDto = EntityCreator.getNewTask();
+//        CreateTaskDto newTaskDto = EntityCreator.getNewTask();
 //        String requestBody = objectMapper.writeValueAsString(newTaskDto);
 //        mockMvc
 //                .perform(MockMvcRequestBuilders.post("/task/new")
@@ -110,7 +110,7 @@ class TaskControllerTest {
 
     @Test
     void updateTaskTest() throws Exception {
-        //when(taskServiceMock.update(any(TaskDto.class))).thenReturn(EntityCreator.getNewTask());
+        //when(taskServiceMock.update(any(CreateTaskDto.class))).thenReturn(EntityCreator.getNewTask());
 //        mockMvc
 //                .perform(MockMvcRequestBuilders.put("/task/update")
 //                        .contentType(MediaType.APPLICATION_JSON)
