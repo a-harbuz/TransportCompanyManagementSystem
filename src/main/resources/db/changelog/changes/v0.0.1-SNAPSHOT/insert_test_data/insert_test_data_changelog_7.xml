@@ -32,7 +32,7 @@
     <changeSet author="o.harbuz" id="insert test data into role table">
         <insert tableName="role">
             <column name="id" valueComputed="UNHEX('8e383893aae84084bab730528b64f604')"/>
-            <column name="role_name" value="Owner"/>
+            <column name="role_name" value="ROLE_OWNER"/>
         </insert>
     </changeSet>
 

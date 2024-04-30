@@ -1,6 +1,7 @@
 package de.telran.transportcompanymanagementsystem.controller;
 
-import de.telran.transportcompanymanagementsystem.dto.CreateTaskDto;
+import de.telran.transportcompanymanagementsystem.annotation.task.*;
+import de.telran.transportcompanymanagementsystem.dto.CreateUpdateTaskDto;
 import de.telran.transportcompanymanagementsystem.dto.TaskDto;
 import de.telran.transportcompanymanagementsystem.dto.TaskForDriverDto;
 import de.telran.transportcompanymanagementsystem.service.interfaces.TaskService;
@@ -17,56 +18,66 @@ public class TaskController {
 
     private final TaskService taskService;
 
-    @GetMapping("/{id}")
+    @GetTaskByIdDocumentation(path = "/{id}")
+    //@GetMapping("/{id}")
     public TaskDto getTaskById(@PathVariable("id") String id) {
         //http://localhost:8080/task/9981f28e-540f-4cdd-ac5e-fa256484e91f
         return taskService.getTaskById(id);
     }
 
-    @GetMapping("/all")
+    @GetTaskListDocumentation(path = "/all")
+    //@GetMapping("/all")
     public List<TaskDto> getTaskList() {
         //http://localhost:8080/task/all
         return taskService.getAllTasks();
     }
 
-    @GetMapping("/fordriver/waybillnumber/{waybillNumber}")
+    @GetTaskForDriverByWaybillNumberDocumentation(path = "/fordriver/waybillnumber/{waybillNumber}")
+    //@GetMapping("/fordriver/waybillnumber/{waybillNumber}")
     public TaskForDriverDto getTaskForDriverByWaybillNumber(@PathVariable("waybillNumber") String waybillNumber) {
         //http://localhost:8080/task/fordriver/waybillnumber/001
         return taskService.getTaskForDriverByWaybillNumberDto(waybillNumber);
     }
 
-    @GetMapping("/waybillnumber/{waybillNumber}")
+    //@GetMapping("/waybillnumber/{waybillNumber}")
+    @GetTaskByWaybillNumberDocumentation(path = "/waybillnumber/{waybillNumber}")
     public TaskDto getTaskByWaybillNumber(@PathVariable("waybillNumber") String waybillNumber) {
         //http://localhost:8080/task/waybillnumber/001
         return taskService.getTaskByWaybillNumber(waybillNumber);
     }
 
-    @GetMapping("/weightcargo/morethan/{weight}")
+    //@GetMapping("/weightcargo/morethan/{weight}")
+    @GetTaskByWeightCargoWhenMoreThanDocumentation(path = "/weightcargo/morethan/{weight}")
     public List<TaskDto> getTaskByWeightCargoWhenMoreThan(@PathVariable("weight") Float weight) {
         //http://localhost:8080/task/weightcargo/morethan/10000
         return taskService.getTaskByWeightCargoWhenMoreThan(weight);
     }
 
-    @GetMapping("/companyname-waybillcost/{companyName}/{waybillCost}")
+    @GetTasksByCompanyNameAndWaybillCostMoreThanDocumentation(path =
+            "/companyname-waybillcost/{companyName}/{waybillCost}")
+    //@GetMapping("/companyname-waybillcost/{companyName}/{waybillCost}")
     public List<TaskDto> getTasksByCompanyNameAndWaybillCostMoreThan(@PathVariable("companyName") String companyName,
                                                                            @PathVariable("waybillCost") BigDecimal waybillCost) {
         //http://localhost:8080/task/companyname-waybillcost/Boehm-Klein/9000
         return taskService.getTasksByCompanyNameAndWaybillCostMoreThan(companyName,waybillCost);
     }
 
-    @PostMapping("/new")
-    public TaskDto createTask(@RequestBody CreateTaskDto createTaskDto) {
+    //@PostMapping("/new")
+    @CreateTaskDocumentation(path = "/new")
+    public TaskDto createTask(@RequestBody CreateUpdateTaskDto createUpdateTaskDto) {
         //http://localhost:8080/task/new
-        return taskService.create(createTaskDto);
+        return taskService.create(createUpdateTaskDto);
     }
 
-    @PutMapping("/update")
-    public TaskDto updateTask(@RequestBody CreateTaskDto createTaskDto) {
+    //@PutMapping("/update")
+    @UpdateTaskDocumentation(path = "/update")
+    public TaskDto updateTask(@RequestBody CreateUpdateTaskDto createUpdateTaskDto) {
         //http://localhost:8080/task/update
-        return taskService.update(createTaskDto);
+        return taskService.update(createUpdateTaskDto);
     }
 
-    @DeleteMapping("/delete/{id}")
+    //@DeleteMapping("/delete/{id}")
+    @DeleteTaskByIdDocumentation(path = "/delete/{id}")
     public void deleteTaskById(@PathVariable("id") String id) {
         //http://localhost:8080/task/delete/
         taskService.deleteTaskById(id);

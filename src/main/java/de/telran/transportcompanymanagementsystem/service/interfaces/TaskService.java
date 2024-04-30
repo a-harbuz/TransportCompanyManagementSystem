@@ -1,6 +1,6 @@
 package de.telran.transportcompanymanagementsystem.service.interfaces;
 
-import de.telran.transportcompanymanagementsystem.dto.CreateTaskDto;
+import de.telran.transportcompanymanagementsystem.dto.CreateUpdateTaskDto;
 import de.telran.transportcompanymanagementsystem.dto.TaskDto;
 import de.telran.transportcompanymanagementsystem.dto.TaskForDriverDto;
 
@@ -14,7 +14,7 @@ public interface TaskService {
     List<TaskDto> getTaskByWeightCargoWhenMoreThan (Float weight);
     List<TaskDto> getTasksByCompanyNameAndWaybillCostMoreThan(String companyName, BigDecimal waybillCost);
     TaskForDriverDto getTaskForDriverByWaybillNumberDto (String waybillNumber);
-    TaskDto create(CreateTaskDto createTaskDto);
-    TaskDto update(CreateTaskDto createTaskDto);
+    TaskDto create(CreateUpdateTaskDto createUpdateTaskDto);
+    TaskDto update(CreateUpdateTaskDto createUpdateTaskDto);
     void deleteTaskById(String id);
 }

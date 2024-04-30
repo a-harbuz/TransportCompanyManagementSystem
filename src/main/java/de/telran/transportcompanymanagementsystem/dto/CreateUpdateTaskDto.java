@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class CreateTaskDto {
+public class CreateUpdateTaskDto {
     private UUID taskId;
     private LocalDateTime transportationDate;
     private String addressFrom;

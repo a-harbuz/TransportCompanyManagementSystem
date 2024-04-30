@@ -21,15 +21,15 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @RequestMapping(method = RequestMethod.GET)
 @Operation(
-        summary = "Find vehicle where maintenance cost more or equal value",
-        description = "Find vehicle where maintenance cost more or equal value",
+        summary = "Find vehicle by car number",
+        description = "Getting vehicle by car number",
         parameters = {
                 @Parameter(
                         name = "id",
-                        description = "Maintenance cost",
+                        description = "Car number of vehicle",
                         required = true,
                         in = ParameterIn.PATH,
-                        schema = @Schema(type = "number", format = "BigDecimal")
+                        schema = @Schema(type = "string", format = "string")
                 )
         },
         responses = {
@@ -43,14 +43,14 @@ import java.lang.annotation.Target;
                 ),
                 @ApiResponse(
                         responseCode = "404",
-                        description = "Vehicle with this ID was not found."
+                        description = "Vehicle with this car number was not found."
                 ),
         },
         security = {
                 @SecurityRequirement(name = "safety requirements")
         }
 )
-public @interface GetVehicleWithMaintenanceCostMoreOrEqualMappingAndDocumentation {
+public @interface GetVehicleByCarNumberDocumentation {
     @AliasFor(annotation = RequestMapping.class, attribute = "path")
     String[] path() default {};
 }

@@ -1,10 +1,12 @@
-package de.telran.transportcompanymanagementsystem.annotation.vehicle;
+package de.telran.transportcompanymanagementsystem.annotation.task;
 
+import de.telran.transportcompanymanagementsystem.entity.Task;
 import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -21,12 +23,12 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @RequestMapping(method = RequestMethod.GET)
 @Operation(
-        summary = "Find vehicle by car number",
-        description = "Getting vehicle by car number",
+        summary = "Find task by WaybillNumber",
+        description = "Getting task by WaybillNumber",
         parameters = {
                 @Parameter(
-                        name = "id",
-                        description = "Car number of vehicle",
+                        name = "waybillNumber",
+                        description = "The unique WaybillNumber",
                         required = true,
                         in = ParameterIn.PATH,
                         schema = @Schema(type = "string", format = "string")
@@ -35,22 +37,28 @@ import java.lang.annotation.Target;
         responses = {
                 @ApiResponse(
                         responseCode = "200",
-                        description = "Successfully returned vehicle",
+                        description = "Successfully returned task",
                         content = @Content(
                                 mediaType = "application/json",
-                                schema = @Schema(implementation = Vehicle.class)
+                                schema = @Schema(implementation = Task.class)
                         )
                 ),
                 @ApiResponse(
                         responseCode = "404",
-                        description = "Vehicle with this car number was not found."
-                ),
+                        description = "Task with this argument was not found.",
+                        content = @Content(
+                                mediaType = "application/json",
+                                examples = @ExampleObject(
+                                        value = "{\n  \"message\": \"!!!! Task with this argument was not found.\"\n}"
+                                )
+                        )
+                )
         },
         security = {
                 @SecurityRequirement(name = "safety requirements")
         }
 )
-public @interface GetVehicleByCarNumberMappingAndDocumentation {
+public @interface GetTaskByWaybillNumberDocumentation {
     @AliasFor(annotation = RequestMapping.class, attribute = "path")
     String[] path() default {};
 }
