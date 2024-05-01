@@ -38,17 +38,30 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(auth ->
-                        auth
-                            .requestMatchers(DEVELOPER_LIST).hasRole(DEVELOPER_ROLE)
-                            .requestMatchers(DRIVER_LIST).hasRole(DRIVER_ROLE)
-                            .requestMatchers(MANAGER_LIST).hasRole(MANAGER_ROLE)
-                            .requestMatchers(OWNER_LIST).hasRole(OWNER_ROLE)
-                            .requestMatchers(USER_LIST).hasRole(USER_ROLE)
-                            .anyRequest().authenticated()
-                )
+                .authorizeHttpRequests(auth -> {
+                    auth.requestMatchers(DEVELOPER_LIST).hasRole(DEVELOPER_ROLE);
+                    auth.requestMatchers(DRIVER_LIST).hasRole(DRIVER_ROLE);
+                    auth.requestMatchers(MANAGER_LIST).hasRole(MANAGER_ROLE);
+                    auth.requestMatchers(OWNER_LIST).hasRole(OWNER_ROLE);
+                    auth.requestMatchers(USER_LIST).hasRole(USER_ROLE);
+                    auth.anyRequest().authenticated();
+                })
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults());
         return http.build();
     }
 }
+
+//
+//        http
+//                .authorizeHttpRequests(auth ->
+//        auth
+//        .requestMatchers(DEVELOPER_LIST).hasRole(DEVELOPER_ROLE)
+//                            .requestMatchers(DRIVER_LIST).hasRole(DRIVER_ROLE)
+//                            .requestMatchers(MANAGER_LIST).hasRole(MANAGER_ROLE)
+//                            .requestMatchers(OWNER_LIST).hasRole(OWNER_ROLE)
+//                            .requestMatchers(USER_LIST).hasRole(USER_ROLE)
+//                            .anyRequest().authenticated()
+//                )
+//                        .httpBasic(Customizer.withDefaults())
+//        .formLogin(Customizer.withDefaults());

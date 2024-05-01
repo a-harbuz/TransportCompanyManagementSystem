@@ -6,7 +6,7 @@
 
     <changeSet author="o.harbuz" id="insert test data into employee_info table">
         <insert tableName="employee_info">
-            <column name="id" value="6ba4ed7a-0cd2-4dc9-8761-229ead1683e4"/>
+            <column name="id" valueComputed="UNHEX('6ba4ed7a0cd24dc98761229ead1683e4')"/>
             <column name="address" value="Home Address"/>
             <column name="phone" value="0152-201-3429"/>
             <column name="driving_license_category" value="B"/>
@@ -18,26 +18,26 @@
 
     <changeSet author="o.harbuz" id="insert test data into employee table">
         <insert tableName="employee">
-            <column name="id" value="26d2ef88-18d2-409e-be4f-a612d747acdf"/>
+            <column name="id" valueComputed="UNHEX('26d2ef8818d2409ebe4fa612d747acdf')"/>
             <column name="first_name" value="Alex"/>
             <column name="last_name" value="Developer"/>
             <column name="is_driver" valueBoolean="false"/>
             <column name="is_working" valueBoolean="true"/>
             <column name="created_at" value="2024-01-10"/>
-            <column name="employee_info_id" value="6ba4ed7a-0cd2-4dc9-8761-229ead1683e4"/>
+            <column name="employee_info_id" valueComputed="UNHEX('6ba4ed7a0cd24dc98761229ead1683e4')"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into role table">
         <insert tableName="role">
-            <column name="id" value="f8800a8d-6562-4ccb-bfeb-986a0363939d"/>
+            <column name="id" valueComputed="UNHEX('f8800a8d65624ccbbfeb986a0363939d')"/>
             <column name="role_name" value="ROLE_DEVELOPER"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into authority table">
         <insert tableName="authority">
-            <column name="id" value="119a62de-cb2e-4368-9aab-c38fb89da5f3"/>
+            <column name="id" valueComputed="UNHEX('119a62decb2e43689aabc38fb89da5f3')"/>
             <column name="authority_name" value="DeveloperAuthority"/>
         </insert>
     </changeSet>
@@ -46,16 +46,15 @@
     <changeSet author="o.harbuz" id="insert test data into employee_info_role table">
         <insert tableName="employee_info_role">
             <!-- Developer -->
-            <column name="employee_info_id"  value="6ba4ed7a-0cd2-4dc9-8761-229ead1683e4"/>
-            <column name="role_id" value="f8800a8d-6562-4ccb-bfeb-986a0363939d"/>
+            <column name="employee_info_id"  valueComputed="UNHEX('6ba4ed7a0cd24dc98761229ead1683e4')"/>
+            <column name="role_id" valueComputed="UNHEX('f8800a8d65624ccbbfeb986a0363939d')"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into role_authority table">
         <insert tableName="role_authority">
-            <column name="role_id" value="f8800a8d-6562-4ccb-bfeb-986a0363939d"/>
-            <column name="authority_id" value="119a62de-cb2e-4368-9aab-c38fb89da5f3"/>
+            <column name="role_id" valueComputed="UNHEX('f8800a8d65624ccbbfeb986a0363939d')"/>
+            <column name="authority_id" valueComputed="UNHEX('119a62decb2e43689aabc38fb89da5f3')"/>
         </insert>
     </changeSet>
-
 </databaseChangeLog>

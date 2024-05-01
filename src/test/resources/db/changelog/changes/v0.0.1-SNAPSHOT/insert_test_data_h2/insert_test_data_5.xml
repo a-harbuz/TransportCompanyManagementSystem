@@ -6,7 +6,7 @@
 
     <changeSet author="o.harbuz" id="insert test data into task table">
         <insert tableName="task">
-            <column name="id" value="5e1d09bd8aed410ba51f2b5c45d909bd"/>
+            <column name="id" value="5e1d09bd-8aed-410b-a51f-2b5c45d909bd"/>
             <column name="transportation_date" value="2024-03-22"/>
             <column name="address_from" value="4541 Franecki Road, Darciburgh, AZ 59194"/>
             <column name="address_to" value="63180 Katherin Stravenue, Solfurt, VA 46136-8195"/>
@@ -18,22 +18,22 @@
             <column name="task_status" value="PLANNED"/>
             <column name="comment_if_task_canceled" value=""/>
             <column name="created_at"  value="2024-03-21"/>
-            <column name="contract_id" value="c8e0d900fcd74182925cfb3a8d010243"/>
-            <column name="company_id"  value="2d0cc985ffdc40debe5869eba564fc47"/>
-            <column name="vehicle_id"  value="26e41ad9048248089dbbc917631f1b56"/>
-            <column name="employee_id" value="a060e1b87c07461985dc32c6a5afa269"/>
+            <column name="contract_id" value="c8e0d900-fcd7-4182-925c-fb3a8d010243"/>
+            <column name="company_id"  value="2d0cc985-ffdc-40de-be58-69eba564fc47"/>
+            <column name="vehicle_id"  value="26e41ad9-0482-4808-9dbb-c917631f1b56"/>
+            <column name="employee_id" value="a060e1b8-7c07-4619-85dc-32c6a5afa269"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into employee_info table">
         <insert tableName="employee_info">
             <!-- Manager -->
-            <column name="id" value="a7d61f3057c341ca8c7d763b888af200"/>
+            <column name="id" value="a7d61f30-57c3-41ca-8c7d-763b888af200"/>
             <column name="address" value="2426 Melodi Ridges, Adamsfort, ME 96664"/>
             <column name="phone" value="0172-619-89624"/>
             <column name="driving_license_category" value="ABSENT"/>
             <column name="login" value="duane.koepp"/>
-            <column name="password" value="bb9549a3f63952c52f0ba5f09c0c13313fc12310be011f079720c9c3a413f19a"/>
+            <column name="password" value="$2a$10$azLML6q1FHLSXi.ftAziWOSK5LAKrgwSacfAqSCbHEoq.vkMTz.tS"/>
             <column name="created_at" value="2024-02-15"/>
         </insert>
     </changeSet>
@@ -41,26 +41,26 @@
     <changeSet author="o.harbuz" id="insert test data into employee table">
         <insert tableName="employee">
             <!-- Manager -->
-            <column name="id" value="1c9859bd8d9b49e088d758f8f3c1c4b3"/>
+            <column name="id" value="1c9859bd-8d9b-49e0-88d7-58f8f3c1c4b3"/>
             <column name="first_name" value="Andera"/>
             <column name="last_name" value="Emard"/>
             <column name="is_driver" valueBoolean="false"/>
             <column name="is_working" valueBoolean="true"/>
             <column name="created_at" value="2024-02-15"/>
-            <column name="employee_info_id" value="a7d61f3057c341ca8c7d763b888af200"/>
+            <column name="employee_info_id" value="a7d61f30-57c3-41ca-8c7d-763b888af200"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into role table">
         <insert tableName="role">
-            <column name="id" value="b55cbf0930f943c7bdada095a3aa5c08"/>
+            <column name="id" value="b55cbf09-30f9-43c7-bdad-a095a3aa5c08"/>
             <column name="role_name" value="Manager"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into authority table">
         <insert tableName="authority">
-            <column name="id" value="3635cf638a8a452d9054d2ffbaa31640"/>
+            <column name="id" value="3635cf63-8a8a-452d-9054-d2ffbaa31640"/>
             <column name="authority_name" value="ManagerAuthority"/>
         </insert>
     </changeSet>
@@ -69,15 +69,15 @@
     <changeSet author="o.harbuz" id="insert test data into employee_info_role table">
         <insert tableName="employee_info_role">
             <!-- Manager -->
-            <column name="employee_info_id" value="a7d61f3057c341ca8c7d763b888af200"/>
-            <column name="role_id" value="b55cbf0930f943c7bdada095a3aa5c08"/>
+            <column name="employee_info_id" value="a7d61f30-57c3-41ca-8c7d-763b888af200"/>
+            <column name="role_id" value="b55cbf09-30f9-43c7-bdad-a095a3aa5c08"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into role_authority table">
         <insert tableName="role_authority">
-            <column name="role_id" value="b55cbf0930f943c7bdada095a3aa5c08"/>
-            <column name="authority_id" value="3635cf638a8a452d9054d2ffbaa31640"/>
+            <column name="role_id" value="b55cbf09-30f9-43c7-bdad-a095a3aa5c08"/>
+            <column name="authority_id" value="3635cf63-8a8a-452d-9054-d2ffbaa31640"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

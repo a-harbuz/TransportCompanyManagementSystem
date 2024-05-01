@@ -6,7 +6,7 @@
 
     <changeSet author="o.harbuz" id="insert test data into vehicle table">
         <insert tableName="vehicle">
-            <column name="id" value="9a04a59b940f4e2cbe405d2366b3e7b1"/>
+            <column name="id" value="9a04a59b-940f-4e2c-be40-5d2366b3e7b1"/>
             <column name="vehicle_type" value="TRUCK10T"/>
             <column name="name" value="VOLVO"/>
             <column name="model" value="XC90"/>
@@ -21,7 +21,7 @@
 
     <changeSet author="o.harbuz" id="insert test data into company table">
         <insert tableName="company">
-            <column name="id" value="0a8de57b4ac343f99ab477784de2554a"/>
+            <column name="id" value="0a8de57b-4ac3-43f9-9ab4-77784de2554a"/>
             <column name="company_name" value="Boehm-Klein"/>
             <column name="contact_first_name" value="Christel"/>
             <column name="contact_last_name" value="Waters"/>
@@ -34,37 +34,37 @@
 
     <changeSet author="o.harbuz" id="insert test data into maintenance table">
         <insert tableName="maintenance">
-            <column name="id" value="1d8c0c4de54f4ea7b6ba3640ddc2aa06"/>
+            <column name="id" value="1d8c0c4d-e54f-4ea7-b6ba-3640ddc2aa06"/>
             <column name="service_type" value="REPAIR_CHASSIS"/>
             <column name="maintenance_cost" value="654.24"/>
             <column name="maintenance_kilometers" value="71400"/>
             <column name="created_at" value="2024-02-03"/>
-            <column name="vehicle_id" value="9a04a59b940f4e2cbe405d2366b3e7b1"/>
-            <column name="company_id" value="0a8de57b4ac343f99ab477784de2554a"/>
+            <column name="vehicle_id" value="9a04a59b-940f-4e2c-be40-5d2366b3e7b1"/>
+            <column name="company_id" value="0a8de57b-4ac3-43f9-9ab4-77784de2554a"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into contract table">
         <insert tableName="contract">
-            <column name="id" value="ea463ea5d698415b96fd942a97e291ff"/>
+            <column name="id" value="ea463ea5-d698-415b-96fd-942a97e291ff"/>
             <column name="contract_number" value="003"/>
             <column name="contract_name" value="перевозка задвижки"/>
             <column name="cost_transportation_under_contract" value="5000"/>
             <column name="total_cost_transported_goods" value="30000"/>
             <column name="contract_status" value="COMPLETED"/>
             <column name="created_at" value="2024-03-02"/>
-            <column name="company_id" value="0a8de57b4ac343f99ab477784de2554a"/>
+            <column name="company_id" value="0a8de57b-4ac3-43f9-9ab4-77784de2554a"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into employee_info table">
         <insert tableName="employee_info">
-            <column name="id" value="df3fad1fd39a49278c7d3758f5857ba9"/>
+            <column name="id" value="df3fad1f-d39a-4927-8c7d-3758f5857ba9"/>
             <column name="address" value="Apt. 083 618 Hershel Grove, Kautzermouth, DE 41437-4510"/>
             <column name="phone" value="037-133-8105 x528"/>
             <column name="driving_license_category" value="C1"/>
             <column name="login" value="dena.larson"/>
-            <column name="password" value="6837380f8398025c9d67cc6832a9bed7cf16f5d86034ec4cdf4a32d9036db9b1"/>
+            <column name="password" value="$2a$10$tnjg8xRre7MNYbc2rKgwUeJ6JbLODdGKqZmwquiA/xpOWJd3tfdyy"/>
             <column name="created_at" value="2024-02-12"/>
 
         </insert>
@@ -72,19 +72,19 @@
 
     <changeSet author="o.harbuz" id="insert test data into employee table">
         <insert tableName="employee">
-            <column name="id" value="7e9521f8d9bb49788349e8e6c779c15e"/>
+            <column name="id" value="7e9521f8-d9bb-4978-8349-e8e6c779c15e"/>
             <column name="first_name" value="Ashely"/>
             <column name="last_name" value="Schaden"/>
             <column name="is_driver" valueBoolean="true"/>
             <column name="is_working" valueBoolean="true"/>
             <column name="created_at" value="2024-02-12"/>
-            <column name="employee_info_id" value="df3fad1fd39a49278c7d3758f5857ba9"/>
+            <column name="employee_info_id" value="df3fad1f-d39a-4927-8c7d-3758f5857ba9"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into task table">
         <insert tableName="task">
-            <column name="id" value="9981f28e540f4cddac5efa256484e91f"/>
+            <column name="id" value="9981f28e-540f-4cdd-ac5e-fa256484e91f"/>
             <column name="transportation_date" value="2024-03-07"/>
             <column name="address_from" value="136 Clora Via, Lakinborough, OH 95033-4879"/>
             <column name="address_to" value="27017 Elliot Common, Port Renea, NM 22085-4819"/>
@@ -96,18 +96,18 @@
             <column name="task_status" value="COMPLETED"/>
             <column name="comment_if_task_canceled" value=""/>
             <column name="created_at"  value="2024-03-15"/>
-            <column name="contract_id" value="ea463ea5d698415b96fd942a97e291ff"/>
-            <column name="company_id"  value="0a8de57b4ac343f99ab477784de2554a"/>
-            <column name="vehicle_id"  value="9a04a59b940f4e2cbe405d2366b3e7b1"/>
-            <column name="employee_id" value="7e9521f8d9bb49788349e8e6c779c15e"/>
+            <column name="contract_id" value="ea463ea5-d698-415b-96fd-942a97e291ff"/>
+            <column name="company_id"  value="0a8de57b-4ac3-43f9-9ab4-77784de2554a"/>
+            <column name="vehicle_id"  value="9a04a59b-940f-4e2c-be40-5d2366b3e7b1"/>
+            <column name="employee_id" value="7e9521f8-d9bb-4978-8349-e8e6c779c15e"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into employee_info_role table">
         <insert tableName="employee_info_role">
             <!-- Driver -->
-            <column name="employee_info_id"  value="df3fad1fd39a49278c7d3758f5857ba9"/>
-            <column name="role_id" value="4faba77992264e9ca28bf6a534e95365"/>
+            <column name="employee_info_id"  value="df3fad1f-d39a-4927-8c7d-3758f5857ba9"/>
+            <column name="role_id" value="4faba779-9226-4e9c-a28b-f6a534e95365"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

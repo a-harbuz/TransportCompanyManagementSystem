@@ -38,6 +38,7 @@ public class RoleAuthList {
     };
 
     public static final String[] DEVELOPER_LIST = {
+            "/company/update",
             "/**"
     };
 

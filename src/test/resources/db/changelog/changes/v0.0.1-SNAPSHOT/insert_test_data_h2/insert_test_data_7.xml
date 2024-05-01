@@ -6,12 +6,12 @@
 
     <changeSet author="o.harbuz" id="insert test data into employee_info table">
         <insert tableName="employee_info">
-            <column name="id" value="37d7a60f511d4e2a9d40d46cacadd2d1"/>
+            <column name="id" value="37d7a60f-511d-4e2a-9d40-d46cacadd2d1"/>
             <column name="address" value=" Fadel Field 5, 51100 Germany"/>
             <column name="phone" value="0175-946-0375"/>
             <column name="driving_license_category" value="B"/>
             <column name="login" value="hans.wolf"/>
-            <column name="password" value="67cdd77dd2722577494d6e069f7c53bd84169db9991c23d8682cc8f84028fc6e"/>
+            <column name="password" value="$2a$10$QfPLB1n55scKtZRw5oG2w.nUvULq35y91/uZWvE6G98Pk9DV4WNNa"/>
             <column name="created_at" value="2024-01-03"/>
         </insert>
     </changeSet>
@@ -19,26 +19,26 @@
     <changeSet author="o.harbuz" id="insert test data into employee table">
         <insert tableName="employee">
             <!-- Owner -->
-            <column name="id" value="17a07b6345264ad19b1e5af6bbbe93c7"/>
+            <column name="id" value="17a07b63-4526-4ad1-9b1e-5af6bbbe93c7"/>
             <column name="first_name" value="Hans"/>
             <column name="last_name" value="Wolf"/>
             <column name="is_driver" valueBoolean="false"/>
             <column name="is_working" valueBoolean="true"/>
             <column name="created_at" value="2024-01-03"/>
-            <column name="employee_info_id" value="37d7a60f511d4e2a9d40d46cacadd2d1"/>
+            <column name="employee_info_id" value="37d7a60f-511d-4e2a-9d40-d46cacadd2d1"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into role table">
         <insert tableName="role">
-            <column name="id" value="8e383893aae84084bab730528b64f604"/>
+            <column name="id" value="8e383893-aae8-4084-bab7-30528b64f604"/>
             <column name="role_name" value="Owner"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into authority table">
         <insert tableName="authority">
-            <column name="id" value="15d019054c9540209decf28c41bf8f36"/>
+            <column name="id" value="15d01905-4c95-4020-9dec-f28c41bf8f36"/>
             <column name="authority_name" value="OwnerAuthority"/>
         </insert>
     </changeSet>
@@ -46,16 +46,16 @@
     <changeSet author="o.harbuz" id="insert test data into employee_info_role table">
         <insert tableName="employee_info_role">
             <!-- Owner -->
-            <column name="employee_info_id" value="37d7a60f511d4e2a9d40d46cacadd2d1"/>
-            <column name="role_id" value="8e383893aae84084bab730528b64f604"/>
+            <column name="employee_info_id" value="37d7a60f-511d-4e2a-9d40-d46cacadd2d1"/>
+            <column name="role_id" value="8e383893-aae8-4084-bab7-30528b64f604"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into role_authority table">
         <insert tableName="role_authority">
             <!-- Owner -->
-            <column name="role_id" value="8e383893aae84084bab730528b64f604"/>
-            <column name="authority_id" value="15d019054c9540209decf28c41bf8f36"/>
+            <column name="role_id" value="8e383893-aae8-4084-bab7-30528b64f604"/>
+            <column name="authority_id" value="15d01905-4c95-4020-9dec-f28c41bf8f36"/>
         </insert>
     </changeSet>
 

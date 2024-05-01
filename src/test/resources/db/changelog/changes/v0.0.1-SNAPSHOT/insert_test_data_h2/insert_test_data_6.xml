@@ -6,7 +6,7 @@
 
     <changeSet author="o.harbuz" id="insert test data into task table">
         <insert tableName="task">
-            <column name="id" value="f2efb16973ce49019d28dbf5cc7040c2"/>
+            <column name="id" value="f2efb169-73ce-4901-9d28-dbf5cc7040c2"/>
             <column name="transportation_date" value="2024-04-20"/>
             <column name="address_from" value="Suite 300 2226 Kub Stravenue, Vanville, WY 80105"/>
             <column name="address_to" value="Suite 590 03938 Kanisha Skyway, East Lakiesha, DE 15981-7502"/>
@@ -18,21 +18,21 @@
             <column name="task_status" value="PLANNED"/>
             <column name="comment_if_task_canceled" value=""/>
             <column name="created_at"  value="2024-04-19"/>
-            <column name="contract_id" value="c8e0d900fcd74182925cfb3a8d010243"/>
-            <column name="company_id"  value="2d0cc985ffdc40debe5869eba564fc47"/>
-            <column name="vehicle_id"  value="26e41ad9048248089dbbc917631f1b56"/>
-            <column name="employee_id" value="a060e1b87c07461985dc32c6a5afa269"/>
+            <column name="contract_id" value="c8e0d900-fcd7-4182-925c-fb3a8d010243"/>
+            <column name="company_id"  value="2d0cc985-ffdc-40de-be58-69eba564fc47"/>
+            <column name="vehicle_id"  value="26e41ad9-0482-4808-9dbb-c917631f1b56"/>
+            <column name="employee_id" value="a060e1b8-7c07-4619-85dc-32c6a5afa269"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into employee_info table">
         <insert tableName="employee_info">
-            <column name="id" value="6042ec610ea04d0da989c60997db2d59"/>
+            <column name="id" value="6042ec61-0ea0-4d0d-a989-c60997db2d59"/>
             <column name="address" value="Apt. 338 2736 Fadel Field, Luzstad, RI 67004-5141"/>
             <column name="phone" value="0173-619-88624"/>
             <column name="driving_license_category" value="ABSENT"/>
             <column name="login" value="iovanna.euschke"/>
-            <column name="password" value="78c94954ac401b84df3d2b25fe60db3fd441330b93c8f7f126e0924788468697"/>
+            <column name="password" value="$2a$10$Uiqdemd2Z1SxfMEUXUJ8We6VWLL7qWLLj4rm/BSvsw07ke4nFoaN."/>
             <column name="created_at" value="2024-02-15"/>
         </insert>
     </changeSet>
@@ -40,21 +40,21 @@
     <changeSet author="o.harbuz" id="insert test data into employee table">
         <insert tableName="employee">
             <!-- Manager, fired -->
-            <column name="id" value="89ecc2c5c437464aaf1827b08d0768ce"/>
+            <column name="id" value="89ecc2c5-c437-464a-af18-27b08d0768ce"/>
             <column name="first_name" value="Giovanna"/>
             <column name="last_name" value="Leuschke"/>
             <column name="is_driver" valueBoolean="false"/>
             <column name="is_working" valueBoolean="false"/>
             <column name="created_at" value="2024-01-03"/>
-            <column name="employee_info_id" value="6042ec610ea04d0da989c60997db2d59"/>
+            <column name="employee_info_id" value="6042ec61-0ea0-4d0d-a989-c60997db2d59"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into employee_info_role table">
         <insert tableName="employee_info_role">
             <!-- Manager -->
-            <column name="employee_info_id" value="6042ec610ea04d0da989c60997db2d59"/>
-            <column name="role_id" value="b55cbf0930f943c7bdada095a3aa5c08"/>
+            <column name="employee_info_id" value="6042ec61-0ea0-4d0d-a989-c60997db2d59"/>
+            <column name="role_id" value="b55cbf09-30f9-43c7-bdad-a095a3aa5c08"/>
         </insert>
     </changeSet>
 

@@ -10,7 +10,9 @@ import de.telran.transportcompanymanagementsystem.mapper.CompanyMapper;
 import de.telran.transportcompanymanagementsystem.repository.CompanyRepository;
 import de.telran.transportcompanymanagementsystem.service.interfaces.CompanyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -58,6 +60,8 @@ public class CompanyServiceImpl  implements CompanyService {
     }
 
     @Override
+    @Transactional
+    @PreAuthorize("hasRole('ROLE_DEVELOPER')")
     public CompanyDto updateCompanyById(CreateUpdateCompanyDto createUpdateCompanyDto) {
         if (createUpdateCompanyDto.getCompanyId()==null)
             throw new CompanyNotFoundException(ErrorMessage.COMPANY_ID_IS_ABSENT);
@@ -80,6 +84,7 @@ public class CompanyServiceImpl  implements CompanyService {
     }
 
     @Override
+    @Transactional
     public void deleteCompanyById(String id) {
         companyRepository.findById(UUID.fromString(id))
                 .orElseThrow(()-> new CompanyNotFoundException(ErrorMessage.COMPANY_NOT_FOUND));
@@ -87,6 +92,7 @@ public class CompanyServiceImpl  implements CompanyService {
     }
 
     @Override
+    @Transactional
     public CompanyDto create(CreateUpdateCompanyDto createUpdateCompanyDto) {
         if (createUpdateCompanyDto.getCompanyName().isEmpty())
             throw new CompanyBadRequestException(ErrorMessage.COMPANY_NAME_CAN_NOT_BE_EMPTY);

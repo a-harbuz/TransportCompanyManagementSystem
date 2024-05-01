@@ -6,7 +6,7 @@
 
     <changeSet author="o.harbuz" id="insert test data into vehicle table">
         <insert tableName="vehicle">
-            <column name="id" value="21679aa7c43b468d83188090227c4acb"/>
+            <column name="id" value="21679aa7-c43b-468d-8318-8090227c4acb"/>
             <column name="vehicle_type" value="TRUCK5T"/>
             <column name="name" value="Mercedes-Benz"/>
             <column name="model" value="Actros"/>
@@ -21,7 +21,7 @@
 
     <changeSet author="o.harbuz" id="insert test data into company table">
         <insert tableName="company">
-            <column name="id" value="875eeb54d18a4cfc8efcd984c8c362ff"/>
+            <column name="id" value="875eeb54-d18a-4cfc-8efc-d984c8c362ff"/>
             <column name="company_name" value="Haley-Stoltenberg"/>
             <column name="contact_first_name" value="Carlo"/>
             <column name="contact_last_name" value="Mills"/>
@@ -34,56 +34,56 @@
 
     <changeSet author="o.harbuz" id="insert test data into maintenance table">
         <insert tableName="maintenance">
-            <column name="id" value="f52182cfa76b46bd934f08c44e62fdf7"/>
+            <column name="id" value="f52182cf-a76b-46bd-934f-08c44e62fdf7"/>
             <column name="service_type" value="REPAIR_ELECTRICAL"/>
             <column name="maintenance_cost" value="740.50"/>
             <column name="maintenance_kilometers" value="90000"/>
             <column name="created_at" value="2024-03-09"/>
-            <column name="vehicle_id" value="21679aa7c43b468d83188090227c4acb"/>
-            <column name="company_id" value="875eeb54d18a4cfc8efcd984c8c362ff"/>
+            <column name="vehicle_id" value="21679aa7-c43b-468d-8318-8090227c4acb"/>
+            <column name="company_id" value="875eeb54-d18a-4cfc-8efc-d984c8c362ff"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into contract table">
         <insert tableName="contract">
-            <column name="id" value="ca07e8689e3a4df7accac655321ad378"/>
+            <column name="id" value="ca07e868-9e3a-4df7-acca-c655321ad378"/>
             <column name="contract_number" value="004"/>
             <column name="contract_name" value="перевозка комплектов мебели"/>
             <column name="cost_transportation_under_contract" value="5000"/>
             <column name="total_cost_transported_goods" value="30000"/>
             <column name="contract_status" value="REFUSAL"/>
             <column name="created_at" value="2024-03-05"/>
-            <column name="company_id" value="875eeb54d18a4cfc8efcd984c8c362ff"/>
+            <column name="company_id" value="875eeb54-d18a-4cfc-8efc-d984c8c362ff"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into employee_info table">
         <insert tableName="employee_info">
-            <column name="id" value="18907be0b30749d68f4c27f9c26589d4"/>
+            <column name="id" value="18907be0-b307-49d6-8f4c-27f9c26589d4"/>
             <column name="address" value="319 Cordell Square, Kazukoside, DE 54119-3469"/>
             <column name="phone" value="0171-619-9624"/>
             <column name="driving_license_category" value="C"/>
             <column name="login" value="blanca.cummings"/>
-            <column name="password" value="22b684ec92deee34712b1056b280b36f2fdab220cc633f6546f81d8be0beb72d"/>
+            <column name="password" value="$2a$10$Lm8sQ5m0ODJDP9qrarNUDO5baRIFcnfwebG708cc/nOXTaH/pMLLu"/>
             <column name="created_at" value="2024-01-15"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into employee table">
         <insert tableName="employee">
-            <column name="id" value="4534a8949a50463bbc065840689efe9a"/>
+            <column name="id" value="4534a894-9a50-463b-bc06-5840689efe9a"/>
             <column name="first_name" value="Rickey"/>
             <column name="last_name" value="Schowalter"/>
             <column name="is_driver" valueBoolean="true"/>
             <column name="is_working" valueBoolean="true"/>
             <column name="created_at" value="2024-01-15"/>
-            <column name="employee_info_id" value="18907be0b30749d68f4c27f9c26589d4"/>
+            <column name="employee_info_id" value="18907be0-b307-49d6-8f4c-27f9c26589d4"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into task table">
         <insert tableName="task">
-            <column name="id" value="0ebb81607f5c410d8a0013e6837b8a16"/>
+            <column name="id" value="0ebb8160-7f5c-410d-8a00-13e6837b8a16"/>
             <column name="transportation_date" value="2024-03-12"/>
             <column name="address_from" value="Suite 029 4039 Pfeffer Keys, West Wilfordfurt, NE 11123"/>
             <column name="address_to" value="Apt. 728 1039 Fritsch Garden, Alfredmouth, AR 04647"/>
@@ -95,18 +95,18 @@
             <column name="task_status" value="CANCELLED"/>
             <column name="comment_if_task_canceled" value="The car broke down on the way."/>
             <column name="created_at"  value="2024-03-02"/>
-            <column name="contract_id" value="ca07e8689e3a4df7accac655321ad378"/>
-            <column name="company_id"  value="875eeb54d18a4cfc8efcd984c8c362ff"/>
-            <column name="vehicle_id"  value="21679aa7c43b468d83188090227c4acb"/>
-            <column name="employee_id" value="4534a8949a50463bbc065840689efe9a"/>
+            <column name="contract_id" value="ca07e868-9e3a-4df7-acca-c655321ad378"/>
+            <column name="company_id"  value="875eeb54-d18a-4cfc-8efc-d984c8c362ff"/>
+            <column name="vehicle_id"  value="21679aa7-c43b-468d-8318-8090227c4acb"/>
+            <column name="employee_id" value="4534a894-9a50-463b-bc06-5840689efe9a"/>
         </insert>
     </changeSet>
 
     <changeSet author="o.harbuz" id="insert test data into employee_info_role table">
         <insert tableName="employee_info_role">
             <!-- Driver -->
-            <column name="employee_info_id"  value="18907be0b30749d68f4c27f9c26589d4"/>
-            <column name="role_id" value="4faba77992264e9ca28bf6a534e95365"/>
+            <column name="employee_info_id"  value="18907be0-b307-49d6-8f4c-27f9c26589d4"/>
+            <column name="role_id" value="4faba779-9226-4e9c-a28b-f6a534e95365"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
