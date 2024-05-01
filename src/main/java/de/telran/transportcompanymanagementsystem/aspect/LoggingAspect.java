@@ -30,11 +30,13 @@ public class LoggingAspect {
             request = attributes.getRequest();
         }
         if (request != null) {
-            log.info("NEW REQUEST:\n" +
-                            "IP : {}\n" +
-                            "URL : {}\n" +
-                            "HTTP_METHOD : {}\n" +
-                            "CONTROLLER_METHOD : {}.{}",
+            log.info("""
+                        NEW REQUEST:
+                        IP : {}
+                        URL : {}
+                        HTTP_METHOD : {}
+                        CONTROLLER_METHOD : {}.{}
+                        """,
                     request.getRemoteAddr(),
                     request.getRequestURL().toString(),
                     request.getMethod(),

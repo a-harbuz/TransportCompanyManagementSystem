@@ -12,9 +12,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.security.test.context.support.WithMockUser;
 import util.CheckUuidPattern;
 import util.EntityCreator;
-
 import java.util.UUID;
 
 import static org.hamcrest.Matchers.*;
@@ -26,6 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @DisplayName("Test class for CompanyController")
+@WithMockUser(username = "admin", password = "1234", roles = "DEVELOPER")
 class CompanyControllerTest {
 
     @Autowired

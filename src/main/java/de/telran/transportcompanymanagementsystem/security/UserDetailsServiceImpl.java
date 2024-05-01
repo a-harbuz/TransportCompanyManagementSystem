@@ -28,13 +28,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         EmployeeInfo employeeInfo = employeeInfoRepository.findByLogin(username);
         if (employeeInfo==null) {
-            throw new UsernameNotFoundException(username);
+            throw new UsernameNotFoundException("User with login '" + username + "' not found");
         }
-        return User.withUsername(username)
+
+        UserDetails userDetails = User.withUsername(username)
                 .username(employeeInfo.getLogin())
                 .password(employeeInfo.getPassword())
                 .authorities(getAuthorities(employeeInfo.getRoles()))
                 .build();
+        System.out.println(">>>> UserDetails >>>");
+        System.out.println(userDetails);
+        return userDetails;
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities(Collection<Role> roles) {
@@ -42,8 +46,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         for (Role role : roles) {
             authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
             role.getAuthorities().forEach(authority ->
-                    authorities.add(new SimpleGrantedAuthority(authority.getAuthorityName())));
+                    authorities.add(new SimpleGrantedAuthority(authority.getAuthorityName()))
+            );
+//            System.out.println(">>> ROLE >>>");
+//            System.out.println(role);
         }
+
+//        for (GrantedAuthority auth : authorities) {
+//            System.out.println(">>auth>>>");
+//            System.out.println(auth);
+//        }
         return authorities;
     }
 }
