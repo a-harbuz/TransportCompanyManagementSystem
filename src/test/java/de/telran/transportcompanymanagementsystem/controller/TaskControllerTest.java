@@ -1,6 +1,7 @@
 package de.telran.transportcompanymanagementsystem.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.telran.transportcompanymanagementsystem.dto.CreateUpdateTaskDto;
 import de.telran.transportcompanymanagementsystem.entity.Task;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -95,41 +96,40 @@ class TaskControllerTest {
 
     @Test
     void createTaskTest() throws Exception {
-//        CreateUpdateTaskDto newTaskDto = EntityCreator.getNewTask();
-//        String requestBody = objectMapper.writeValueAsString(newTaskDto);
-//        mockMvc
-//                .perform(MockMvcRequestBuilders.post("/task/new")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content(requestBody))
-//                .andDo(print())
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.taskId", matchesPattern(CheckUuidPattern.getUuidPattern())))
-//                .andExpect(jsonPath("$.addressFrom", is(newTaskDto.getAddressFrom())))
-//                .andExpect(jsonPath("$.addressTo", is(newTaskDto.getAddressTo())))
-//                .andExpect(jsonPath("$.waybillNumber", is(newTaskDto.getWaybillNumber())))
-//                .andExpect(jsonPath("$.taskStatus", is(newTaskDto.getTaskStatus().toString())));
+        CreateUpdateTaskDto newTaskDto = EntityCreator.getNewTask();
+        String requestBody = objectMapper.writeValueAsString(newTaskDto);
+        mockMvc
+                .perform(MockMvcRequestBuilders.post("/task/new")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.taskId", matchesPattern(CheckUuidPattern.getUuidPattern())))
+                .andExpect(jsonPath("$.addressFrom", is(newTaskDto.getAddressFrom())))
+                .andExpect(jsonPath("$.addressTo", is(newTaskDto.getAddressTo())))
+                .andExpect(jsonPath("$.waybillNumber", is(newTaskDto.getWaybillNumber())))
+                .andExpect(jsonPath("$.taskStatus", is(newTaskDto.getTaskStatus().toString())));
     }
 
     @Test
     void updateTaskTest() throws Exception {
-        //when(taskServiceMock.update(any(CreateUpdateTaskDto.class))).thenReturn(EntityCreator.getNewTask());
-//        mockMvc
-//                .perform(MockMvcRequestBuilders.put("/task/update")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content("""
-//                                {
-//                                    "taskId" : "f2efb169-73ce-4901-9d28-dbf5cc7040c2",
-//                                    "addressTo" : "new address to",
-//                                    "weightCargo" : 4000,
-//                                    "taskStatus" : "PLANNED"
-//                                }
-//                                """))
-//                .andDo(print())
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.taskId", is("f2efb169-73ce-4901-9d28-dbf5cc7040c2")))
-//                .andExpect(jsonPath("$.addressTo", is("new address to")))
-//                .andExpect(jsonPath("$.weightCargo").value(4000))
-//                .andExpect(jsonPath("$.taskStatus", is("PLANNED")));
+        mockMvc
+                .perform(MockMvcRequestBuilders.put("/task/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                    "taskId" : "f2efb169-73ce-4901-9d28-dbf5cc7040c2",
+                                    "addressTo" : "new address to",
+                                    "weightCargo" : 4000,
+                                    "taskStatus" : "PLANNED"
+                                }
+                                """))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.taskId", is("f2efb169-73ce-4901-9d28-dbf5cc7040c2")))
+                .andExpect(jsonPath("$.addressTo", is("new address to")))
+                .andExpect(jsonPath("$.weightCargo").value(4000))
+                .andExpect(jsonPath("$.taskStatus", is("PLANNED")));
     }
 
     @Test

@@ -17,6 +17,7 @@ import util.EntityCreator;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -51,9 +52,9 @@ class EmployeeControllerTest {
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/employee/all"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(7)))
+                .andExpect(jsonPath("$", hasSize(8)))
                 .andExpect(jsonPath("$[0].employeeId", matchesPattern(uuidPattern)))
-                .andExpect(jsonPath("$[6].employeeId", matchesPattern(uuidPattern)));
+                .andExpect(jsonPath("$[7].employeeId", matchesPattern(uuidPattern)));
     }
 
     @Test
@@ -86,24 +87,24 @@ class EmployeeControllerTest {
 
     @Test
     void createEmployee() throws Exception {
-//        mockMvc
-//                .perform(MockMvcRequestBuilders.post("/employee/registration")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content("""
-//                                {
-//                                    "firstName" : "Alex1",
-//                                    "lastName" : "new last name",
-//                                    "login" : "alex.n1",
-//                                    "driver" : 1,
-//                                    "address" : "new address",
-//                                    "phone" : "0175-563-54-56",
-//                                    "drivingLicenseCategory" : "B"
-//                                }
-//                                """))
-//                .andDo(print())
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.operation", is("EMPLOYEE CREATION")))
-//                .andExpect(jsonPath("$.status", is("CREATED")))
-//                .andExpect(jsonPath("$.login", is("alex.n1")));
+        mockMvc
+                .perform(MockMvcRequestBuilders.post("/employee/registration")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                    "firstName" : "Alex1",
+                                    "lastName" : "new last name",
+                                    "login" : "alex.n1",
+                                    "driver" : 1,
+                                    "address" : "new address",
+                                    "phone" : "0175-563-54-56",
+                                    "drivingLicenseCategory" : "B"
+                                }
+                                """))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.operation", is("EMPLOYEE CREATION")))
+                .andExpect(jsonPath("$.status", is("CREATED")))
+                .andExpect(jsonPath("$.login", is("alex.n1")));
     }
 }

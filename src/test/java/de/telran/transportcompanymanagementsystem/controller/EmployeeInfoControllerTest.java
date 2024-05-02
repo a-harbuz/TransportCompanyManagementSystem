@@ -53,9 +53,9 @@ class EmployeeInfoControllerTest {
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/employeeinfo/all"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(7)))
+                .andExpect(jsonPath("$", hasSize(8)))
                 .andExpect(jsonPath("$[0].employeeInfoId", matchesPattern(uuidPattern)))
-                .andExpect(jsonPath("$[6].employeeInfoId", matchesPattern(uuidPattern)));
+                .andExpect(jsonPath("$[7].employeeInfoId", matchesPattern(uuidPattern)));
     }
 
     @Test

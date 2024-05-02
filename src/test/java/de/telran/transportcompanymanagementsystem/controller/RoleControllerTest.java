@@ -49,7 +49,7 @@ class RoleControllerTest {
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/role/all"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(4)))
+                .andExpect(jsonPath("$", hasSize(5)))
                 .andExpect(MockMvcResultMatchers
                         .jsonPath("$[0].rid", matchesPattern(uuidPattern)));
     }

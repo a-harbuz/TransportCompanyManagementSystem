@@ -9,11 +9,14 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import static de.telran.transportcompanymanagementsystem.security.RoleAuthList.*;
+import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
 @EnableWebSecurity
@@ -38,30 +41,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers(DEVELOPER_LIST).hasRole(DEVELOPER_ROLE);
-                    auth.requestMatchers(DRIVER_LIST).hasRole(DRIVER_ROLE);
-                    auth.requestMatchers(MANAGER_LIST).hasRole(MANAGER_ROLE);
-                    auth.requestMatchers(OWNER_LIST).hasRole(OWNER_ROLE);
-                    auth.requestMatchers(USER_LIST).hasRole(USER_ROLE);
-                    auth.anyRequest().authenticated();
-                })
-                .httpBasic(Customizer.withDefaults())
-                .formLogin(Customizer.withDefaults());
+                .cors(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(auth ->
+                        auth
+                                .requestMatchers(USER_LIST).permitAll()
+                                .requestMatchers(DRIVER_LIST).hasAnyRole(DRIVER_ROLE, MANAGER_ROLE, OWNER_ROLE, DEVELOPER_ROLE)
+                                .requestMatchers(MANAGER_LIST).hasAnyRole(MANAGER_ROLE, OWNER_ROLE, DEVELOPER_ROLE)
+                                .requestMatchers(OWNER_LIST).hasAnyRole(OWNER_ROLE, DEVELOPER_ROLE)
+                                .requestMatchers(DEVELOPER_LIST).hasAnyRole(DEVELOPER_ROLE)
+                                .anyRequest().denyAll()
+                )
+        .httpBasic(Customizer.withDefaults())
+        .formLogin(Customizer.withDefaults());
         return http.build();
     }
 }
-
-//
-//        http
-//                .authorizeHttpRequests(auth ->
-//        auth
-//        .requestMatchers(DEVELOPER_LIST).hasRole(DEVELOPER_ROLE)
-//                            .requestMatchers(DRIVER_LIST).hasRole(DRIVER_ROLE)
-//                            .requestMatchers(MANAGER_LIST).hasRole(MANAGER_ROLE)
-//                            .requestMatchers(OWNER_LIST).hasRole(OWNER_ROLE)
-//                            .requestMatchers(USER_LIST).hasRole(USER_ROLE)
-//                            .anyRequest().authenticated()
-//                )
-//                        .httpBasic(Customizer.withDefaults())
-//        .formLogin(Customizer.withDefaults());
