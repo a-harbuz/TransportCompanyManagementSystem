@@ -135,6 +135,7 @@ public class EntityCreator {
                 .distanceTraveledKilometers(250)
                 .fuelCostsTraveled(BigDecimal.valueOf(120))
                 .taskStatus(TaskStatus.PLANNED)
+                .commentIfTaskCanceled("")
                 .contract_id("c8e0d900-fcd7-4182-925c-fb3a8d010243")
                 .company_id ("edebc21f-c4da-4701-85e2-246c86d7aa5c")
                 .vehicle_id("e70c1c8c-4798-42af-8d00-a36e8e804ce7")

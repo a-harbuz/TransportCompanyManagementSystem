@@ -25,7 +25,7 @@ import java.lang.annotation.Target;
         summary = "Update task data",
         description = "Update task data",
         requestBody = @RequestBody(
-                description = "The task to be created",
+                description = "The task data to be changed",
                 required = true,
                 content = @Content(
                         mediaType = "application/json",

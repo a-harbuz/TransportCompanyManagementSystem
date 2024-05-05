@@ -48,6 +48,15 @@ class TaskControllerTest {
     }
 
     @Test
+    void getTaskList() throws Exception {
+        mockMvc
+                .perform(MockMvcRequestBuilders.get("/task/all"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].taskId", matchesPattern(CheckUuidPattern.getUuidPattern())))
+                .andExpect(jsonPath("$[3].taskId", matchesPattern(CheckUuidPattern.getUuidPattern())));
+    }
+
+    @Test
     void getTaskByWaybillNumberTest() throws Exception {
         Task expected = EntityCreator.getTask();
         MvcResult mvcResult = mockMvc
@@ -98,6 +107,8 @@ class TaskControllerTest {
     void createTaskTest() throws Exception {
         CreateUpdateTaskDto newTaskDto = EntityCreator.getNewTask();
         String requestBody = objectMapper.writeValueAsString(newTaskDto);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
+        System.out.println(requestBody);
         mockMvc
                 .perform(MockMvcRequestBuilders.post("/task/new")
                         .contentType(MediaType.APPLICATION_JSON)

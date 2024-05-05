@@ -163,6 +163,7 @@
 					<excludes>
 						<exclude>de/telran/transportcompanymanagementsystem/aspect/*</exclude>
 						<exclude>de/telran/transportcompanymanagementsystem/entity/*</exclude>
+						<exclude>de/telran/transportcompanymanagementsystem/entity/enums/*</exclude>
 						<exclude>de/telran/transportcompanymanagementsystem/dto/*</exclude>
 						<exclude>de/telran/transportcompanymanagementsystem/exception/**</exclude>
 						<exclude>de/telran/transportcompanymanagementsystem/mapper/*</exclude>

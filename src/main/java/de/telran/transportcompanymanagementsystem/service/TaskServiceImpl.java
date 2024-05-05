@@ -11,6 +11,7 @@ import de.telran.transportcompanymanagementsystem.repository.*;
 import de.telran.transportcompanymanagementsystem.service.interfaces.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -84,6 +85,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    @Transactional
     public TaskDto create(CreateUpdateTaskDto createUpdateTaskDto) {
         Task task = taskMapper.toEntity(createUpdateTaskDto);
         if (createUpdateTaskDto.getWaybillNumber() == null) {
@@ -107,10 +109,12 @@ public class TaskServiceImpl implements TaskService {
         task.setCompany(company);
         task.setVehicle(vehicle);
         task.setEmployee(employee);
-        return taskMapper.toDto(taskRepository.save(task));
+        //return taskMapper.toDto(taskRepository.save(task));
+        return taskMapper.toDto(task);
     }
 
     @Override
+    @Transactional
     public TaskDto update(CreateUpdateTaskDto createUpdateTaskDto) {
         if (createUpdateTaskDto.getTaskId()==null)
             throw new TaskNotFoundException(ErrorMessage.TASK_ID_IS_ABSENT);
@@ -155,6 +159,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    @Transactional
     public void deleteTaskById(String id) {
         taskRepository.findById(UUID.fromString(id))
                 .orElseThrow(()-> new TaskNotFoundException(ErrorMessage.TASK_NOT_FOUND));

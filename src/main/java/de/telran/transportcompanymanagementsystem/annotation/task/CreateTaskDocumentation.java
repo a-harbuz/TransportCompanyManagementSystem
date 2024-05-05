@@ -1,7 +1,6 @@
 package de.telran.transportcompanymanagementsystem.annotation.task;
 
 import de.telran.transportcompanymanagementsystem.entity.Task;
-import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -37,7 +36,7 @@ import java.lang.annotation.Target;
                         description = "Successfully returned task",
                         content = @Content(
                                 mediaType = "application/json",
-                                schema = @Schema(implementation = Vehicle.class)
+                                schema = @Schema(implementation = Task.class)
                         )
                 )
         },

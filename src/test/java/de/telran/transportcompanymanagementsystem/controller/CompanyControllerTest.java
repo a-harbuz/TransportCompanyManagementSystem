@@ -156,4 +156,16 @@ class CompanyControllerTest {
         assertEquals(expectedCompany.getAddress(), actualCompany.getAddress());
         assertEquals(expectedCompany.getPhone(), actualCompany.getPhone());
     }
+
+    @Test
+    void updateCompanyByName() throws Exception {
+        mockMvc
+                .perform(MockMvcRequestBuilders.put("/company/update/name/Larson-Witting/New Larson"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.companyName", is("New Larson")));
+        mockMvc
+                .perform(MockMvcRequestBuilders.put("/company/update/name/New Larson/Larson-Witting"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.companyName", is("Larson-Witting")));
+    }
 }
