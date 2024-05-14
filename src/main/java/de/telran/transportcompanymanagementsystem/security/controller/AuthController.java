@@ -6,6 +6,9 @@ import de.telran.transportcompanymanagementsystem.security.jwt.JwtResponse;
 import de.telran.transportcompanymanagementsystem.security.service.AuthService;
 import jakarta.security.auth.message.AuthException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,13 +30,24 @@ public class AuthController {
      * @throws AuthException if authentication fails.
      */
     @GetMapping("/login")
+    //JwtResponse
     public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest authRequest) throws AuthException {
+        // get Token
         final JwtResponse token = authService.login(authRequest);
-        System.out.println(token.getAccessToken());
-        System.out.println(token.getRefreshToken());
-        return ResponseEntity.ok(token);
-    }
 
+        ResponseCookie cookie = ResponseCookie.from("token", token.getAccessToken())
+                .httpOnly(true) // Setting the HttpOnly flag to protect against XSS attacks
+                .path("/") // Setting the cookie path
+                .maxAge(3600) // Cookie lifetime in seconds
+                .build();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.SET_COOKIE, cookie.toString());
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .headers(headers)
+                .body(token);
+    }
 
     /**
      * Obtains a new access token using a refresh token.
