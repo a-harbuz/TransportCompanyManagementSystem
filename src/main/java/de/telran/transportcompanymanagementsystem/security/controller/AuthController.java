@@ -6,11 +6,8 @@ import de.telran.transportcompanymanagementsystem.security.jwt.JwtResponse;
 import de.telran.transportcompanymanagementsystem.security.service.AuthService;
 import jakarta.security.auth.message.AuthException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
@@ -35,15 +32,6 @@ public class AuthController {
         System.out.println(token.getAccessToken());
         System.out.println(token.getRefreshToken());
         return ResponseEntity.ok(token);
-    }
-
-    @GetMapping("/privet")
-    public String privet(@RequestBody JwtRequest authRequest) {
-//        {
-//            "login" : "admin",
-//                "password" : "1234"
-//        }
-        return authRequest.getLogin();
     }
 
 
@@ -73,11 +61,4 @@ public class AuthController {
         final JwtResponse token = authService.refresh(request.getRefreshToken());
         return ResponseEntity.ok(token);
     }
-
-//    @PostMapping("/registration")
-//    @ResponseStatus(code = HttpStatus.CREATED)
-//    public ResponseEntity<UserDto> register(@RequestBody UserDto userCredentialsDto) throws ResponseException {
-//        UserDto userDto = authService.createUser(userCredentialsDto);
-//        return ResponseEntity.ofNullable(userDto);
-//    }
 }
