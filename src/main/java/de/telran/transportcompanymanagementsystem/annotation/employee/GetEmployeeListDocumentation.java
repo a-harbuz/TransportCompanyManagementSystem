@@ -1,6 +1,6 @@
 package de.telran.transportcompanymanagementsystem.annotation.employee;
 
-import de.telran.transportcompanymanagementsystem.dto.EmployeeDto;
+import de.telran.transportcompanymanagementsystem.dto.EmployeeAllDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -21,15 +21,15 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @RequestMapping(method = RequestMethod.GET)
 @Operation(
-        summary = "Show all employees",
-        description = "Show all employees",
+        summary = "Show all employees with login and roles",
+        description = "Show all employees with login and roles",
         responses = {
                 @ApiResponse(
                         responseCode = "200",
                         description = "Successfully returned employees",
                         content = @Content(
                                 mediaType = "application/json",
-                                array = @ArraySchema(schema = @Schema(implementation = EmployeeDto.class))
+                                array = @ArraySchema(schema = @Schema(implementation = EmployeeAllDto.class))
                         )
                 ),
                 @ApiResponse(

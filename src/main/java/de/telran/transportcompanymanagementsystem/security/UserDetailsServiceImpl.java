@@ -3,7 +3,6 @@ package de.telran.transportcompanymanagementsystem.security;
 import de.telran.transportcompanymanagementsystem.entity.EmployeeInfo;
 import de.telran.transportcompanymanagementsystem.entity.Role;
 import de.telran.transportcompanymanagementsystem.repository.EmployeeInfoRepository;
-import de.telran.transportcompanymanagementsystem.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,7 +20,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    //private final EmployeeRepository employeeRepository;
     private final EmployeeInfoRepository employeeInfoRepository;
 
     @Override
@@ -48,14 +46,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             role.getAuthorities().forEach(authority ->
                     authorities.add(new SimpleGrantedAuthority(authority.getAuthorityName()))
             );
-//            System.out.println(">>> ROLE >>>");
-//            System.out.println(role);
         }
-
-//        for (GrantedAuthority auth : authorities) {
-//            System.out.println(">>auth>>>");
-//            System.out.println(auth);
-//        }
         return authorities;
     }
 }

@@ -1,9 +1,6 @@
 package de.telran.transportcompanymanagementsystem.service;
 
-import de.telran.transportcompanymanagementsystem.dto.EmployeeAfterRegistrationDto;
-import de.telran.transportcompanymanagementsystem.dto.EmployeeDto;
-import de.telran.transportcompanymanagementsystem.dto.EmployeeRegistrationDto;
-import de.telran.transportcompanymanagementsystem.dto.EmployeeWithVehicleAndMaintenanceDto;
+import de.telran.transportcompanymanagementsystem.dto.*;
 import de.telran.transportcompanymanagementsystem.entity.Employee;
 import de.telran.transportcompanymanagementsystem.entity.EmployeeInfo;
 import de.telran.transportcompanymanagementsystem.entity.Role;
@@ -46,8 +43,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<EmployeeDto> getEmployeeList() {
-        return employeeMapper.toDtoList(employeeRepository.findAll());
+    public List<EmployeeAllDto> getEmployeeList() {
+        return employeeMapper.toAllDtoList(employeeRepository.findAll());
     }
 
     @Override
@@ -70,7 +67,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeExistException(ErrorMessage.EMPLOYEE_WITH_LOGIN_EXIST);
         }
 
-        Role dafaultRole = roleRepository.findByRoleName("User");
+        Role dafaultRole = roleRepository.findByRoleName("ROLE_USER");
         if (dafaultRole==null) {
             throw new RoleNotFoundException(ErrorMessage.DEFAULT_ROLE_NOT_FOUND);
         }

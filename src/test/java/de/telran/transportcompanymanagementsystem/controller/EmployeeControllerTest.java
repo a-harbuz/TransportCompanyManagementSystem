@@ -52,8 +52,11 @@ class EmployeeControllerTest {
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/employee/all"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(8)))
                 .andExpect(jsonPath("$[0].employeeId", matchesPattern(uuidPattern)))
+                .andExpect(jsonPath("$[0].firstName").isNotEmpty())
+                .andExpect(jsonPath("$[0].lastName").isNotEmpty())
+                .andExpect(jsonPath("$[0].login").isNotEmpty())
+                .andExpect(jsonPath("$[0].roles").isNotEmpty())
                 .andExpect(jsonPath("$[7].employeeId", matchesPattern(uuidPattern)));
     }
 

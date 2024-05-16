@@ -11,7 +11,9 @@ public class RoleAuthList {
     public static final String[] USER_LIST = {
             "/login",
             "/token",
-            "/swagger-ui/**"
+            "/swagger-ui/**",
+            "/auth/login",
+            "/auth/token"
     };
 
     public static final String[] DRIVER_LIST = {

@@ -1,9 +1,6 @@
 package de.telran.transportcompanymanagementsystem.controller;
 
-import de.telran.transportcompanymanagementsystem.dto.EmployeeAfterRegistrationDto;
-import de.telran.transportcompanymanagementsystem.dto.EmployeeDto;
-import de.telran.transportcompanymanagementsystem.dto.EmployeeRegistrationDto;
-import de.telran.transportcompanymanagementsystem.dto.EmployeeWithVehicleAndMaintenanceDto;
+import de.telran.transportcompanymanagementsystem.dto.*;
 import de.telran.transportcompanymanagementsystem.service.interfaces.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +22,7 @@ public class EmployeeController {
     }
 
     @GetEmployeeListDocumentation(path="/all")
-    public List<EmployeeDto> getEmployeeList() {
+    public List<EmployeeAllDto> getEmployeeList() {
         //http://localhost:8080/employee/all
         return employeeService.getEmployeeList();
     }

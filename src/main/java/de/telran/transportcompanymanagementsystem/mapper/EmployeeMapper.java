@@ -1,11 +1,9 @@
 package de.telran.transportcompanymanagementsystem.mapper;
 
+import de.telran.transportcompanymanagementsystem.dto.EmployeeAllDto;
 import de.telran.transportcompanymanagementsystem.dto.EmployeeDto;
 import de.telran.transportcompanymanagementsystem.dto.EmployeeWithVehicleAndMaintenanceDto;
-import de.telran.transportcompanymanagementsystem.entity.Employee;
-import de.telran.transportcompanymanagementsystem.entity.Maintenance;
-import de.telran.transportcompanymanagementsystem.entity.Task;
-import de.telran.transportcompanymanagementsystem.entity.Vehicle;
+import de.telran.transportcompanymanagementsystem.entity.*;
 import org.mapstruct.*;
 
 import java.sql.Timestamp;
@@ -27,4 +25,13 @@ public interface EmployeeMapper {
 
     List<EmployeeDto> toDtoList (List<Employee> employees);
     EmployeeDto toDto (Employee employee);
+
+    List<EmployeeAllDto> toAllDtoList (List<Employee> employees);
+    @AfterMapping
+    default void getAllInformationList(@MappingTarget EmployeeAllDto employeeAllDto,
+                                Employee employee) {
+        employeeAllDto.setLogin(employee.getEmployeeInfo().getLogin());
+        List<Role> roles = employee.getEmployeeInfo().getRoles().stream().toList();
+        employeeAllDto.setRoles(roles);
+    }
 }
