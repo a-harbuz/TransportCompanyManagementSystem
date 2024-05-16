@@ -1,7 +1,6 @@
 package de.telran.transportcompanymanagementsystem.config;
 
 import de.telran.transportcompanymanagementsystem.security.UserDetailsServiceImpl;
-import de.telran.transportcompanymanagementsystem.security.jwt.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import de.telran.transportcompanymanagementsystem.security.jwt.JwtFilter;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
@@ -42,7 +42,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                //.cors(AbstractHttpConfigurer::disable)
+                .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authorizeHttpRequests(

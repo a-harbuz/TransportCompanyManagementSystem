@@ -5,12 +5,9 @@ import de.telran.transportcompanymanagementsystem.repository.EmployeeInfoReposit
 import de.telran.transportcompanymanagementsystem.security.model.UserDto;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.ZonedDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Service class for handling user-related operations.
@@ -23,11 +20,6 @@ public class UserService {
     public UserService() {
     }
 
-//    public Optional<UserDto> getByLogin(@NonNull String login) {
-//        return getByLoginWithDb(login); // database search
-//    }
-
-    // с БД
     @Autowired
     private EmployeeInfoRepository employeeInfoRepository;
 
@@ -40,19 +32,9 @@ public class UserService {
                     .login(employeeInfo.getLogin())
                     .password(employeeInfo.getPassword())
                     .firstName(employeeInfo.getLogin())
-                    //.lastName(userEntity.getLastName())
-//                    .roles(
-//                            Arrays.stream(employeeInfo.getRoles().toArray()) //.split(",")
-//                                    .distinct()
-//                                    .map(s -> Role.valueOf(s))
-//                                    .collect(Collectors.toSet())
-//                    )
                     .build());
         }
         userDto.get().setRoles(employeeInfo.getRoles());
         return userDto;
     }
-
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
 }
