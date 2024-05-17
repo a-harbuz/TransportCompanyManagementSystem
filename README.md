@@ -1,8 +1,16 @@
 # Transport Company Management System Project [Backend]
-
 This is a prototype of the BackEnd Transport Company Management System Project.
-
 Data consist of Company, Vehicle, Maintenance, Employee, EmployeeInfo, Contract, Tasks, Role, Authority.
+
+The system is designed to support the work of a transport company,
+which accepts orders for the transportation of various goods.
+The system provides accounting of orders for cargo transportation,
+transportation planning,
+accounting of vehicles at the enterprise,
+accounting for vehicle maintenance costs,
+accounting of relationships with clients,
+accounting of employees at the enterprise,
+provides different access roles for each user of the system.
 ___
 
 * [ApiDoc Link](http://localhost:8080/swagger-ui/index.html)
