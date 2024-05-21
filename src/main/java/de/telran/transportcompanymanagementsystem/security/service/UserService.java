@@ -31,9 +31,9 @@ public class UserService {
                     .login(employeeInfo.getLogin())
                     .password(employeeInfo.getPassword())
                     .firstName(employeeInfo.getLogin())
+                    .roles(employeeInfo.getRoles())
                     .build());
         }
-        userDto.get().setRoles(employeeInfo.getRoles());
         return userDto;
     }
 }

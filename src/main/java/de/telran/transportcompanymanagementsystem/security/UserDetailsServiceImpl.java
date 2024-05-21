@@ -34,8 +34,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .password(employeeInfo.getPassword())
                 .authorities(getAuthorities(employeeInfo.getRoles()))
                 .build();
-        System.out.println(">>>> UserDetails >>>");
-        System.out.println(userDetails);
         return userDetails;
     }
 

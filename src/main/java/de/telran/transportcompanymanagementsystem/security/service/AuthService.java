@@ -39,6 +39,7 @@ public class AuthService {
      * Handles user login and returns JWT tokens upon successful authentication.
      */
     public JwtResponse login(@NonNull JwtRequest authRequest) throws AuthException {
+        // Get UserDto with information about Employee from DB
         final UserDto userDto = userService.getByLoginWithDb(authRequest.getLogin())
                 .orElseThrow(() -> new AuthException("User is not found"));
 
@@ -109,16 +110,4 @@ public class AuthService {
         // Throw an AuthException if validation fails
         throw new AuthException("Invalid JWT token");
     }
-
-
-    /*
-     * Retrieves the authentication information from the security context.
-     */
-//    public JwtAuthentication getAuthInfo() {
-//        return (JwtAuthentication) SecurityContextHolder.getContext().getAuthentication();
-//    }
-//
-//    public UserDto createUser(UserDto userCredentialsDto) throws ResponseException {
-//        return userService.createUser(userCredentialsDto);
-//    }
 }
