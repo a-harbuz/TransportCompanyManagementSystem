@@ -1,6 +1,7 @@
 package de.telran.transportcompanymanagementsystem.config;
 
 import de.telran.transportcompanymanagementsystem.security.UserDetailsServiceImpl;
+import de.telran.transportcompanymanagementsystem.security.jwt.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import de.telran.transportcompanymanagementsystem.security.jwt.JwtFilter;
+import static de.telran.transportcompanymanagementsystem.security.RoleAuthList.*;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
@@ -47,23 +48,13 @@ public class SecurityConfig {
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authorizeHttpRequests(
                         auth -> auth
-                                .requestMatchers("/auth/login", "/auth/token", "/login",
-                                        "/swagger-ui.html",
-                                        "/api/v1/auth/**", "/v3/api-docs/**", "/swagger-ui/**"
-                                )
-                                .permitAll()
-
-                                .anyRequest().authenticated())
-
-//                .authorizeHttpRequests(auth ->
-//                        auth
-//                                .requestMatchers(USER_LIST).permitAll()
-//                                .requestMatchers(DRIVER_LIST).hasAnyRole(DRIVER_ROLE, MANAGER_ROLE, OWNER_ROLE, DEVELOPER_ROLE)
-//                                .requestMatchers(MANAGER_LIST).hasAnyRole(MANAGER_ROLE, OWNER_ROLE, DEVELOPER_ROLE)
-//                                .requestMatchers(OWNER_LIST).hasAnyRole(OWNER_ROLE, DEVELOPER_ROLE)
-//                                .requestMatchers(DEVELOPER_LIST).hasAnyRole(DEVELOPER_ROLE)
-//                                .anyRequest().denyAll()
-//                )
+                                .requestMatchers(USER_LIST).permitAll()
+                                .requestMatchers(DRIVER_LIST).hasAnyRole(DRIVER_ROLE, MANAGER_ROLE, OWNER_ROLE, DEVELOPER_ROLE)
+                                .requestMatchers(MANAGER_LIST).hasAnyRole(MANAGER_ROLE, OWNER_ROLE, DEVELOPER_ROLE)
+                                .requestMatchers(OWNER_LIST).hasAnyRole(OWNER_ROLE, DEVELOPER_ROLE)
+                                .requestMatchers(DEVELOPER_LIST).hasAnyRole(DEVELOPER_ROLE)
+                                .anyRequest().authenticated()
+                )
         .httpBasic(Customizer.withDefaults())
         .formLogin(Customizer.withDefaults())
         .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class);

@@ -9,11 +9,11 @@ public class RoleAuthList {
     public static final String DEVELOPER_ROLE = "DEVELOPER";
 
     public static final String[] USER_LIST = {
+            "/auth/**",
             "/login",
-            "/token",
+            "/swagger-ui.html",
             "/swagger-ui/**",
-            "/auth/login",
-            "/auth/token"
+
     };
 
     public static final String[] DRIVER_LIST = {
