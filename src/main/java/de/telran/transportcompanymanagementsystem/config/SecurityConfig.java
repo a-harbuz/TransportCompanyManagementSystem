@@ -5,6 +5,7 @@ import de.telran.transportcompanymanagementsystem.security.jwt.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
@@ -48,7 +49,7 @@ public class SecurityConfig {
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authorizeHttpRequests(
                         auth -> auth
-                                .requestMatchers(USER_LIST).permitAll()
+                                .requestMatchers(HttpMethod.GET, USER_LIST).permitAll()
                                 .requestMatchers(DRIVER_LIST).hasAnyRole(DRIVER_ROLE, MANAGER_ROLE, OWNER_ROLE, DEVELOPER_ROLE)
                                 .requestMatchers(MANAGER_LIST).hasAnyRole(MANAGER_ROLE, OWNER_ROLE, DEVELOPER_ROLE)
                                 .requestMatchers(OWNER_LIST).hasAnyRole(OWNER_ROLE, DEVELOPER_ROLE)
