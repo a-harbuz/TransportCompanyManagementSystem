@@ -6,6 +6,7 @@ import de.telran.transportcompanymanagementsystem.dto.CreateUpdateCompanyDto;
 import de.telran.transportcompanymanagementsystem.service.interfaces.CompanyService;
 import de.telran.transportcompanymanagementsystem.validation.UuidChecker;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

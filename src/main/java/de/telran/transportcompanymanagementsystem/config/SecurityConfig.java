@@ -12,6 +12,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -46,19 +47,20 @@ public class SecurityConfig {
         http
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
-                .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
-                .authorizeHttpRequests(
-                        auth -> auth
-                                .requestMatchers(HttpMethod.GET, USER_LIST).permitAll()
-                                .requestMatchers(DRIVER_LIST).hasAnyRole(DRIVER_ROLE, MANAGER_ROLE, OWNER_ROLE, DEVELOPER_ROLE)
-                                .requestMatchers(MANAGER_LIST).hasAnyRole(MANAGER_ROLE, OWNER_ROLE, DEVELOPER_ROLE)
-                                .requestMatchers(OWNER_LIST).hasAnyRole(OWNER_ROLE, DEVELOPER_ROLE)
-                                .requestMatchers(DEVELOPER_LIST).hasAnyRole(DEVELOPER_ROLE)
-                                .anyRequest().authenticated()
-                )
-        .httpBasic(Customizer.withDefaults())
-        .formLogin(Customizer.withDefaults())
-        .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+//                .authorizeHttpRequests(
+//                        auth -> auth
+//                                .requestMatchers(HttpMethod.GET, USER_LIST).permitAll()
+//                                .requestMatchers(DRIVER_LIST).hasAnyRole(DRIVER_ROLE, MANAGER_ROLE, OWNER_ROLE, DEVELOPER_ROLE)
+//                                .requestMatchers(MANAGER_LIST).hasAnyRole(MANAGER_ROLE, OWNER_ROLE, DEVELOPER_ROLE)
+//                                .requestMatchers(OWNER_LIST).hasAnyRole(OWNER_ROLE, DEVELOPER_ROLE)
+//                                .requestMatchers(DEVELOPER_LIST).hasAnyRole(DEVELOPER_ROLE)
+//                                //.anyRequest().authenticated()
+//                                .anyRequest().permitAll()
+//                )
+                .httpBasic(Customizer.withDefaults())
+                .formLogin(Customizer.withDefaults());
+                //.sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
+                //.addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }
