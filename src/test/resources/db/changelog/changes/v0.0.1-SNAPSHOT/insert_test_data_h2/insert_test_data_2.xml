@@ -114,7 +114,7 @@
     <changeSet author="o.harbuz" id="insert test data into role table">
         <insert tableName="role">
             <column name="id" value="e01207b8-6353-419d-940c-cf39638f672b"/>
-            <column name="role_name" value="User"/>
+            <column name="role_name" value="ROLE_USER"/>
         </insert>
     </changeSet>
     <changeSet author="o.harbuz" id="insert test data into authority table">
