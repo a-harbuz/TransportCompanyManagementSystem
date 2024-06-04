@@ -3,9 +3,9 @@ spring:
     banner-mode: off
 
 #  datasource:
-#    url: ${DATASOURCE.URL}
-#    username: ${DATASOURCE.USERNAME}
-#    password: ${DATASOURCE.PASSWORD}
+#    url: ${DATASOURCE_URL}
+#    username: ${DATASOURCE_USERNAME}
+#    password: ${DATASOURCE_PASSWORD}
 
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:transport_company}
