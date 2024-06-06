@@ -49,6 +49,7 @@ public class CompanyServiceImpl  implements CompanyService {
     }
 
     @Override
+    @Transactional
     public CompanyDto updateCompanyByName(String companyName, String newCompanyName) {
         Company company = companyRepository.findByCompanyName(companyName);
         if (company != null) {

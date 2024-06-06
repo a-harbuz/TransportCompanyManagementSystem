@@ -10,6 +10,7 @@ import de.telran.transportcompanymanagementsystem.repository.VehicleRepository;
 import de.telran.transportcompanymanagementsystem.service.interfaces.VehicleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -44,6 +45,7 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
+    @Transactional
     public void deleteVehicleById(String id) {
         vehicleRepository.findById(UUID.fromString(id))
                 .orElseThrow(()-> new VehicleNotFoundException(ErrorMessage.VEHICLE_NOT_FOUND));
@@ -62,6 +64,7 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
+    @Transactional
     public VehicleDto create(CreateVehicleDto createVehicleDto) {
         Vehicle vehicle = vehicleMapper.toEntity(createVehicleDto);
         return vehicleMapper.toDto(vehicleRepository.save(vehicle));

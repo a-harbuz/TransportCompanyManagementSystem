@@ -17,7 +17,6 @@ import de.telran.transportcompanymanagementsystem.mapper.EmployeeRegistrationMap
 import de.telran.transportcompanymanagementsystem.repository.EmployeeInfoRepository;
 import de.telran.transportcompanymanagementsystem.repository.EmployeeRepository;
 import de.telran.transportcompanymanagementsystem.repository.RoleRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import de.telran.transportcompanymanagementsystem.service.interfaces.EmployeeService;
@@ -27,6 +26,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -59,6 +59,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @Transactional
     public EmployeeAfterRegistrationDto createEmployee(EmployeeRegistrationDto employeeRegistrationDto) {
         Employee employee = employeeRepository.findByFirstNameAndLastName(
                 employeeRegistrationDto.getFirstName(), employeeRegistrationDto.getLastName());
@@ -95,7 +96,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    @Transactional
     public List<EmployeeWithVehicleAndMaintenanceDto> getEmployeeWithOneOrMoreVehicleMaintenance() {
         List<Employee> employees = employeeRepository.findEmployeeWithOneOrMoreVehicleMaintenance();
         employees.forEach(System.out::println);
