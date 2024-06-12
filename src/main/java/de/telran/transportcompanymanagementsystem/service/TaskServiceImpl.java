@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -109,8 +108,7 @@ public class TaskServiceImpl implements TaskService {
         task.setCompany(company);
         task.setVehicle(vehicle);
         task.setEmployee(employee);
-        //return taskMapper.toDto(taskRepository.save(task));
-        return taskMapper.toDto(task);
+        return taskMapper.toDto(taskRepository.save(task));
     }
 
     @Override
@@ -118,27 +116,9 @@ public class TaskServiceImpl implements TaskService {
     public TaskDto update(CreateUpdateTaskDto createUpdateTaskDto) {
         if (createUpdateTaskDto.getTaskId()==null)
             throw new TaskNotFoundException(ErrorMessage.TASK_ID_IS_ABSENT);
-        Optional<Task> taskOptional = taskRepository.findById(createUpdateTaskDto.getTaskId());
-        if (taskOptional.isEmpty()) throw new TaskNotFoundException(ErrorMessage.TASK_NOT_FOUND);
-        Task task = taskOptional.get();
-        if (createUpdateTaskDto.getTransportationDate()!=null)
-            task.setTransportationDate(createUpdateTaskDto.getTransportationDate());
-        if (createUpdateTaskDto.getAddressFrom()!=null)
-            task.setAddressFrom(createUpdateTaskDto.getAddressFrom());
-        if (createUpdateTaskDto.getAddressTo()!=null)
-            task.setAddressTo(createUpdateTaskDto.getAddressTo());
-        if (createUpdateTaskDto.getWeightCargo()!=null)
-            task.setWeightCargo(createUpdateTaskDto.getWeightCargo());
-        if (createUpdateTaskDto.getWaybillCost()!=null)
-            task.setWaybillCost(createUpdateTaskDto.getWaybillCost());
-        if (createUpdateTaskDto.getDistanceTraveledKilometers()!=null)
-            task.setDistanceTraveledKilometers(createUpdateTaskDto.getDistanceTraveledKilometers());
-        if (createUpdateTaskDto.getFuelCostsTraveled()!=null)
-            task.setFuelCostsTraveled(createUpdateTaskDto.getFuelCostsTraveled());
-        if (createUpdateTaskDto.getTaskStatus()!=null)
-            task.setTaskStatus(createUpdateTaskDto.getTaskStatus());
-        if (createUpdateTaskDto.getCommentIfTaskCanceled()!=null)
-            task.setCommentIfTaskCanceled(createUpdateTaskDto.getCommentIfTaskCanceled());
+        Task task = taskRepository.findById(createUpdateTaskDto.getTaskId())
+                .orElseThrow(()-> new TaskNotFoundException(ErrorMessage.TASK_NOT_FOUND));
+        taskMapper.update(createUpdateTaskDto, task);
         //Checking the presence of the contract_id
         if (createUpdateTaskDto.getContract_id()!=null)
             task.setContract(contractRepository.findById(UUID.fromString(createUpdateTaskDto.getContract_id()))

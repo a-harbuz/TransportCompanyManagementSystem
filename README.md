@@ -6,6 +6,7 @@ Data consist of Company, Vehicle, Maintenance, Employee, EmployeeInfo, Contract,
 ___
 
 * [ApiDoc Link](http://localhost:8080/swagger-ui/index.html)
+* [GitHub](https://github.com/a-harbuz/TransportCompanyManagementSystem/tree/add-security)
 * [JACOCO Link](http://localhost:63342/)
 ___
 ### Database scheme

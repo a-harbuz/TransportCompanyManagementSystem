@@ -10,13 +10,10 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
 import static de.telran.transportcompanymanagementsystem.security.RoleAuthList.*;
-import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
 @EnableWebSecurity
@@ -50,7 +47,7 @@ public class SecurityConfig {
                                 .requestMatchers(MANAGER_LIST).hasAnyRole(MANAGER_ROLE, OWNER_ROLE, DEVELOPER_ROLE)
                                 .requestMatchers(OWNER_LIST).hasAnyRole(OWNER_ROLE, DEVELOPER_ROLE)
                                 .requestMatchers(DEVELOPER_LIST).hasAnyRole(DEVELOPER_ROLE)
-                                .anyRequest().denyAll()
+                                .anyRequest().authenticated()
                 )
         .httpBasic(Customizer.withDefaults())
         .formLogin(Customizer.withDefaults());

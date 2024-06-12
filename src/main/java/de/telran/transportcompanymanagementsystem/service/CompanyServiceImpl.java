@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -66,21 +65,9 @@ public class CompanyServiceImpl  implements CompanyService {
     public CompanyDto updateCompanyById(CreateUpdateCompanyDto createUpdateCompanyDto) {
         if (createUpdateCompanyDto.getCompanyId()==null)
             throw new CompanyNotFoundException(ErrorMessage.COMPANY_ID_IS_ABSENT);
-        Optional<Company> companyOptional = companyRepository.findById(createUpdateCompanyDto.getCompanyId());
-        if (companyOptional.isEmpty()) throw new CompanyNotFoundException(ErrorMessage.COMPANY_NOT_FOUND);
-        Company company = companyOptional.get();
-        if (createUpdateCompanyDto.getCompanyName()!=null)
-            company.setCompanyName(createUpdateCompanyDto.getCompanyName());
-        if (createUpdateCompanyDto.getContactFirstName()!=null)
-            company.setContactFirstName(createUpdateCompanyDto.getContactFirstName());
-        if (createUpdateCompanyDto.getContactLastName()!=null)
-            company.setContactLastName(createUpdateCompanyDto.getContactLastName());
-        if (createUpdateCompanyDto.getEmail()!=null)
-            company.setEmail(createUpdateCompanyDto.getEmail());
-        if (createUpdateCompanyDto.getAddress()!=null)
-            company.setAddress(createUpdateCompanyDto.getAddress());
-        if (createUpdateCompanyDto.getPhone()!=null)
-            company.setPhone(createUpdateCompanyDto.getPhone());
+        Company company = companyRepository.findById(createUpdateCompanyDto.getCompanyId())
+                .orElseThrow(()-> new CompanyNotFoundException(ErrorMessage.COMPANY_NOT_FOUND));
+        companyMapper.update(createUpdateCompanyDto, company);
         return companyMapper.toDto(companyRepository.saveAndFlush(company));
     }
 

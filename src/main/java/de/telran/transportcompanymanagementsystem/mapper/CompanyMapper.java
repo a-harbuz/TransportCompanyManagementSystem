@@ -3,9 +3,7 @@ package de.telran.transportcompanymanagementsystem.mapper;
 import de.telran.transportcompanymanagementsystem.dto.CompanyDto;
 import de.telran.transportcompanymanagementsystem.dto.CreateUpdateCompanyDto;
 import de.telran.transportcompanymanagementsystem.entity.Company;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.mapstruct.*;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -21,4 +19,8 @@ public interface CompanyMapper {
             @Mapping(target = "tasks", ignore = true)
     })
     Company toEntity (CreateUpdateCompanyDto createCompanyDto);
+
+    @Mapping(target = "companyId", ignore = true)
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void update(CreateUpdateCompanyDto createUpdateCompanyDto, @MappingTarget Company company);
 }

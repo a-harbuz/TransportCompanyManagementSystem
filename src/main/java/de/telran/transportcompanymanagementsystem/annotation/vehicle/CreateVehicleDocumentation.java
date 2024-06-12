@@ -1,5 +1,6 @@
 package de.telran.transportcompanymanagementsystem.annotation.vehicle;
 
+import de.telran.transportcompanymanagementsystem.dto.CreateVehicleDto;
 import de.telran.transportcompanymanagementsystem.entity.Vehicle;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -27,7 +28,7 @@ import java.lang.annotation.Target;
                 required = true,
                 content = @Content(
                         mediaType = "application/json",
-                        schema = @Schema(implementation = Vehicle.class)
+                        schema = @Schema(implementation = CreateVehicleDto.class)
                 )
         ),
         responses = {
