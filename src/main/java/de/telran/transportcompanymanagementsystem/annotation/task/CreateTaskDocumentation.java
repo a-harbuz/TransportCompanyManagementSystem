@@ -1,5 +1,6 @@
 package de.telran.transportcompanymanagementsystem.annotation.task;
 
+import de.telran.transportcompanymanagementsystem.dto.CreateUpdateTaskDto;
 import de.telran.transportcompanymanagementsystem.entity.Task;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -27,7 +28,7 @@ import java.lang.annotation.Target;
                 required = true,
                 content = @Content(
                         mediaType = "application/json",
-                        schema = @Schema(implementation = Task.class)
+                        schema = @Schema(implementation = CreateUpdateTaskDto.class)
                 )
         ),
         responses = {

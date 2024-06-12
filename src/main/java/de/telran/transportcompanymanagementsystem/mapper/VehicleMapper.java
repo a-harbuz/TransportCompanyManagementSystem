@@ -11,7 +11,9 @@ import java.util.List;
 @Mapper(componentModel = "spring", imports = Timestamp.class)
 public interface VehicleMapper {
     VehicleDto toDto(Vehicle vehicle);
+
     List<VehicleDto> toDtoList(List<Vehicle> vehicles);
+
     @Mappings({
             @Mapping(target = "createdAt", expression = "java(new Timestamp(System.currentTimeMillis()))"),
             @Mapping(target = "vehicleId", ignore = true),

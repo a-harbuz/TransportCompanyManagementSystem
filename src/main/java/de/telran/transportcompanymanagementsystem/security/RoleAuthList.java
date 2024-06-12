@@ -11,8 +11,7 @@ public class RoleAuthList {
             "/auth/**",
             "/login",
             "/swagger-ui.html",
-            "/swagger-ui/**",
-
+            "/swagger-ui/**"
     };
 
     public static final String[] DRIVER_LIST = {
@@ -38,7 +37,6 @@ public class RoleAuthList {
             "/task/companyname-waybillcost/**",
             "/task/waybillnumber/*",
             "/task/weightcargo/morethan/*"
-
     };
 
     public static final String[] OWNER_LIST = {

@@ -12,8 +12,10 @@ import java.util.List;
     unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface MaintenanceMapper {
     MaintenanceDto toDto(Maintenance maintenance);
+
     List<MaintenanceDto> toDtoList(List<Maintenance> maintenances);
-    List<VehicleWithMaintenanceDto> toVehicleWithMaintenanceDto (List<Maintenance> maintenance); //, List<Vehicle> vehicles
+
+    List<VehicleWithMaintenanceDto> toVehicleWithMaintenanceDto (List<Maintenance> maintenance);
     @AfterMapping
     default void getVehicleInfo(@MappingTarget VehicleWithMaintenanceDto vehicleWithMaintenanceDto,
                                 Maintenance maintenance){

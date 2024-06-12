@@ -12,7 +12,9 @@ import java.util.List;
 @Mapper(componentModel = "spring", imports = Timestamp.class)
 public interface EmployeeInfoMapper {
     List<EmployeeInfoDto> toDtoList(List<EmployeeInfo> employeeInfoList);
+
     EmployeeInfoDto toDto(EmployeeInfo employeeInfo);
+
     @Mappings({
             @Mapping(target = "password", ignore = true),
             @Mapping(target = "employee", ignore = true),

@@ -13,12 +13,19 @@ import java.util.List;
         unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface TaskMapper {
     TaskDto toDto(Task task);
+
     @Mappings({
             @Mapping(target = "createdAt", expression = "java(new Timestamp(System.currentTimeMillis()))"),
             @Mapping(target = "weightCargo", expression = "java(Float.valueOf(createUpdateTaskDto.getWeightCargo()))"),
     })
     Task toEntity(CreateUpdateTaskDto createUpdateTaskDto);
+
     List<TaskDto> toDtoList(List<Task> tasks);
+
     @Mapping(source = "transportationDate", target = "transportationDate")
     TaskForDriverDto toDtoForDriver(Task task);
+
+    @Mapping(target = "taskId", ignore = true)
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void update(CreateUpdateTaskDto createUpdateTaskDto, @MappingTarget Task task);
 }
